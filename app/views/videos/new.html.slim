@@ -1,0 +1,9 @@
+#new-video
+  .row
+    = form_for @video do |f|
+      = f.text_field :url
+      = f.text_field :channel
+      = f.text_field :title
+      = f.text_area :description
+
+      = f.submit 'Salvar'

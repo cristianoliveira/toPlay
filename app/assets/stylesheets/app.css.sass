@@ -1,0 +1,179 @@
+@import compass/reset
+@import compass/css3
+@import foundation_and_overrides
+
+// Colors
+$background-gray: #F5F5F5
+$footer-gray: #E6E6E6
+$text-gray: #999999
+$dark-blue: #499BD0
+$light-blue: #83D1EC
+$active-tab: #EFEFEF
+$border-light-gray: #F7F6F7
+$tab-light-gray: #EBECEC
+$white: #FFF
+// Sizes
+$row-width: 1200px
+
+@import courses
+@import topics
+@import questions
+
+// General layout
+body
+  background: $background-gray
+  font-family: 'Open Sans', sans-serif !important
+*, *:before, *:after
+  +box-sizing(border-box)
+
+a, div, p, h3
+  color: $text-gray
+  font-family: 'Open Sans', sans-serif !important
+
+a.close-reveal-modal
+  font-size: 1.5em !important
+
+a.button
+  padding: .6em 2em
+  font-weight: bold
+  margin-bottom: 0
+
+a.btn_first
+  background: $dark-blue
+  &:hover
+    background: darken($dark-blue, 20%)
+a.second
+  background: $light-blue
+  &:hover
+    background: darken($light-blue, 20%)
+a.third
+  outline: solid 2px $background-gray
+  color: $text-gray
+  background: white
+  &:hover
+    background: darken(white, 5%)
+    color: $text-gray
+a.fourth
+  background: $background-gray
+  outline: solid 1px darken($background-gray, 20%)
+  color: $text-gray
+  &:hover
+    background: darken($background-gray, 20%)
+
+header
+  +grid-column(12)
+  background: white
+  padding: .5em
+  .first
+    padding-left: 0 !important
+    +grid-column(6)
+  .last
+    text-align: right
+  .logo, .login, ul, li
+    display: inline
+  li
+    padding: 0 1em
+  li, .login span, .login a
+    font-size: .7em
+    text-transform: uppercase
+  .login .button
+    padding: 1.1em 3em
+    min-height: 3.6em
+  .login a
+    margin-left: 1em
+  #upload
+    padding: 0 3em
+  .avatar
+    +border-radius(100%)
+    margin-right: .5em
+    height: 40px
+    width: 40px
+
+footer
+  +grid-column(12)
+  background: $footer-gray
+  padding-top: 2em
+  padding-bottom: 10em
+  .group
+    +grid-column(2)
+  .group.last
+    +grid-column(4)
+  .logo
+    padding-bottom: 1em
+
+  li
+    line-height: 1.1em
+  a, p
+    font-size: .8em
+  .first
+    text-transform: uppercase
+    padding-left: 0
+  .links
+    margin-left: 0
+    text-align: left
+
+  img.fb-share-footer
+    margin-top: -7px
+
+.page-wrap
+  +grid-column(12)
+  min-height: 10em
+  padding: 2em 0
+
+.devise_view, .devise_controller
+  +grid-column(12)
+  text-align: center
+  .social_login
+    +grid-column(6)
+    margin-bottom: 1em
+    padding: 0
+    &.facebook_login
+      padding-right: .3em
+    &.google_login
+      padding-left: .3em
+  .logo
+    margin: 1em 0 2em 0
+  .devise-title
+    margin-bottom: 1.5em
+    h3
+      color: $dark-blue
+      font-size: 1.1em
+      line-height: .8em
+      font-weight: 500
+      margin-bottom: 0
+    h5
+      color: $text-gray
+      font-weight: 300
+      font-size: 1em
+  form
+    input, select
+      margin: 0
+      font-family: inherit
+      font-weight: 400
+    input[type="text"], input[type="email"], input[type="password"], input[type="date"], select
+      background: $background-gray
+    .submit
+      width: 100%
+      margin-top: 1em
+    #user_avatar
+      position: absolute
+      top: -1000px
+    a.upload_avatar
+      margin-top: 1em
+      width: 100%
+      img
+        height: 32px
+
+  .links
+    text-align: left
+    padding: 1em 0
+    font-size: .9em
+    line-height: 1.5em
+  .main-links
+    line-height: 1.5em
+    span
+      margin-right: .5em
+
+.devise_controller .page-wrap
+  +grid-column(4, $center: true)
+  background-color: white

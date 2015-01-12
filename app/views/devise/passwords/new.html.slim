@@ -1,0 +1,10 @@
+.devise-title
+  h3 Esqueci minha senha
+
+= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+  = devise_error_messages!
+
+  = f.email_field :email
+  = f.submit "Envie-me email com instruções", class: [:button, :submit]
+
+= render "devise/shared/links"

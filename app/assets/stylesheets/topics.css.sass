@@ -1,0 +1,243 @@
+body.topics
+  background-color: $background-gray
+.topic
+  .sidebar
+    +grid-column(2)
+  .extra-sidebar
+    +grid-column(4)
+  .wraper
+    +grid-column(6)
+
+  dl.tabs
+    line-height: .5em
+
+  .sidebar
+    .tabs
+      width: 100% !important
+      dd
+        display: table
+      dd > a
+        text-transform: uppercase
+        font-size: .7em
+        background: transparent
+        padding: .2em 0 .4em 1.2em
+        margin-bottom: 1.5em
+        border: none
+        border-bottom: solid 3px transparent
+      dd.active > a
+        border-bottom: solid 3px $light-blue
+      a
+        color: $text-gray
+
+  .wraper
+    .content-sections
+      width: 100% !important
+      .content
+        margin-bottom: 1em
+        background: white
+        min-height: 300px
+      #topic-description
+        background: transparent
+        #description, #hints
+          background: white
+          p
+            font-size: .9em
+        .content-sections > .content
+          padding: 1em
+        dd > a
+          color: $text-gray
+
+.topics
+  .sidebar
+    +grid-column(2)
+  .extra-sidebar
+    +grid-column(4)
+    padding-right: 0
+    ul
+      margin: 0
+    .video-thumb
+      width: 90px
+      margin: 0px 10px 10px 0px
+    li
+      font-size: 12px
+  .wraper
+    +grid-column(6)
+    padding: 0
+    #topic-videos
+      padding: 0 !important
+      .description
+        padding: 0.9375rem
+        .avatar
+          margin-right: .5em
+          height: 40px
+          width: 40px
+          float: left
+        h3
+          font-weight: bold
+          font-size: 16px
+          border-bottom: 1px solid $border-light-gray
+          padding-bottom: 20px
+          margin: 0 0 20px 0
+          line-height: 1em
+          span
+            font-weight: normal
+            font-size: 12px
+    #topic-description
+      .tabs
+        padding-top: 20px
+        dd
+          +grid-column(4)
+          a
+            border: none
+            background-color: $tab-light-gray
+        dd.active
+          a
+            background-color: $white
+      .description
+        padding: 0.9375rem
+      .content-sections
+        padding: 0 !important
+    #topic-exercises
+      padding: 0.9375rem
+      .get_answer
+        background-color: $dark-blue
+        color: #FFF
+        linh-height: 50px
+        vertical-align: middle
+        font-size: 18px
+        font-weight: bold
+        width: 320px
+        border-radius: 5px
+        margin: 10px auto
+        display: block
+        text-align: center
+        height: 50px
+      img
+        margin-bottom: 15px
+      .exercise-navigation
+        margin: 20px auto
+        display: block
+        height: 40px
+        li
+          float: left
+        a
+          display: block
+          width: 40px
+          height: 40px
+          line-height: 40px
+          text-align: center
+          vertical-align: middle
+          border-radius: 50%
+          background-color: $background-gray
+        a:active, a.active, a:hover
+          background-color: $light-blue
+          color: #FFF
+      .exercises
+        li
+          span
+            margin-right: 10px
+            display: inline-block
+            width: 40px
+            height: 40px
+            line-height: 40px
+            text-align: center
+            vertical-align: middle
+            border-radius: 50%
+            background-color: $background-gray
+          a
+            line-height: 40px
+            vertical-align: middle
+            &:hover
+              color: $light-blue
+              span
+                background-color: $light-blue
+                color: #FFF
+          a.active
+            color: $light-blue
+            span
+              background-color: $light-blue
+              color: #FFF
+
+    .content-sections
+      +grid-column(12)
+      max-width: 100%
+      .orbit-prev, .orbit-next
+        display: none
+      .prev-video, .next-video
+        text-indent: -9999px
+        display: inline-block
+        height: 40px
+        width: 40px
+      .prev-video
+        background-image: url(/assets/seta_video_top_esq1.png)
+      .prev-video:hover
+        background-image: url(/assets/seta_video_top_esq2.png)
+      .next-video
+        background-image: url(/assets/seta_video_top_dir1.png)
+      .next-video:hover
+        background-image: url(/assets/seta_video_top_dir2.png)
+      .video-top-bar
+        line-height: 40px
+        font-size: 14px
+        span
+          font-size: 18px
+          font-weight: bold
+        ul
+          float: right
+          li
+            display: inline
+            line-height: 40px
+            vertical-align: bottom
+            a
+              vertical-align: middle
+        .video-facebook-share, .video-twitter-share, .video-gplus-share, .video-mail-share
+          text-indent: -9999px
+          display: inline-block
+          height: 22px
+          width: 22px
+          background-color: #CCCCCC
+          margin-right: 5px
+        .video-facebook-share:hover, .video-twitter-share:hover, .video-gplus-share:hover, .video-mail-share:hover
+          background-color: #D6D6D6
+        .video-facebook-share
+          background-image: url(/assets/face_video.png)
+        .video-twitter-share
+          background-image: url(/assets/twitter_video.png)
+        .video-gplus-share
+          background-image: url(/assets/g+_video.png)
+        .video-mail-share
+          background-image: url(/assets/email_video.png)
+          margin-right: 0px
+        .video-upvote, .video-downvote
+          padding: 0px 25px 0px 5px
+        .video-upvote
+          margin-left: 10px
+          background: url(/assets/like1.png) no-repeat center right
+          &:hover
+            color: $dark-blue
+            background-image: url(/assets/like2.png)
+        .video-downvote
+          background: url(/assets/dislike1.png) no-repeat center right
+          margin-right: 10px
+          &:hover
+            color: $dark-blue
+            background-image: url(/assets/dislike2.png)
+        .upvoted
+          color: $dark-blue
+          background-image: url(/assets/like2.png)
+        .downvoted
+          color: $dark-blue
+          background-image: url(/assets/dislike2.png)
+
+      .video
+        position: relative
+        padding-bottom: 56.25%
+        padding-top: 30px
+        height: 0
+        overflow: hidden
+      .video iframe, .video object, .video embed
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%

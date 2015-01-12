@@ -1,0 +1,25 @@
+.devise-title
+  h3 Bem vindo!
+
+= link_to image_tag('login_face1.png'), omniauth_authorize_path(resource_name, 'facebook'), class: [:social_login, :facebook_login]
+= link_to image_tag('login_g+1.png'), omniauth_authorize_path(resource_name, 'google'), class: [:social_login, :google_login]
+
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f|
+  = devise_error_messages!
+
+  = f.text_field :first_name, placeholder: 'Nome'
+  = f.text_field :last_name, placeholder: 'Sobrenome'
+  = f.email_field :email, placeholder: 'Email'
+  = f.password_field :password, placeholder: 'Senha'
+  = f.password_field :password_confirmation, placeholder: 'Confirme sua senha'
+  = f.select :gender, options_for_select(User::GENDERS), prompt: 'Sexo'
+  = f.text_field :city, placeholder: 'Cidade'
+  = f.date_field :birthdate, class: [:date_field], placeholder: 'Data de Nascimento'
+
+  = f.file_field :avatar
+  = f.hidden_field :avatar_cache
+  = link_to image_tag('upload_conteudo.png') + " Upload Foto", '#', class: [:upload_avatar, :button, :fourth], onclick: 'uploadAvatar();'
+
+  = f.submit 'Cadastrar', class: [:button, :submit]
+
+= render "devise/shared/links"

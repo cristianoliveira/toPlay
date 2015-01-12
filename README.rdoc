@@ -1,0 +1,11 @@
+== README
+
+Ambiente virtual de educação colaborativa, com vídeos, resumos, desafios interativos e espaço para tirar dúvidas.
+
+* Ruby version: 2.1.1
+
+* Database: Copiar o database.sample.yml para database.yml e incluir configurações pessoais
+
+* Testes: rspec spec
+
+* Heroku: http://torreplay.herokuapp.com

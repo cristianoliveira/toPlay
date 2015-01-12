@@ -1,0 +1,17 @@
+.links
+  - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+    div= link_to "Esqueci minha senha", new_password_path(resource_name), data: { reveal_ajax: true, reveal_id: 'password_box' }
+
+  - if devise_mapping.confirmable? && controller_name != 'confirmations'
+    div= link_to "Confirmar e-mail", new_confirmation_path(resource_name), data: { reveal_ajax: true, reveal_id: 'confirmable_box' }
+
+.main-links
+  - if devise_mapping.registerable? && controller_name != 'registrations'
+    div
+      span Novo aqui?
+      = link_to "Cadastre-se", new_registration_path(resource_name), data: { reveal_ajax: true, reveal_id: 'signup_box' }, id: :signup_link
+
+  - if controller_name != 'sessions'
+    div
+      span Já tem cadastro?
+      = link_to "Entrar", new_session_path(resource_name), data: { reveal_ajax: true, reveal_id: 'login_box' }

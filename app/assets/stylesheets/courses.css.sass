@@ -1,0 +1,45 @@
+form#select_course
+  select
+    +grid-column(6)
+
+#subjects, #levels, .topics
+  padding: 0 !important
+  dd > a
+    color: $text-gray
+#subjects
+  +grid-column(3)
+  background: transparent
+  dd > a
+    text-transform: uppercase
+    background: transparent
+  dd.active > a
+    background: $active-tab
+#levels
+  +grid-column(4)
+  max-width: 100%
+  span
+    color: $light-blue
+    font-size: 20px
+.topics
+  +grid-column(12)
+  background: white
+  padding: .5em !important
+  max-width: 100% !important
+  width: 100% !important
+  dd
+    +grid-column(6)
+    padding: 0 !important
+  dd > a
+    padding: 1em
+    background: white
+    border: solid 1px $active-tab
+
+#subjects-content, #levels-content
+  +grid-column(9)
+  padding: 0 !important
+  .content
+    padding: 0 !important
+#subjects-content
+  +grid-column(9)
+#levels-content
+  +grid-column(8)

@@ -1,0 +1,14 @@
+.devise-title
+  h3 Bem vindo!
+  h5 Bom ver você por aqui.
+
+= link_to image_tag('login_face1.png'), omniauth_authorize_path(resource_name, 'facebook'), class: [:social_login, :facebook_login]
+= link_to image_tag('login_g+1.png'), omniauth_authorize_path(resource_name, 'google'), class: [:social_login, :google_login]
+
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  = f.email_field :email, placeholder: 'Seu e-mail'
+  = f.password_field :password, autocomplete: 'off', placeholder: 'Sua senha'
+
+  = f.submit 'Entrar', class: [:button, :submit], id: :login_submit
+
+= render "devise/shared/links"

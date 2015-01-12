@@ -1,0 +1,62 @@
+#new_question
+  padding: 0.9375rem
+  textarea
+    background-color: $background-gray
+    border: none
+  hr
+    border-color: $border-light-gray
+
+.question
+  border-color: $white
+  .question-inner
+    padding: 0.9375rem
+    .question-top-bar
+      ul
+        padding: 0
+        margin: 0
+
+        li
+          line-height: 40px
+          vertical-align: middle
+          float: left
+          margin-right: 15px
+          &:nth-child(n + 4)
+            float: right
+          &:nth-child(4)
+            margin-right: 0
+            a
+              margin-right: 0
+        .avatar
+          img
+            +border-radius(100%)
+            margin-right: .5em
+            height: 40px
+            width: 40px
+        .created-at
+          font-size: 10px
+        .question-upvote, .question-downvote
+          padding: 0px 25px 0px 0px
+        .question-upvote
+          margin-left: 10px
+          background: url(/assets/like1.png) no-repeat center right
+          &:hover
+            color: $dark-blue
+            background-image: url(/assets/like2.png)
+        .question-downvote
+          background: url(/assets/dislike1.png) no-repeat center right
+          margin-right: 10px
+          &:hover
+            color: $dark-blue
+            background-image: url(/assets/dislike2.png)
+        .upvoted
+          color: $dark-blue
+          background-image: url(/assets/like2.png)
+        .downvoted
+          color: $dark-blue
+          background-image: url(/assets/dislike2.png)
+    .question-content
+      clear: both
+      margin-left: 63px
+  .question
+    background-color: $footer-gray
+    padding-left: 63px

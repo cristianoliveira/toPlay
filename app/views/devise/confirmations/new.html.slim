@@ -1,0 +1,10 @@
+.devise-title
+  h3 Confirmar meu e-mail
+
+= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+  = devise_error_messages!
+
+  = f.email_field :email
+  = f.submit "Enviar e-mail de confirmação", class: [:button, :submit]
+
+= render "devise/shared/links"
