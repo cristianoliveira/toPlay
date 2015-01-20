@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   resources :videos, only: [:index, :new, :create]
   resources :questions, only: [:index, :new, :create]
 
-  root 'courses#show', id: Course.first.id
+  root 'courses#show' #, id: Course.first.id
 end

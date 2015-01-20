@@ -1,0 +1,643 @@
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-19 22:16:36 -0200
+
+PG::ConnectionBad - FATAL:  password authentication failed for user "postgres"
+FATAL:  password authentication failed for user "postgres"
+:
+  activerecord (4.1.4) lib/active_record/connection_adapters/postgresql_adapter.rb:888:in `connect'
+  activerecord (4.1.4) lib/active_record/connection_adapters/postgresql_adapter.rb:568:in `initialize'
+  activerecord (4.1.4) lib/active_record/connection_adapters/postgresql_adapter.rb:41:in `postgresql_connection'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:435:in `new_connection'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:445:in `checkout_new_connection'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:416:in `acquire_connection'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:351:in `block in checkout'
+  /usr/local/lib/ruby/2.1.0/monitor.rb:211:in `mon_synchronize'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:350:in `checkout'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:265:in `block in connection'
+  /usr/local/lib/ruby/2.1.0/monitor.rb:211:in `mon_synchronize'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:264:in `connection'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:541:in `retrieve_connection'
+  activerecord (4.1.4) lib/active_record/connection_handling.rb:113:in `retrieve_connection'
+  activerecord (4.1.4) lib/active_record/connection_handling.rb:87:in `connection'
+  activerecord (4.1.4) lib/active_record/migration.rb:388:in `check_pending!'
+  activerecord (4.1.4) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.4) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.4) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.4) lib/rails/engine.rb:514:in `call'
+  railties (4.1.4) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  thin (1.6.2) lib/thin/connection.rb:86:in `block in pre_process'
+  thin (1.6.2) lib/thin/connection.rb:84:in `pre_process'
+  thin (1.6.2) lib/thin/connection.rb:53:in `process'
+  thin (1.6.2) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run'
+  thin (1.6.2) lib/thin/backends/base.rb:73:in `start'
+  thin (1.6.2) lib/thin/server.rb:162:in `start'
+  rack (1.5.2) lib/rack/handler/thin.rb:16:in `run'
+  rack (1.5.2) lib/rack/server.rb:264:in `start'
+  railties (4.1.4) lib/rails/commands/server.rb:69:in `start'
+  railties (4.1.4) lib/rails/commands/commands_tasks.rb:81:in `block in server'
+  railties (4.1.4) lib/rails/commands/commands_tasks.rb:76:in `server'
+  railties (4.1.4) lib/rails/commands/commands_tasks.rb:40:in `run_command!'
+  railties (4.1.4) lib/rails/commands.rb:17:in `<top (required)>'
+  bin/rails:8:in `<top (required)>'
+  spring (1.1.3) lib/spring/client/rails.rb:27:in `call'
+  spring (1.1.3) lib/spring/client/command.rb:7:in `call'
+  spring (1.1.3) lib/spring/client.rb:26:in `run'
+  spring (1.1.3) bin/spring:48:in `<top (required)>'
+  spring (1.1.3) lib/spring/binstub.rb:11:in `<top (required)>'
+  /usr/local/lib/ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  bin/spring:16:in `<top (required)>'
+  bin/rails:3:in `<main>'
+
+
+
+Started POST "/__better_errors/1021450882fe11b0/variables" for 127.0.0.1 at 2015-01-19 22:16:37 -0200
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-19 22:20:14 -0200
+
+PG::ConnectionBad - FATAL:  password authentication failed for user "postgres"
+FATAL:  password authentication failed for user "postgres"
+:
+  activerecord (4.1.4) lib/active_record/connection_adapters/postgresql_adapter.rb:888:in `connect'
+  activerecord (4.1.4) lib/active_record/connection_adapters/postgresql_adapter.rb:568:in `initialize'
+  activerecord (4.1.4) lib/active_record/connection_adapters/postgresql_adapter.rb:41:in `postgresql_connection'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:435:in `new_connection'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:445:in `checkout_new_connection'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:416:in `acquire_connection'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:351:in `block in checkout'
+  /usr/local/lib/ruby/2.1.0/monitor.rb:211:in `mon_synchronize'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:350:in `checkout'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:265:in `block in connection'
+  /usr/local/lib/ruby/2.1.0/monitor.rb:211:in `mon_synchronize'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:264:in `connection'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:541:in `retrieve_connection'
+  activerecord (4.1.4) lib/active_record/connection_handling.rb:113:in `retrieve_connection'
+  activerecord (4.1.4) lib/active_record/connection_handling.rb:87:in `connection'
+  activerecord (4.1.4) lib/active_record/migration.rb:388:in `check_pending!'
+  activerecord (4.1.4) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.4) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.4) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.4) lib/rails/engine.rb:514:in `call'
+  railties (4.1.4) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  thin (1.6.2) lib/thin/connection.rb:86:in `block in pre_process'
+  thin (1.6.2) lib/thin/connection.rb:84:in `pre_process'
+  thin (1.6.2) lib/thin/connection.rb:53:in `process'
+  thin (1.6.2) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run'
+  thin (1.6.2) lib/thin/backends/base.rb:73:in `start'
+  thin (1.6.2) lib/thin/server.rb:162:in `start'
+  rack (1.5.2) lib/rack/handler/thin.rb:16:in `run'
+  rack (1.5.2) lib/rack/server.rb:264:in `start'
+  railties (4.1.4) lib/rails/commands/server.rb:69:in `start'
+  railties (4.1.4) lib/rails/commands/commands_tasks.rb:81:in `block in server'
+  railties (4.1.4) lib/rails/commands/commands_tasks.rb:76:in `server'
+  railties (4.1.4) lib/rails/commands/commands_tasks.rb:40:in `run_command!'
+  railties (4.1.4) lib/rails/commands.rb:17:in `<top (required)>'
+  bin/rails:8:in `<top (required)>'
+  spring (1.1.3) lib/spring/client/rails.rb:27:in `call'
+  spring (1.1.3) lib/spring/client/command.rb:7:in `call'
+  spring (1.1.3) lib/spring/client.rb:26:in `run'
+  spring (1.1.3) bin/spring:48:in `<top (required)>'
+  spring (1.1.3) lib/spring/binstub.rb:11:in `<top (required)>'
+  /usr/local/lib/ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  bin/spring:16:in `<top (required)>'
+  bin/rails:3:in `<main>'
+
+
+
+Started POST "/__better_errors/592ff00d227415c5/variables" for 127.0.0.1 at 2015-01-19 22:20:14 -0200
+  [1m[36m (5026.1ms)[0m  [1mDROP DATABASE IF EXISTS "torreplay_development"[0m
+PG::ObjectInUse: ERROR:  database "torreplay_development" is being accessed by other users
+DETAIL:  There is 1 other session using the database.
+: DROP DATABASE IF EXISTS "torreplay_development"
+  [1m[35m (379.2ms)[0m  DROP DATABASE IF EXISTS "torreplay_test"
+  [1m[36m (0.5ms)[0m  [1mCREATE DATABASE "torreplay_development" ENCODING = 'unicode'[0m
+PG::DuplicateDatabase: ERROR:  database "torreplay_development" already exists
+: CREATE DATABASE "torreplay_development" ENCODING = 'unicode'
+  [1m[35m (1474.5ms)[0m  CREATE DATABASE "torreplay_test" ENCODING = 'unicode'
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (202.4ms)[0m  DROP TABLE "alternatives"
+  [1m[36m (233.8ms)[0m  [1mCREATE TABLE "alternatives" ("id" serial primary key, "description" text, "correct" boolean, "exercise_id" integer, "created_at" timestamp, "updated_at" timestamp, "position" integer, "user_id" integer) [0m
+  [1m[35m (65.2ms)[0m  CREATE  INDEX  "index_alternatives_on_exercise_id" ON "alternatives" USING btree ("exercise_id")
+  [1m[36m (63.3ms)[0m  [1mCREATE  INDEX  "index_alternatives_on_user_id" ON "alternatives" USING btree ("user_id")[0m
+  [1m[35m (9.0ms)[0m  DROP TABLE "courses"
+  [1m[36m (77.3ms)[0m  [1mCREATE TABLE "courses" ("id" serial primary key, "name" character varying(255), "created_at" timestamp, "updated_at" timestamp, "user_id" integer) [0m
+  [1m[35m (75.8ms)[0m  CREATE  INDEX  "index_courses_on_user_id" ON "courses" USING btree ("user_id")
+  [1m[36m (10.6ms)[0m  [1mDROP TABLE "exercises"[0m
+  [1m[35m (132.0ms)[0m  CREATE TABLE "exercises" ("id" serial primary key, "cover" character varying(255), "description" text, "topic_id" integer, "created_at" timestamp, "updated_at" timestamp, "position" integer, "user_id" integer) 
+  [1m[36m (54.3ms)[0m  [1mCREATE  INDEX  "index_exercises_on_topic_id" ON "exercises" USING btree ("topic_id")[0m
+  [1m[35m (76.6ms)[0m  CREATE  INDEX  "index_exercises_on_user_id" ON "exercises" USING btree ("user_id")
+  [1m[36m (9.9ms)[0m  [1mDROP TABLE "identities"[0m
+  [1m[35m (121.1ms)[0m  CREATE TABLE "identities" ("id" serial primary key, "user_id" integer, "provider" character varying(255), "uid" character varying(255), "oauth_token" character varying(255), "oauth_secret" character varying(255), "oauth_expires_at" timestamp, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (53.4ms)[0m  [1mCREATE  INDEX  "index_identities_on_user_id" ON "identities" USING btree ("user_id")[0m
+  [1m[35m (9.4ms)[0m  DROP TABLE "levels"
+  [1m[36m (99.0ms)[0m  [1mCREATE TABLE "levels" ("id" serial primary key, "name" character varying(255), "subject_id" integer, "created_at" timestamp, "updated_at" timestamp, "position" integer, "user_id" integer) [0m
+  [1m[35m (87.0ms)[0m  CREATE  INDEX  "index_levels_on_subject_id" ON "levels" USING btree ("subject_id")
+  [1m[36m (76.8ms)[0m  [1mCREATE  INDEX  "index_levels_on_user_id" ON "levels" USING btree ("user_id")[0m
+  [1m[35m (9.4ms)[0m  DROP TABLE "questions"
+  [1m[36m (144.0ms)[0m  [1mCREATE TABLE "questions" ("id" serial primary key, "topic_id" integer, "user_id" integer, "description" text, "parent_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (9.0ms)[0m  DROP TABLE "resumes"
+  [1m[36m (121.5ms)[0m  [1mCREATE TABLE "resumes" ("id" serial primary key, "description" text, "topic_id" integer, "created_at" timestamp, "updated_at" timestamp, "user_id" integer, "position" integer) [0m
+  [1m[35m (87.7ms)[0m  CREATE  INDEX  "index_resumes_on_topic_id" ON "resumes" USING btree ("topic_id")
+  [1m[36m (86.4ms)[0m  [1mCREATE  INDEX  "index_resumes_on_user_id" ON "resumes" USING btree ("user_id")[0m
+  [1m[35m (10.3ms)[0m  DROP TABLE "subjects"
+  [1m[36m (77.6ms)[0m  [1mCREATE TABLE "subjects" ("id" serial primary key, "name" character varying(255), "course_id" integer, "created_at" timestamp, "updated_at" timestamp, "position" integer, "user_id" integer) [0m
+  [1m[35m (53.0ms)[0m  CREATE  INDEX  "index_subjects_on_course_id" ON "subjects" USING btree ("course_id")
+  [1m[36m (76.6ms)[0m  [1mCREATE  INDEX  "index_subjects_on_user_id" ON "subjects" USING btree ("user_id")[0m
+  [1m[35m (10.4ms)[0m  DROP TABLE "topics"
+  [1m[36m (122.0ms)[0m  [1mCREATE TABLE "topics" ("id" serial primary key, "name" character varying(255), "level_id" integer, "created_at" timestamp, "updated_at" timestamp, "description" text, "position" integer, "user_id" integer) [0m
+  [1m[35m (76.6ms)[0m  CREATE  INDEX  "index_topics_on_level_id" ON "topics" USING btree ("level_id")
+  [1m[36m (76.6ms)[0m  [1mCREATE  INDEX  "index_topics_on_user_id" ON "topics" USING btree ("user_id")[0m
+  [1m[35m (10.5ms)[0m  DROP TABLE "users"
+  [1m[36m (123.3ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying(255) DEFAULT '' NOT NULL, "encrypted_password" character varying(255) DEFAULT '' NOT NULL, "reset_password_token" character varying(255), "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying(255), "last_sign_in_ip" character varying(255), "confirmation_token" character varying(255), "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "unconfirmed_email" character varying(255), "created_at" timestamp, "updated_at" timestamp, "first_name" character varying(255), "last_name" character varying(255), "role" character varying(255), "city" character varying(255), "birthdate" date, "gender" integer, "avatar" character varying(255)) [0m
+  [1m[35m (65.4ms)[0m  CREATE UNIQUE INDEX  "index_users_on_confirmation_token" ON "users" USING btree ("confirmation_token")
+  [1m[36m (98.8ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_email" ON "users" USING btree ("email")[0m
+  [1m[35m (87.1ms)[0m  CREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users" USING btree ("reset_password_token")
+  [1m[36m (10.1ms)[0m  [1mDROP TABLE "videos"[0m
+  [1m[35m (121.2ms)[0m  CREATE TABLE "videos" ("id" serial primary key, "topic_id" integer, "url" character varying(255), "channel" character varying(255), "title" character varying(255), "description" text, "created_at" timestamp, "updated_at" timestamp, "user_id" integer, "position" integer) 
+  [1m[36m (87.0ms)[0m  [1mCREATE  INDEX  "index_videos_on_user_id" ON "videos" USING btree ("user_id")[0m
+  [1m[35m (11.2ms)[0m  DROP TABLE "votes"
+  [1m[36m (120.3ms)[0m  [1mCREATE TABLE "votes" ("id" serial primary key, "votable_id" integer, "votable_type" character varying(255), "voter_id" integer, "voter_type" character varying(255), "vote_flag" boolean, "vote_scope" character varying(255), "vote_weight" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (66.3ms)[0m  CREATE  INDEX  "index_votes_on_votable_id_and_votable_type_and_vote_scope" ON "votes" USING btree ("votable_id", "votable_type", "vote_scope")
+  [1m[36m (85.6ms)[0m  [1mCREATE  INDEX  "index_votes_on_voter_id_and_voter_type_and_vote_scope" ON "votes" USING btree ("voter_id", "voter_type", "vote_scope")[0m
+  [1m[35m (50.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "courses" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-01-20 00:22:33.759318"], ["name", "Matematica"], ["updated_at", "2015-01-20 00:22:33.759318"]]
+  [1m[35m (22.2ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "courses" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2015-01-20 00:22:33.785229"], ["name", "Estatistica"], ["updated_at", "2015-01-20 00:22:33.785229"]]
+  [1m[36m (8.7ms)[0m  [1mCOMMIT[0m
+  [1m[36m (334.7ms)[0m  [1mDROP DATABASE IF EXISTS "torreplay_development"[0m
+  [1m[35m (334.7ms)[0m  DROP DATABASE IF EXISTS "torreplay_test"
+  [1m[36m (735.0ms)[0m  [1mCREATE DATABASE "torreplay_development" ENCODING = 'unicode'[0m
+  [1m[35m (751.6ms)[0m  CREATE DATABASE "torreplay_test" ENCODING = 'unicode'
+  [1m[36mSQL (0.7ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (129.0ms)[0m  CREATE TABLE "alternatives" ("id" serial primary key, "description" text, "correct" boolean, "exercise_id" integer, "created_at" timestamp, "updated_at" timestamp, "position" integer, "user_id" integer) 
+  [1m[36m (66.4ms)[0m  [1mCREATE  INDEX  "index_alternatives_on_exercise_id" ON "alternatives" USING btree ("exercise_id")[0m
+  [1m[35m (63.6ms)[0m  CREATE  INDEX  "index_alternatives_on_user_id" ON "alternatives" USING btree ("user_id")
+  [1m[36m (76.1ms)[0m  [1mCREATE TABLE "courses" ("id" serial primary key, "name" character varying(255), "created_at" timestamp, "updated_at" timestamp, "user_id" integer) [0m
+  [1m[35m (87.9ms)[0m  CREATE  INDEX  "index_courses_on_user_id" ON "courses" USING btree ("user_id")
+  [1m[36m (120.0ms)[0m  [1mCREATE TABLE "exercises" ("id" serial primary key, "cover" character varying(255), "description" text, "topic_id" integer, "created_at" timestamp, "updated_at" timestamp, "position" integer, "user_id" integer) [0m
+  [1m[35m (88.2ms)[0m  CREATE  INDEX  "index_exercises_on_topic_id" ON "exercises" USING btree ("topic_id")
+  [1m[36m (76.0ms)[0m  [1mCREATE  INDEX  "index_exercises_on_user_id" ON "exercises" USING btree ("user_id")[0m
+  [1m[35m (131.4ms)[0m  CREATE TABLE "identities" ("id" serial primary key, "user_id" integer, "provider" character varying(255), "uid" character varying(255), "oauth_token" character varying(255), "oauth_secret" character varying(255), "oauth_expires_at" timestamp, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (76.5ms)[0m  [1mCREATE  INDEX  "index_identities_on_user_id" ON "identities" USING btree ("user_id")[0m
+  [1m[35m (78.1ms)[0m  CREATE TABLE "levels" ("id" serial primary key, "name" character varying(255), "subject_id" integer, "created_at" timestamp, "updated_at" timestamp, "position" integer, "user_id" integer) 
+  [1m[36m (76.5ms)[0m  [1mCREATE  INDEX  "index_levels_on_subject_id" ON "levels" USING btree ("subject_id")[0m
+  [1m[35m (75.7ms)[0m  CREATE  INDEX  "index_levels_on_user_id" ON "levels" USING btree ("user_id")
+  [1m[36m (121.3ms)[0m  [1mCREATE TABLE "questions" ("id" serial primary key, "topic_id" integer, "user_id" integer, "description" text, "parent_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (121.3ms)[0m  CREATE TABLE "resumes" ("id" serial primary key, "description" text, "topic_id" integer, "created_at" timestamp, "updated_at" timestamp, "user_id" integer, "position" integer) 
+  [1m[36m (66.5ms)[0m  [1mCREATE  INDEX  "index_resumes_on_topic_id" ON "resumes" USING btree ("topic_id")[0m
+  [1m[35m (86.5ms)[0m  CREATE  INDEX  "index_resumes_on_user_id" ON "resumes" USING btree ("user_id")
+  [1m[36m (65.2ms)[0m  [1mCREATE TABLE "subjects" ("id" serial primary key, "name" character varying(255), "course_id" integer, "created_at" timestamp, "updated_at" timestamp, "position" integer, "user_id" integer) [0m
+  [1m[35m (63.1ms)[0m  CREATE  INDEX  "index_subjects_on_course_id" ON "subjects" USING btree ("course_id")
+  [1m[36m (53.9ms)[0m  [1mCREATE  INDEX  "index_subjects_on_user_id" ON "subjects" USING btree ("user_id")[0m
+  [1m[35m (119.2ms)[0m  CREATE TABLE "topics" ("id" serial primary key, "name" character varying(255), "level_id" integer, "created_at" timestamp, "updated_at" timestamp, "description" text, "position" integer, "user_id" integer) 
+  [1m[36m (64.8ms)[0m  [1mCREATE  INDEX  "index_topics_on_level_id" ON "topics" USING btree ("level_id")[0m
+  [1m[35m (63.2ms)[0m  CREATE  INDEX  "index_topics_on_user_id" ON "topics" USING btree ("user_id")
+  [1m[36m (127.2ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying(255) DEFAULT '' NOT NULL, "encrypted_password" character varying(255) DEFAULT '' NOT NULL, "reset_password_token" character varying(255), "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying(255), "last_sign_in_ip" character varying(255), "confirmation_token" character varying(255), "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "unconfirmed_email" character varying(255), "created_at" timestamp, "updated_at" timestamp, "first_name" character varying(255), "last_name" character varying(255), "role" character varying(255), "city" character varying(255), "birthdate" date, "gender" integer, "avatar" character varying(255)) [0m
+  [1m[35m (74.9ms)[0m  CREATE UNIQUE INDEX  "index_users_on_confirmation_token" ON "users" USING btree ("confirmation_token")
+  [1m[36m (74.2ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_email" ON "users" USING btree ("email")[0m
+  [1m[35m (76.5ms)[0m  CREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users" USING btree ("reset_password_token")
+  [1m[36m (109.2ms)[0m  [1mCREATE TABLE "videos" ("id" serial primary key, "topic_id" integer, "url" character varying(255), "channel" character varying(255), "title" character varying(255), "description" text, "created_at" timestamp, "updated_at" timestamp, "user_id" integer, "position" integer) [0m
+  [1m[35m (87.7ms)[0m  CREATE  INDEX  "index_videos_on_user_id" ON "videos" USING btree ("user_id")
+  [1m[36m (120.6ms)[0m  [1mCREATE TABLE "votes" ("id" serial primary key, "votable_id" integer, "votable_type" character varying(255), "voter_id" integer, "voter_type" character varying(255), "vote_flag" boolean, "vote_scope" character varying(255), "vote_weight" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (62.9ms)[0m  CREATE  INDEX  "index_votes_on_votable_id_and_votable_type_and_vote_scope" ON "votes" USING btree ("votable_id", "votable_type", "vote_scope")
+  [1m[36m (76.2ms)[0m  [1mCREATE  INDEX  "index_votes_on_voter_id_and_voter_type_and_vote_scope" ON "votes" USING btree ("voter_id", "voter_type", "vote_scope")[0m
+  [1m[35m (5.3ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) 
+  [1m[36m (63.6ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (1.0ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (8.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140924015042')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140601175536')
+  [1m[36m (10.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140425210451')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140907135851')
+  [1m[36m (11.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140906185641')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140524212623')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140907140756')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140907135916')
+  [1m[36m (10.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140907140714')[0m
+  [1m[35m (11.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140907135910')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140809193146')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140512190711')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140907135928')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140906184805')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140512193635')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140728165929')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140906180643')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140722224426')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140907135905')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140907135921')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140425173756')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140922174429')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140512163804')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140907135540')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140425214357')[0m
+  [1m[35m (10.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140906185554')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140907135858')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140512182326')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140906181913')[0m
+  [1m[35m (10.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140809175803')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140809175823')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140923202838')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140512202632')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.8ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "courses" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2015-01-20 00:22:55.815709"], ["name", "Matematica"], ["updated_at", "2015-01-20 00:22:55.815709"]]
+  [1m[36m (5.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "courses" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-01-20 00:22:55.825604"], ["name", "Estatistica"], ["updated_at", "2015-01-20 00:22:55.825604"]]
+  [1m[35m (8.5ms)[0m  COMMIT
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-19 22:23:04 -0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CoursesController#show as HTML
+  [1m[35mCourse Load (0.6ms)[0m  SELECT  "courses".* FROM "courses"   ORDER BY "courses"."id" ASC LIMIT 1
+  [1m[36mCourse Load (0.4ms)[0m  [1mSELECT "courses".* FROM "courses"[0m
+  [1m[35mSubject Load (0.5ms)[0m  SELECT "subjects".* FROM "subjects"  WHERE "subjects"."course_id" = $1  ORDER BY position ASC  [["course_id", 1]]
+  Rendered courses/show.html.slim within layouts/application (64.6ms)
+  Rendered layouts/_header.html.slim (9.6ms)
+  Rendered layouts/_devise.html.slim (2.3ms)
+  Rendered layouts/_footer.html.slim (5.3ms)
+Completed 200 OK in 636ms (Views: 579.7ms | ActiveRecord: 6.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-01-19 22:23:05 -0200
+
+
+Started GET "/assets/app.css?body=1" for 127.0.0.1 at 2015-01-19 22:23:05 -0200
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:05 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:05 -0200
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2015-01-19 22:23:05 -0200
+
+
+Started GET "/assets/foundation/foundation.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:05 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/foundation/foundation.abide.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/foundation/foundation.accordion.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/foundation/foundation.alert.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/foundation/foundation.clearing.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/foundation/foundation.dropdown.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/foundation/foundation.interchange.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/foundation/foundation.joyride.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/foundation/foundation.magellan.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/foundation/foundation.offcanvas.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/foundation/foundation.orbit.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/foundation/foundation.reveal.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/foundation/foundation.slider.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/foundation/foundation.tab.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/foundation/foundation.tooltip.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/foundation/foundation.topbar.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/foundation/foundation.equalizer.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/foundation.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/jquery-ui/core.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/jquery-ui/datepicker.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/jquery-ui/widget.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/jquery-ui/button.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/jquery-ui/mouse.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/jquery-ui/draggable.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/jquery-ui/position.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/jquery-ui/resizable.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/jquery-ui/dialog.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/jquery-ui/sortable.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/active_admin/base.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/active_admin/lib/batch_actions.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/active_admin/lib/checkbox-toggler.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/active_admin/lib/dropdown-menu.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/active_admin/lib/has_many.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/active_admin/lib/modal_dialog.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/active_admin/lib/popover.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/active_admin/lib/table-checkbox-toggler.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/active_admin/ext/jquery-ui.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/active_admin/ext/jquery.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/active_admin/application.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/activeadmin-sortable.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/active_admin.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/answer.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/jquery-ui.min.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/jquery.mask.min.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/jquery.sticky-kit.min.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/questions.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/topics.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/videos.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/upload_bt.png" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/face_header2.png" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/assets/logo_footer.png" for 127.0.0.1 at 2015-01-19 22:23:06 -0200
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-19 22:23:22 -0200
+
+PG::ConnectionBad - FATAL:  password authentication failed for user "postgres"
+FATAL:  password authentication failed for user "postgres"
+:
+  activerecord (4.1.4) lib/active_record/connection_adapters/postgresql_adapter.rb:888:in `connect'
+  activerecord (4.1.4) lib/active_record/connection_adapters/postgresql_adapter.rb:568:in `initialize'
+  activerecord (4.1.4) lib/active_record/connection_adapters/postgresql_adapter.rb:41:in `postgresql_connection'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:435:in `new_connection'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:445:in `checkout_new_connection'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:416:in `acquire_connection'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:351:in `block in checkout'
+  /usr/local/lib/ruby/2.1.0/monitor.rb:211:in `mon_synchronize'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:350:in `checkout'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:265:in `block in connection'
+  /usr/local/lib/ruby/2.1.0/monitor.rb:211:in `mon_synchronize'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:264:in `connection'
+  activerecord (4.1.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:541:in `retrieve_connection'
+  activerecord (4.1.4) lib/active_record/connection_handling.rb:113:in `retrieve_connection'
+  activerecord (4.1.4) lib/active_record/connection_handling.rb:87:in `connection'
+  activerecord (4.1.4) lib/active_record/migration.rb:388:in `check_pending!'
+  activerecord (4.1.4) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.4) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.4) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.4) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.4) lib/rails/engine.rb:514:in `call'
+  railties (4.1.4) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  thin (1.6.2) lib/thin/connection.rb:86:in `block in pre_process'
+  thin (1.6.2) lib/thin/connection.rb:84:in `pre_process'
+  thin (1.6.2) lib/thin/connection.rb:53:in `process'
+  thin (1.6.2) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run'
+  thin (1.6.2) lib/thin/backends/base.rb:73:in `start'
+  thin (1.6.2) lib/thin/server.rb:162:in `start'
+  rack (1.5.2) lib/rack/handler/thin.rb:16:in `run'
+  rack (1.5.2) lib/rack/server.rb:264:in `start'
+  railties (4.1.4) lib/rails/commands/server.rb:69:in `start'
+  railties (4.1.4) lib/rails/commands/commands_tasks.rb:81:in `block in server'
+  railties (4.1.4) lib/rails/commands/commands_tasks.rb:76:in `server'
+  railties (4.1.4) lib/rails/commands/commands_tasks.rb:40:in `run_command!'
+  railties (4.1.4) lib/rails/commands.rb:17:in `<top (required)>'
+  bin/rails:8:in `<top (required)>'
+  spring (1.1.3) lib/spring/client/rails.rb:27:in `call'
+  spring (1.1.3) lib/spring/client/command.rb:7:in `call'
+  spring (1.1.3) lib/spring/client.rb:26:in `run'
+  spring (1.1.3) bin/spring:48:in `<top (required)>'
+  spring (1.1.3) lib/spring/binstub.rb:11:in `<top (required)>'
+  /usr/local/lib/ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  bin/spring:16:in `<top (required)>'
+  bin/rails:3:in `<main>'
+
+
+
+Started POST "/__better_errors/87ba271597181eec/variables" for 127.0.0.1 at 2015-01-19 22:23:22 -0200
+  [1m[36m (325.4ms)[0m  [1mDROP DATABASE IF EXISTS "torreplay_development"[0m
+  [1m[35m (225.0ms)[0m  DROP DATABASE IF EXISTS "torreplay_test"
+  [1m[36m (727.2ms)[0m  [1mCREATE DATABASE "torreplay_development" ENCODING = 'unicode'[0m
+  [1m[35m (658.9ms)[0m  CREATE DATABASE "torreplay_test" ENCODING = 'unicode'
+  [1m[36mSQL (0.5ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (131.3ms)[0m  CREATE TABLE "alternatives" ("id" serial primary key, "description" text, "correct" boolean, "exercise_id" integer, "created_at" timestamp, "updated_at" timestamp, "position" integer, "user_id" integer) 
+  [1m[36m (55.5ms)[0m  [1mCREATE  INDEX  "index_alternatives_on_exercise_id" ON "alternatives" USING btree ("exercise_id")[0m
+  [1m[35m (54.2ms)[0m  CREATE  INDEX  "index_alternatives_on_user_id" ON "alternatives" USING btree ("user_id")
+  [1m[36m (54.9ms)[0m  [1mCREATE TABLE "courses" ("id" serial primary key, "name" character varying(255), "created_at" timestamp, "updated_at" timestamp, "user_id" integer) [0m
+  [1m[35m (52.8ms)[0m  CREATE  INDEX  "index_courses_on_user_id" ON "courses" USING btree ("user_id")
+  [1m[36m (142.1ms)[0m  [1mCREATE TABLE "exercises" ("id" serial primary key, "cover" character varying(255), "description" text, "topic_id" integer, "created_at" timestamp, "updated_at" timestamp, "position" integer, "user_id" integer) [0m
+  [1m[35m (77.3ms)[0m  CREATE  INDEX  "index_exercises_on_topic_id" ON "exercises" USING btree ("topic_id")
+  [1m[36m (75.7ms)[0m  [1mCREATE  INDEX  "index_exercises_on_user_id" ON "exercises" USING btree ("user_id")[0m
+  [1m[35m (141.9ms)[0m  CREATE TABLE "identities" ("id" serial primary key, "user_id" integer, "provider" character varying(255), "uid" character varying(255), "oauth_token" character varying(255), "oauth_secret" character varying(255), "oauth_expires_at" timestamp, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (63.1ms)[0m  [1mCREATE  INDEX  "index_identities_on_user_id" ON "identities" USING btree ("user_id")[0m
+  [1m[35m (76.2ms)[0m  CREATE TABLE "levels" ("id" serial primary key, "name" character varying(255), "subject_id" integer, "created_at" timestamp, "updated_at" timestamp, "position" integer, "user_id" integer) 
+  [1m[36m (85.5ms)[0m  [1mCREATE  INDEX  "index_levels_on_subject_id" ON "levels" USING btree ("subject_id")[0m
+  [1m[35m (84.5ms)[0m  CREATE  INDEX  "index_levels_on_user_id" ON "levels" USING btree ("user_id")
+  [1m[36m (119.6ms)[0m  [1mCREATE TABLE "questions" ("id" serial primary key, "topic_id" integer, "user_id" integer, "description" text, "parent_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (130.4ms)[0m  CREATE TABLE "resumes" ("id" serial primary key, "description" text, "topic_id" integer, "created_at" timestamp, "updated_at" timestamp, "user_id" integer, "position" integer) 
+  [1m[36m (66.1ms)[0m  [1mCREATE  INDEX  "index_resumes_on_topic_id" ON "resumes" USING btree ("topic_id")[0m
+  [1m[35m (54.4ms)[0m  CREATE  INDEX  "index_resumes_on_user_id" ON "resumes" USING btree ("user_id")
+  [1m[36m (54.7ms)[0m  [1mCREATE TABLE "subjects" ("id" serial primary key, "name" character varying(255), "course_id" integer, "created_at" timestamp, "updated_at" timestamp, "position" integer, "user_id" integer) [0m
+  [1m[35m (74.7ms)[0m  CREATE  INDEX  "index_subjects_on_course_id" ON "subjects" USING btree ("course_id")
+  [1m[36m (63.3ms)[0m  [1mCREATE  INDEX  "index_subjects_on_user_id" ON "subjects" USING btree ("user_id")[0m
+  [1m[35m (98.4ms)[0m  CREATE TABLE "topics" ("id" serial primary key, "name" character varying(255), "level_id" integer, "created_at" timestamp, "updated_at" timestamp, "description" text, "position" integer, "user_id" integer) 
+  [1m[36m (64.6ms)[0m  [1mCREATE  INDEX  "index_topics_on_level_id" ON "topics" USING btree ("level_id")[0m
+  [1m[35m (64.5ms)[0m  CREATE  INDEX  "index_topics_on_user_id" ON "topics" USING btree ("user_id")
+  [1m[36m (118.3ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying(255) DEFAULT '' NOT NULL, "encrypted_password" character varying(255) DEFAULT '' NOT NULL, "reset_password_token" character varying(255), "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying(255), "last_sign_in_ip" character varying(255), "confirmation_token" character varying(255), "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "unconfirmed_email" character varying(255), "created_at" timestamp, "updated_at" timestamp, "first_name" character varying(255), "last_name" character varying(255), "role" character varying(255), "city" character varying(255), "birthdate" date, "gender" integer, "avatar" character varying(255)) [0m
+  [1m[35m (86.5ms)[0m  CREATE UNIQUE INDEX  "index_users_on_confirmation_token" ON "users" USING btree ("confirmation_token")
+  [1m[36m (85.7ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_email" ON "users" USING btree ("email")[0m
+  [1m[35m (86.7ms)[0m  CREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users" USING btree ("reset_password_token")
+  [1m[36m (120.6ms)[0m  [1mCREATE TABLE "videos" ("id" serial primary key, "topic_id" integer, "url" character varying(255), "channel" character varying(255), "title" character varying(255), "description" text, "created_at" timestamp, "updated_at" timestamp, "user_id" integer, "position" integer) [0m
+  [1m[35m (85.4ms)[0m  CREATE  INDEX  "index_videos_on_user_id" ON "videos" USING btree ("user_id")
+  [1m[36m (132.5ms)[0m  [1mCREATE TABLE "votes" ("id" serial primary key, "votable_id" integer, "votable_type" character varying(255), "voter_id" integer, "voter_type" character varying(255), "vote_flag" boolean, "vote_scope" character varying(255), "vote_weight" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (76.1ms)[0m  CREATE  INDEX  "index_votes_on_votable_id_and_votable_type_and_vote_scope" ON "votes" USING btree ("votable_id", "votable_type", "vote_scope")
+  [1m[36m (63.3ms)[0m  [1mCREATE  INDEX  "index_votes_on_voter_id_and_voter_type_and_vote_scope" ON "votes" USING btree ("voter_id", "voter_type", "vote_scope")[0m
+  [1m[35m (5.2ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) 
+  [1m[36m (64.7ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (1.0ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (8.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140924015042')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140601175536')
+  [1m[36m (10.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140425210451')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140907135851')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140906185641')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140524212623')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140907140756')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140907135916')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140907140714')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140907135910')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140809193146')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140512190711')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140907135928')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140906184805')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140512193635')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140728165929')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140906180643')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140722224426')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140907135905')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140907135921')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140425173756')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140922174429')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140512163804')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140907135540')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140425214357')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140906185554')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140907135858')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140512182326')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140906181913')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140809175803')
+  [1m[36m (10.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140809175823')[0m
+  [1m[35m (10.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140923202838')
+  [1m[36m (10.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140512202632')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.7ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "courses" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2015-01-20 00:25:36.698071"], ["name", "Matematica"], ["updated_at", "2015-01-20 00:25:36.698071"]]
+  [1m[36m (4.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "courses" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-01-20 00:25:36.706465"], ["name", "Estatistica"], ["updated_at", "2015-01-20 00:25:36.706465"]]
+  [1m[35m (8.7ms)[0m  COMMIT

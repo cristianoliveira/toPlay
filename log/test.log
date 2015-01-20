@@ -1,0 +1,197 @@
+  [1m[36m (411.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (159.9ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DeviseCreateUsers (20140425173756)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (633.1ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying(255) DEFAULT '' NOT NULL, "encrypted_password" character varying(255) DEFAULT '' NOT NULL, "reset_password_token" character varying(255), "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying(255), "last_sign_in_ip" character varying(255), "confirmation_token" character varying(255), "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "unconfirmed_email" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (54.4ms)[0m  CREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")
+  [1m[36m (53.7ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35m (65.5ms)[0m  CREATE UNIQUE INDEX  "index_users_on_confirmation_token" ON "users"  ("confirmation_token")
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140425173756"]]
+  [1m[35m (30.5ms)[0m  COMMIT
+Migrating to AddFirstNameAndLastNameToUsers (20140425210451)
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.1ms)[0m  ALTER TABLE "users" ADD COLUMN "first_name" character varying(255)
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "users" ADD COLUMN "last_name" character varying(255)[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140425210451"]]
+  [1m[36m (12.1ms)[0m  [1mCOMMIT[0m
+Migrating to CreateIdentities (20140425214357)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (110.7ms)[0m  [1mCREATE TABLE "identities" ("id" serial primary key, "user_id" integer, "provider" character varying(255), "uid" character varying(255), "oauth_token" character varying(255), "oauth_secret" character varying(255), "oauth_expires_at" timestamp, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (54.8ms)[0m  CREATE  INDEX  "index_identities_on_user_id" ON "identities"  ("user_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140425214357"]]
+  [1m[35m (13.2ms)[0m  COMMIT
+Migrating to AddRoleToUser (20140512163804)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "users" ADD COLUMN "role" character varying(255)
+  [1m[36mUser Exists (18.2ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'admin@example.com' LIMIT 1[0m
+  [1m[35mSQL (9.4ms)[0m  INSERT INTO "users" ("confirmed_at", "created_at", "email", "encrypted_password", "role", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["confirmed_at", "2015-01-18 18:12:25.330483"], ["created_at", "2015-01-18 18:12:25.377964"], ["email", "admin@example.com"], ["encrypted_password", "$2a$04$elTBoPyiItBSkuu9o5bnSutiLe.sEglDapQJ1qxNi2IA7wtOZttoq"], ["role", "administrator"], ["updated_at", "2015-01-18 18:12:25.377964"]]
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140512163804"]]
+  [1m[35m (15.9ms)[0m  COMMIT
+Migrating to CreateCourses (20140512182326)
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (60.3ms)[0m  CREATE TABLE "courses" ("id" serial primary key, "name" character varying(255), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140512182326"]]
+  [1m[35m (12.5ms)[0m  COMMIT
+Migrating to CreateSubjects (20140512190711)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (51.3ms)[0m  CREATE TABLE "subjects" ("id" serial primary key, "name" character varying(255), "course_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (32.2ms)[0m  [1mCREATE  INDEX  "index_subjects_on_course_id" ON "subjects"  ("course_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140512190711"]]
+  [1m[36m (26.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateLevels (20140512193635)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (45.6ms)[0m  [1mCREATE TABLE "levels" ("id" serial primary key, "name" character varying(255), "subject_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (32.5ms)[0m  CREATE  INDEX  "index_levels_on_subject_id" ON "levels"  ("subject_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140512193635"]]
+  [1m[35m (22.1ms)[0m  COMMIT
+Migrating to CreateTopics (20140512202632)
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35m (84.3ms)[0m  CREATE TABLE "topics" ("id" serial primary key, "name" character varying(255), "level_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (88.7ms)[0m  [1mCREATE  INDEX  "index_topics_on_level_id" ON "topics"  ("level_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140512202632"]]
+  [1m[36m (31.7ms)[0m  [1mCOMMIT[0m
+Migrating to AddDescriptionToTopic (20140524212623)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (42.4ms)[0m  [1mALTER TABLE "topics" ADD COLUMN "description" text[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140524212623"]]
+  [1m[36m (19.7ms)[0m  [1mCOMMIT[0m
+Migrating to CreateVideos (20140601175536)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (108.8ms)[0m  [1mCREATE TABLE "videos" ("id" serial primary key, "topic_id" integer, "url" character varying(255), "channel" character varying(255), "title" character varying(255), "description" text, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140601175536"]]
+  [1m[36m (19.1ms)[0m  [1mCOMMIT[0m
+Migrating to AddPositionToTopic (20140722224426)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "topics" ADD COLUMN "position" integer[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140722224426"]]
+  [1m[36m (7.0ms)[0m  [1mCOMMIT[0m
+Migrating to AddFieldsToUser (20140728165929)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD COLUMN "city" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD COLUMN "birthdate" date
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "users" ADD COLUMN "gender" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140728165929"]]
+  [1m[36m (5.6ms)[0m  [1mCOMMIT[0m
+Migrating to AddPositionToSubject (20140809175803)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "subjects" ADD COLUMN "position" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809175803"]]
+  [1m[36m (7.7ms)[0m  [1mCOMMIT[0m
+Migrating to AddPositionToLevel (20140809175823)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "levels" ADD COLUMN "position" integer[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809175823"]]
+  [1m[36m (3.6ms)[0m  [1mCOMMIT[0m
+Migrating to AddAvatarToUsers (20140809193146)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "users" ADD COLUMN "avatar" character varying(255)[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140809193146"]]
+  [1m[36m (4.8ms)[0m  [1mCOMMIT[0m
+Migrating to CreateResumes (20140906180643)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (78.2ms)[0m  [1mCREATE TABLE "resumes" ("id" serial primary key, "description" text, "topic_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (32.4ms)[0m  CREATE  INDEX  "index_resumes_on_topic_id" ON "resumes"  ("topic_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140906180643"]]
+  [1m[35m (39.2ms)[0m  COMMIT
+Migrating to CreateExercises (20140906181913)
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35m (90.7ms)[0m  CREATE TABLE "exercises" ("id" serial primary key, "cover" character varying(255), "description" text, "topic_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (43.4ms)[0m  [1mCREATE  INDEX  "index_exercises_on_topic_id" ON "exercises"  ("topic_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140906181913"]]
+  [1m[36m (16.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateAlternatives (20140906184805)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (185.2ms)[0m  [1mCREATE TABLE "alternatives" ("id" serial primary key, "description" text, "correct" boolean, "exercise_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (87.7ms)[0m  CREATE  INDEX  "index_alternatives_on_exercise_id" ON "alternatives"  ("exercise_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140906184805"]]
+  [1m[35m (35.2ms)[0m  COMMIT
+Migrating to AddPositionToAlternatives (20140906185554)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "alternatives" ADD COLUMN "position" integer
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140906185554"]]
+  [1m[35m (40.5ms)[0m  COMMIT
+Migrating to AddPositionToExercises (20140906185641)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "exercises" ADD COLUMN "position" integer
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140906185641"]]
+  [1m[35m (62.3ms)[0m  COMMIT
+Migrating to AddUserToCourse (20140907135540)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "courses" ADD COLUMN "user_id" integer
+  [1m[36m (84.0ms)[0m  [1mCREATE  INDEX  "index_courses_on_user_id" ON "courses"  ("user_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140907135540"]]
+  [1m[36m (45.7ms)[0m  [1mCOMMIT[0m
+Migrating to AddUserToExercise (20140907135851)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "exercises" ADD COLUMN "user_id" integer[0m
+  [1m[35m (87.9ms)[0m  CREATE  INDEX  "index_exercises_on_user_id" ON "exercises"  ("user_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140907135851"]]
+  [1m[35m (45.1ms)[0m  COMMIT
+Migrating to AddUserToAlternative (20140907135858)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "alternatives" ADD COLUMN "user_id" integer
+  [1m[36m (72.4ms)[0m  [1mCREATE  INDEX  "index_alternatives_on_user_id" ON "alternatives"  ("user_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140907135858"]]
+  [1m[36m (55.9ms)[0m  [1mCOMMIT[0m
+Migrating to AddUserToLevel (20140907135905)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "levels" ADD COLUMN "user_id" integer[0m
+  [1m[35m (41.5ms)[0m  CREATE  INDEX  "index_levels_on_user_id" ON "levels"  ("user_id")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140907135905"]]
+  [1m[35m (21.6ms)[0m  COMMIT
+Migrating to AddUserToResume (20140907135910)
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.8ms)[0m  ALTER TABLE "resumes" ADD COLUMN "user_id" integer
+  [1m[36m (37.0ms)[0m  [1mCREATE  INDEX  "index_resumes_on_user_id" ON "resumes"  ("user_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140907135910"]]
+  [1m[36m (10.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddUserToSubject (20140907135916)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (0.8ms)[0m  [1mALTER TABLE "subjects" ADD COLUMN "user_id" integer[0m
+  [1m[35m (59.5ms)[0m  CREATE  INDEX  "index_subjects_on_user_id" ON "subjects"  ("user_id")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140907135916"]]
+  [1m[35m (9.6ms)[0m  COMMIT
+Migrating to AddUserToTopic (20140907135921)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "topics" ADD COLUMN "user_id" integer
+  [1m[36m (51.2ms)[0m  [1mCREATE  INDEX  "index_topics_on_user_id" ON "topics"  ("user_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140907135921"]]
+  [1m[36m (20.1ms)[0m  [1mCOMMIT[0m
+Migrating to AddUserToVideo (20140907135928)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "videos" ADD COLUMN "user_id" integer[0m
+  [1m[35m (39.6ms)[0m  CREATE  INDEX  "index_videos_on_user_id" ON "videos"  ("user_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140907135928"]]
+  [1m[35m (19.7ms)[0m  COMMIT
+Migrating to AddPositionToVideo (20140907140714)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "videos" ADD COLUMN "position" integer
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140907140714"]]
+  [1m[35m (7.0ms)[0m  COMMIT
+Migrating to AddPositionToResume (20140907140756)
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.7ms)[0m  ALTER TABLE "resumes" ADD COLUMN "position" integer
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140907140756"]]
+  [1m[35m (4.1ms)[0m  COMMIT
+Migrating to ActsAsVotableMigration (20140922174429)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (109.3ms)[0m  CREATE TABLE "votes" ("id" serial primary key, "votable_id" integer, "votable_type" character varying(255), "voter_id" integer, "voter_type" character varying(255), "vote_flag" boolean, "vote_scope" character varying(255), "vote_weight" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (110.3ms)[0m  [1mCREATE  INDEX  "index_votes_on_voter_id_and_voter_type_and_vote_scope" ON "votes"  ("voter_id", "voter_type", "vote_scope")[0m
+  [1m[35m (121.5ms)[0m  CREATE  INDEX  "index_votes_on_votable_id_and_votable_type_and_vote_scope" ON "votes"  ("votable_id", "votable_type", "vote_scope")
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140922174429"]]
+  [1m[35m (46.0ms)[0m  COMMIT
+Migrating to CreateQuestions (20140923202838)
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35m (238.0ms)[0m  CREATE TABLE "questions" ("id" serial primary key, "topic_id" integer, "user_id" integer, "description" text, "parent_id_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140923202838"]]
+  [1m[35m (61.1ms)[0m  COMMIT
+Migrating to FixParentColumn (20140924015042)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "questions" RENAME COLUMN "parent_id_id" TO "parent_id"
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140924015042"]]
+  [1m[35m (23.2ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m

@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 20140924015042) do
     t.integer  "user_id"
   end
 
+  add_index "subjects", ["course_id"], name: "index_subjects_on_course_id", using: :btree
   add_index "subjects", ["user_id"], name: "index_subjects_on_user_id", using: :btree
 
   create_table "topics", force: true do |t|
