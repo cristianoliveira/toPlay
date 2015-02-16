@@ -4,6 +4,6 @@ class TopicsController < InheritedResources::Base
 
   private
   def new_question
-    @question = Question.new
+  	@question = Question.new
   end
 end

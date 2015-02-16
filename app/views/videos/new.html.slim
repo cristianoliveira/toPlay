@@ -1,9 +1,15 @@
 #new-video
   .row
     = form_for @video do |f|
+      = label_tag "Tópico"
+      = select_tag   :topic, options_from_collection_for_select(@topics, :id, :name)
+      = label_tag "Url do video"
       = f.text_field :url
+      = label_tag "Canal"
       = f.text_field :channel
+      = label_tag "Título"
       = f.text_field :title
+      = label_tag "Descrição"
       = f.text_area :description
 
       = f.submit 'Salvar'

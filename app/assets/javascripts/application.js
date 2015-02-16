@@ -13,9 +13,40 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require sweetalert/lib/sweet-alert 
 //= require_tree .
 
+function flashAlert()
+{
+    show = function(type)
+    {
+      var message = $('#flash-alert-'+type).html()
+      type = type.replace('default','')
+
+      if(message)
+      {
+        sweetAlert({
+          title: "Alert",
+          text:  message,
+          type: type,
+          timer: 5000
+        }, function(){
+           $('#flash-alert-'+type).remove()
+        })
+        return true
+      }
+      return false
+    };
+     
+    if (!show('default'))
+       if (!show('error'))
+           show('success')
+} 
+
 $(function(){
+  
+  flashAlert()
+
   $(document).foundation();
 
   $('.date_field').mask('00/00/0000');

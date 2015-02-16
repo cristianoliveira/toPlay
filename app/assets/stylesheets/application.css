@@ -12,4 +12,5 @@
  *
  *= require_self
  *= require app
+ *= require sweetalert/lib/sweet-alert
  */

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
   put 'videos/:id/upvote' => 'videos#upvote', as: :upvote_video
   put 'videos/:id/downvote' => 'videos#downvote', as: :downvote_video
   put 'questions/:id/upvote' => 'questions#upvote', as: :upvote_question

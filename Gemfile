@@ -39,6 +39,8 @@ group :test do
   gem 'selenium-webdriver'
   gem 'machinist'
   gem 'faker'
+  gem 'rspec-activemodel-mocks'
+  gem 'factory_girl_rails'
 end
 gem 'rspec-rails', '~> 3.0.0.beta', group: [:development, :test]
 

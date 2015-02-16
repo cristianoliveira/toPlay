@@ -1,0 +1,28 @@
+{
+  "name": "TorrePlay",
+  "version": "0.0.01",
+  "homepage": "https://github.com/CristianOliveiraDaRosa/TorrePlay",
+  "authors": [
+    "Cristian Oliveira <contato@cristianoliveira.com.br>"
+  ],
+  "description": "Gamification application to learn math and statistcs",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "Gamification",
+    "Math",
+    "Statistics"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "directory"  : "app/assets/javascripts/components"
+
+}
