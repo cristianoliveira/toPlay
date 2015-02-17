@@ -65,7 +65,7 @@ class VideosController < InheritedResources::Base
   end
 
   def load_topics
-    if request.get? and params[:topic]
+    if params[:topic]
       @topics = Topic.where(id: topic_params)
     else  
       @topics = Topic.all

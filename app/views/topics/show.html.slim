@@ -100,6 +100,8 @@
               = render partial: 'questions/question', locals: { question: q }
 
   .extra-sidebar
+    h5  id='label-bnt-upload' Novo vídeo para este tópico
+    = link_to image_tag('upload_bt.png'), new_video_path+"?topic=#{@topic.id}", class: [:button, :btn_first], id: 'upload-for-topic'
     ul
       - @topic.videos.each_with_index do |v, i|
         li
