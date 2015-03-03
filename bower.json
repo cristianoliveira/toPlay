@@ -23,6 +23,8 @@
     "test",
     "tests"
   ],
-  "directory"  : "app/assets/javascripts/components"
-
+  "directory": "app/assets/javascripts/components",
+  "dependencies": {
+    "jssor-slider": "*"
+  }
 }

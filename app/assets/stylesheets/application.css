@@ -10,7 +10,8 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_self
- *= require app
+ *= require bootstrap/dist/css/bootstrap
  *= require sweetalert/lib/sweet-alert
+ *= require app
+ *= require_self
  */

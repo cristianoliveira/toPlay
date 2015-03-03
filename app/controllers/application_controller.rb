@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def authenticate_active_admin!
+  def authenticate_active_admin_torre!
     authenticate_user!
     unless current_user.role?(:administrator)
       flash[:alert] = 'Não autorizado!'
@@ -13,8 +13,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  protected
+  def current_admin_user
+      return nil if user_signed_in? && !current_user.admin?
+      current_user
+  end
 
+  protected
   def layout_by_resource
     (request.xhr? and devise_controller?) ? 'devise' : 'application'
   end
@@ -22,4 +26,5 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << [:first_name, :last_name, :email, :gender, :city, :birthdate, :avatar]
   end
+
 end

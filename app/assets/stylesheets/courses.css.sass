@@ -6,6 +6,8 @@ form#select_course
   padding: 0 !important
   dd > a
     color: $text-gray
+    &:hover
+      color: $light-blue
 #subjects
   +grid-column(3)
   background: transparent
@@ -13,13 +15,20 @@ form#select_course
     text-transform: uppercase
     background: transparent
   dd.active > a
+    color: $light-blue
     background: $active-tab
+    &:hover
+      color: $dark-blue
 #levels
   +grid-column(4)
   max-width: 100%
+  line-height: 1.2
   span
     color: $light-blue
     font-size: 20px
+  dd.active > a
+    color: $light-blue
+
 .topics
   +grid-column(12)
   background: white
@@ -33,6 +42,8 @@ form#select_course
     padding: 1em
     background: white
     border: solid 1px $active-tab
+  dd.active > a
+    color: $light-blue
 
 #subjects-content, #levels-content
   +grid-column(9)

@@ -7,4 +7,13 @@ class Topic < ActiveRecord::Base
   has_many :questions
 
   acts_as_list scope: :level
+
+  def has_resumes
+      self.resumes.size > 0
+  end
+
+  def has_exercises
+      self.exercises.size > 0
+  end
+
 end

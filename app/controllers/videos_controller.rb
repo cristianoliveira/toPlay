@@ -1,11 +1,12 @@
 class VideosController < InheritedResources::Base
-  before_action :load_topics, only: :new  
-  
+  before_action :authenticate_user!
+  before_action :load_topics, only: :new
+
   helper FlashAlertHelper
 
   def create
 
-    topic = load_topics.first 
+    topic = load_topics.first
 
     video      = topic.videos.new(video_params)
     video.user = current_user
@@ -19,7 +20,7 @@ class VideosController < InheritedResources::Base
       respond_to do |format|
         format.html { redirect_to :back }
         format.json { render json: { error: error } }
-      end 
+      end
     end
   end
 
@@ -54,8 +55,8 @@ class VideosController < InheritedResources::Base
       format.json { render json: { count: @video.get_downvotes.size.to_s.rjust(3, '0') } }
     end
   end
-  
-  private 
+
+  private
   def video_params
     params.require(:video).permit(:url, :title, :channel, :description)
   end
@@ -67,7 +68,7 @@ class VideosController < InheritedResources::Base
   def load_topics
     if params[:topic]
       @topics = Topic.where(id: topic_params)
-    else  
+    else
       @topics = Topic.all
     end
   end

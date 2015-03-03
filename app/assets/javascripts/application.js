@@ -12,9 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap/dist/js/bootstrap
 //= require foundation
-//= require sweetalert/lib/sweet-alert 
-//= require_tree .
+//= require sweetalert/lib/sweet-alert
+//= require jssor-slider/js/jssor
 
 function flashAlert()
 {
@@ -37,14 +38,14 @@ function flashAlert()
       }
       return false
     };
-     
+
     if (!show('default'))
        if (!show('error'))
            show('success')
-} 
+}
 
 $(function(){
-  
+
   flashAlert()
 
   $(document).foundation();
@@ -68,6 +69,12 @@ $(function(){
   });
 
 });
+
+jQuery(document).ready(function ($) {
+  var options = { $AutoPlay: true };
+  var jssor_slider1 = new $JssorSlider$('slider', options);
+});
+
 
 function uploadAvatar(){
   $('input#user_avatar').trigger('click');

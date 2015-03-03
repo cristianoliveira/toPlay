@@ -1,6 +1,4 @@
-@import compass/reset
-@import compass/css3
-@import foundation_and_overrides
+
 
 // Colors
 $background-gray: #F5F5F5
@@ -12,23 +10,34 @@ $active-tab: #EFEFEF
 $border-light-gray: #F7F6F7
 $tab-light-gray: #EBECEC
 $white: #FFF
+$flash-error: #3A99C7
 // Sizes
 $row-width: 1200px
+
+@import compass/reset
+@import compass/css3
+@import foundation_and_overrides
 
 @import courses
 @import topics
 @import questions
 
+
 // General layout
 body
   background: $background-gray
+  color: $text-gray
   font-family: 'Open Sans', sans-serif !important
 *, *:before, *:after
   +box-sizing(border-box)
 
-a, div, p, h3
+a, p, h3
   color: $text-gray
   font-family: 'Open Sans', sans-serif !important
+
+a:hover
+  color: $light-blue
+  text-decoration: none
 
 a.close-reveal-modal
   font-size: 1.5em !important
@@ -41,10 +50,12 @@ a.button
 a.btn_first
   background: $dark-blue
   &:hover
+    color: $light-blue
     background: darken($dark-blue, 20%)
 a.second
   background: $light-blue
   &:hover
+    color: $light-blue
     background: darken($light-blue, 20%)
 a.third
   outline: solid 2px $background-gray
@@ -183,4 +194,32 @@ footer
   text-size: 14px
   h2
     text-size: 16px !important
-  
+
+.flash
+  margin-bottom: 10px
+  text-align:center
+  color: $flash-error !important
+
+.navbar
+  border-radius: 0 !important
+  margin: 5px
+
+.navbar-default
+  border: none
+  border-radius: 0 !important
+  background-color: white
+
+.header-dropdown
+  text-transform: uppercase
+  span
+    margin: 0 20px
+
+.seta-down
+  margin: 0 20px
+
+.dropdown-menu
+  li
+    a
+      margin: auto
+      padding: 1rem 2rem
+      text-align: center

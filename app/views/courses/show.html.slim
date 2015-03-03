@@ -1,14 +1,14 @@
 .row
-  = form_tag({}, { method: :get, id: :select_course }) do
-    = select_tag :course_id, options_for_select(Course.all.collect{ |c| [c.name, c.id] }, @course.try(:id)), onchange: "this.form.submit()"
-.row
   - if @course
+
     dl#subjects.tabs.vertical{data-tab}
       - @course.subjects.each_with_index do |subject, i|
         dd class="#{first_active(i)}"
           = link_to subject.name, "#subject_#{subject.id}"
+
     #subjects-content.tabs-content.vertical
       - @course.subjects.each_with_index do |subject, i|
+
         .content class="#{first_active(i)}" id="subject_#{subject.id}"
 
           dl#levels.tabs.vertical{data-tab}
@@ -17,12 +17,13 @@
                 = link_to "#level_#{level.id}"
                   span ="#{ii+1}. "
                   = level.name
+
           #levels-content.tabs-content.vertical
-            - subject.levels.each_with_index do |level, ii|
-              .content class="#{first_active(ii)}" id="level_#{level.id}"
+            - for level in subject.levels
+              .content id="level_#{level.id}"
 
                 dl.topics.tabs.vertical
-                  - level.topics.each do |topic|
+                  - for topic in level.topics
                     .topic-wrap
                       dd
                         = link_to topic.name, topic
