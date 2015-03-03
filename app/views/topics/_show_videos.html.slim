@@ -1,0 +1,37 @@
+ul data-orbit="data-orbit" data-options="bullets: false; timer: false; slide_number: false; next_on_click: false;"
+  - @topic.videos.each_with_index do |v, i|
+    li data-orbit-slide="video-slide-#{v.id}"
+      .video-top-bar
+        = link_to "<", "#", onclick: "javascript: $('.orbit-prev').click(); return false;", class: "prev-video"
+        span = i + 1
+        = "/"
+        = @topic.videos.size
+        = link_to ">", "#", onclick: "javascript: $('.orbit-next').click(); return false;", class: "next-video"
+
+        ul
+          li
+            = link_to "facebook", "https://www.facebook.com/sharer/sharer.php?u=#{topic_url(@topic)}", class: 'video-facebook-share', target: '_blank'
+          li
+            = link_to "twitter", "https://twitter.com/home?status=[TorrePLAY] #{@topic.level.subject.name} - #{@topic.name} - #{v.user.name} #{topic_url(@topic)}", class: 'video-twitter-share', target: '_blank'
+          li
+            = link_to "gplus", "https://plus.google.com/share?url=#{topic_url(@topic)}", class: 'video-gplus-share', target: '_blank'
+          li
+            = link_to "mail", "mailto:?subject=[TorrePLAY] #{@topic.level.subject.name} - #{@topic.name} - #{v.user.name}&body=#{topic_url(@topic)}", class: 'video-mail-share', target: '_blank'
+          li
+            = link_to v.get_upvotes.size.to_s.rjust(3, '0'), upvote_video_path(v), method: :put, class: "video-upvote #{(current_user.voted_up_on? v) ? 'upvoted' : ''}", remote: true, data: { type: :json }
+          li
+            = link_to v.get_downvotes.size.to_s.rjust(3, '0'), downvote_video_path(v), method: :put, class: "video-downvote #{(current_user.voted_down_on? v) ? 'downvoted' : ''}", remote: true, data: { type: :json }
+      .video
+        - video = VideoInfo.new(v.url)
+        = raw video.embed_code(iframe_attributes: { width: 400, height: 250 })
+
+        / = auto_html(@topic.videos.first.url) { youtube(:width => 400, :height => 250, :autoplay => false); vimeo(:width => 400, :height => 250, :autoplay => false) }
+      .description
+        = image_tag v.user.avatar.url, class: :avatar
+        h3
+          span
+            = v.user.name
+          br
+          = "#{@topic.level.subject.name} - #{@topic.name} - #{v.user.name}"
+        p
+          = v.description.presence || video.description

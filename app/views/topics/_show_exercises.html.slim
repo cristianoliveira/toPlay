@@ -1,0 +1,22 @@
+#topic-exercises.content
+  ul.exercise-navigation
+    - @topic.exercises.each_with_index do |e, i|
+      li
+        = link_to i + 1, "#", data: {"orbit-link" => "exercise-#{e.id}"}, class: "#{ i == 0 ? 'active' : '' }"
+  ul class="exercises" data-orbit="data-orbit" data-options="bullets: false; timer: false; slide_number: false; animation_speed: 100; next_on_click: false;"
+    - abecedarium = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' ]
+    - @topic.exercises.each do |e|
+        li data-orbit-slide="exercise-#{e.id}"
+        = image_tag e.cover.url(:thumb)
+        p
+        = e.description
+        ul class="alternatives-for-#{e.id}"
+        - e.alternatives.each_with_index do |a, i|
+            li
+            a class="alternative" data-exercise="#{e.id}" data-answer="#{a.id}"
+            span
+            = abecedarium[i]
+
+            = a.description
+
+            = link_to "Resposta", "#", class: "get_answer", data: { exercise: e.id, answer: '' }

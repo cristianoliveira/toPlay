@@ -1,0 +1,11 @@
+#topic-description.content
+  dl.tabs{data-tab}
+    dd.active= link_to 'Resumo', '#description'
+    dd= link_to 'Dicas', '#hints'
+  .tabs-content
+    #description.content.active
+      - @topic.resumes.each do |t|
+        p.description
+          = t.description
+    #hints.content
+      p.description Aqui vão as dicas

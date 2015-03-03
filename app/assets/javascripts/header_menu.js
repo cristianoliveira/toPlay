@@ -1,0 +1,62 @@
+
+$('.subject-menu-item').click(function(){
+
+    var url        = $('#course_url').val();
+    var course_id  = $('#course_id').val();
+    var subject_id = $(this).attr('id')
+
+    $('#subject_id').val(subject_id);
+
+    var data = { "course_id": course_id , "subject_id": subject_id }
+
+    $('#nav-level').removeClass('hidden')
+    $('#nav-level').addClass('hidden')
+    $('#levels').empty();
+
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: data,
+        success: function(result){
+            var rows = result.result;
+            $.each(rows, function(id, level)
+            {
+                $('#nav-level').removeClass('hidden')
+                $('#levels').append('<li role="presentation"><a class="dropdown-menu-item level-menu-item" href="#subject_'+id+'" id="'+level.id+'">'+level.name+'</a></li>')
+            });
+        }
+    });
+
+});
+
+
+$(document).on("click", '.level-menu-item', function(){
+
+    var url        = $('#course_url').val();
+    var link_url   = $('#topics_url').val();
+    var course_id  = $('#course_id').val();
+    var subject_id = $('#subject_id').val();
+    var level_id = $(this).attr('id')
+
+    var data = { "course_id": course_id , "subject_id": subject_id,"level_id": level_id }
+
+    $('#nav-topic').removeClass('hidden')
+    $('#nav-topic').addClass('hidden')
+    $('#topics').empty();
+
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: data,
+        success: function(result){
+            var topics = result.result;
+            $.each(topics, function(id, topic)
+            {
+                $('#nav-topic').removeClass('hidden')
+                var topic_url = link_url.replace('par', topic.id)
+                $('#topics').append('<li role="presentation"><a class="dropdown-menu-item topic-menu-item" href="'+topic_url+'" id="'+topic.id+'">'+topic.name+'</a></li>')
+            });
+        }
+    });
+
+});

@@ -1,0 +1,51 @@
+nav class="navbar"
+  div class="container-fluid"
+    div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
+      ul class="nav navbar-nav"
+        li.dropdown.header-dropdown
+          a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
+            = "Materias"
+            = image_tag "seta_down1.png", class: "seta-down"
+
+          ul.dropdown-menu id="courses" role="menu" aria-labelledby="dropdownMenu1"
+            - Course.all.each_with_index do |course, i|
+              li role="presentation"
+                = link_to course.name, "../courses?utf8=✓&course_id=#{course.id}"
+
+input.hidden id="course_url" value=url_for(controller: 'courses', action:'subject_levels')
+input.hidden id="topics_url" value=url_for(controller: 'topics', action:'show', id: "par")
+input.hidden id="course_id" value=get_courses.id
+input.hidden id="subject_id" value=""
+
+nav class="navbar navbar-default"
+  div class="container-fluid"
+    div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
+      ul class="nav navbar-nav"
+
+        li.dropdown
+          a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
+            = "Cursos"
+            = image_tag "seta_down1.png", class: "seta-down"
+
+          ul.dropdown-menu id="subjects" role="menu" aria-labelledby="dropdown-subjects"
+            - for subject in get_courses.subjects
+              li role="presentation"
+                = link_to subject.name, "#subject_#{subject.id}", class:"dropdown-menu-item subject-menu-item", id:"#{subject.id}"
+
+        li.dropdown.hidden id="nav-level"
+          a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
+            = "Levels"
+            = image_tag "seta_down1.png", class: "seta-down"
+
+          ul.dropdown-menu id="levels" role="menu" aria-labelledby="dropdown-levels"
+            li role="presentation"
+              = link_to "", "", class:"dropdown-menu-item level-menu-item", id:""
+
+        li.dropdown.hidden id="nav-topic"
+          a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
+            = "Topicos"
+            = image_tag "seta_down1.png", class: "seta-down"
+
+          ul.dropdown-menu id="topics" role="menu" aria-labelledby="dropdown-levels"
+            li role="presentation"
+              = link_to "", "", class:"dropdown-menu-item topic-menu-item"

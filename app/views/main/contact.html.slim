@@ -1,0 +1,8 @@
+.row
+  h1 Entre em contato
+  = form_tag :contato, class: 'contact_form'
+    = label_tag 'Email'
+    = text_field_tag :email
+    = label_tag 'Mensagem'
+    = text_area_tag :message
+    = submit_tag :enviar
