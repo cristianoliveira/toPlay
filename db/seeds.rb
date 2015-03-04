@@ -8,3 +8,6 @@
 
   Course.create(name: 'Matematica');
   Course.create(name: 'Estatistica');
+
+  admin = AdminUser.new({email:"admin@torreplay.com.br", password: "admin123", password_confirmation: "admin123"})
+  admin.save

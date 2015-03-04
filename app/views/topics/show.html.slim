@@ -6,10 +6,11 @@
   .sidebar
     dl.tabs.vertical
       dd.active= link_to 'Vídeos', '#topic-videos'
-      - if @topic.resumes.size > 0
-        dd= link_to 'Resumo', '#topic-description'
-      - if @topic.exercises.size > 0
-        dd= link_to 'Exercicios', '#topic-exercises'
+
+      dd= link_to 'Resumo', '#topic-description' if @topic.has_resumes
+
+      dd= link_to 'Exercicios', '#topic-exercises' if @topic.has_exercises
+
       dd= link_to 'Dúvidas', '#topic-forum'
 
   .wraper
