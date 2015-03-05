@@ -6,8 +6,30 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-  Course.create(name: 'Matematica');
-  Course.create(name: 'Estatistica');
+  math = Course.create(name: 'Matematica');
+  stat = Course.create(name: 'Estatistica');
+
+  mq = math.subjects.create(name: "Quantica");
+  level1 = mq.levels.create({name: "Level 1"});
+  level1.topics.create({name: "Topico 1"});
+  level1.topics.create({name: "Topico 2"})
+  level1.topics.create({name: "Topico 3"})
+  level2 = mq.levels.create({name: "Level 2"});
+  level2.topics.create({name: "Topico 1"});
+  level2.topics.create({name: "Topico 2"})
+  level2.topics.create({name: "Topico 3"})
+
+  mq = stat.subjects.create(name: "Aplicada");
+  level1 = mq.levels.create({name: "Level 1"});
+  level1.topics.create({name: "Topico 1"});
+  level1.topics.create({name: "Topico 2"})
+  level1.topics.create({name: "Topico 3"})
+  level2 = mq.levels.create({name: "Level 2"});
+  level2.topics.create({name: "Topico 1"});
+  level2.topics.create({name: "Topico 2"})
+  level2.topics.create({name: "Topico 3"})
 
   admin = AdminUser.new({email:"admin@torreplay.com.br", password: "admin123", password_confirmation: "admin123"})
   admin.save
+
+  

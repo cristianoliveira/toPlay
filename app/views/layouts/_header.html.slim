@@ -4,7 +4,7 @@ header
       .logo= link_to image_tag('logo.png'), root_path
       ul.links
         li= link_to 'Sobre',   sobre_path
-        li= link_to 'Cursos',  courses_path
+        li= link_to 'Cursos',  'courses'
         li= link_to 'Rank',    rank_path
         li= link_to 'Contato', contato_path
     .last
@@ -21,19 +21,20 @@ header
         - else
           = link_to 'Entrar', new_user_session_path, class: [:button, :second], id: :login, data: { reveal_ajax: true, reveal_id: 'login_box' }
 
-.row
-  nav class="navbar"
-    div class="container-fluid"
-      div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
-        ul class="nav navbar-nav"
-          li.dropdown.header-dropdown
-            a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
-              = "Matérias"
-              = image_tag "seta_down1.png", class: "seta-down"
+-unless controller.controller_name == 'sessions'
+  .row
+    nav class="navbar"
+      div class="container-fluid"
+        div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
+          ul class="nav navbar-nav"
+            li.dropdown.header-dropdown
+              a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
+                = "Matérias"
+                = image_tag "seta_down1.png", class: "seta-down"
 
-            ul.dropdown-menu id="courses" role="menu" aria-labelledby="dropdownMenu1"
-              - Course.all.each_with_index do |course, i|
-                li role="presentation"
-                  = link_to course.name, url_for(controller: :courses, action: :show, course_id: course.id)
+              ul.dropdown-menu id="courses" role="menu" aria-labelledby="dropdownMenu1"
+                - Course.all.each_with_index do |course, i|
+                  li role="presentation"
+                    = link_to course.name, url_for(controller: :courses, action: :show, course_id: course.id)
 
-  = render 'layouts/header_menu' unless show_menu
+  = render 'layouts/header_menu' if show_menu?

@@ -1,9 +1,11 @@
 module ApplicationHelper
 
-    def show_menu
-        return current_page?(root_url) ||
-               current_page?(cursos_path) ||
-               current_page?(sobre_path) ||
-               current_page?(courses_path)
+    def set_show_menu(param)
+       @show_menu = param
+    end
+
+    def show_menu?
+        return @show_menu if defined? @show_menu
+        true
     end
 end

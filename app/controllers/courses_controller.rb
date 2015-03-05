@@ -1,4 +1,5 @@
 class CoursesController < InheritedResources::Base
+  before_action :block_show_menu
   before_action :set_course, only: [:show, :subject_levels]
 
   def subject_levels
@@ -33,5 +34,9 @@ class CoursesController < InheritedResources::Base
 
   def set_course
     @course = params[:course_id].present? ? Course.find(params[:course_id]) : Course.first
+  end
+
+  def block_show_menu
+      @show_menu = false
   end
 end

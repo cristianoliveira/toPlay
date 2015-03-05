@@ -1,4 +1,10 @@
 class MainController < ApplicationController
+
+  before_action :set_show_menu
+
+  def index
+  end
+
   def about
   end
 
@@ -9,10 +15,15 @@ class MainController < ApplicationController
   end
 
   def contact
-    
-    if params[:email] 	
-       raise 'sss'
-    end 
 
+    if params[:email]
+       raise 'sss'
+    end
+
+  end
+
+  private
+  def set_show_menu
+     @show_menu = false
   end
 end

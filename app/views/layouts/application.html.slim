@@ -20,7 +20,7 @@ html
     = render 'layouts/footer'
 
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    -unless show_menu
+    -unless show_menu?
       = javascript_include_tag 'header_menu'
 
     / javascript:
