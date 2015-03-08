@@ -1,0 +1,10 @@
+= form_tag(@resume, remote: true, data: { type: :json }, id: :resume_form) do |f|
+  = f.hidden_field :user_id, current_user.id
+  = f.hidden_field :topic_id, @topic.id
+  = f.text_area :description, @resume.description,
+            placeholder: "Pergunte uma algo... [máx. 1000 carácteres]",
+            class: [:hidden, :edit_resume_action]
+  = submit_tag "Enviar", class: [:hidden, :edit_resume_action]
+
+p.description id='display_description'
+  = @resume.description
