@@ -4,5 +4,7 @@ class Question < ActiveRecord::Base
   belongs_to :topic
   belongs_to :user
 
+  validates_presence_of :description, message: "Pergunta deve ser informada."
+
   acts_as_votable
 end

@@ -1,11 +1,18 @@
 #topic-description.content
   dl.tabs{data-tab}
-    dd.active= link_to 'Resumo', '#description'
+    dd.active = link_to 'Resumo', '#description'
     dd= link_to 'Dicas', '#hints'
   .tabs-content
+    .action_buttons
+      = link_to image_tag('edit2.png'), '#', id: :edit_resume_pen, class: :edit_button
     #description.content.active
-      - @topic.resumes.each do |t|
-        p.description
-          = t.description
+      = form_for(@resume, remote: true, data: { type: :json }, html:{ id: :resume_form } ) do |f|
+        = f.hidden_field :user_id, value: current_user.id
+        = f.hidden_field :topic_id, value: @topic.id
+        = f.text_area :description, value: @resume.description, placeholder: "Escreva o resume", class: [:hidden, :edit_resume_action]
+        = f.submit "Enviar", class: ['button btn-default-form', :hidden, :edit_resume_action]
+
+      div.description id='display_description' = raw @resume.description
+
     #hints.content
       p.description Aqui vão as dicas

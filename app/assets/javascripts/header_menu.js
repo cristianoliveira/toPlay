@@ -9,8 +9,9 @@ $('.subject-menu-item').click(function(){
 
     var data = { "course_id": course_id , "subject_id": subject_id }
 
-    $('#nav-level').removeClass('hidden')
-    $('#nav-level').addClass('hidden')
+    if(!$('#nav-level').hasClass('hidden'))
+      $('#nav-level').addClass('hidden')
+
     $('#levels').empty();
 
     $.ajax({
@@ -40,8 +41,9 @@ $(document).on("click", '.level-menu-item', function(){
 
     var data = { "course_id": course_id , "subject_id": subject_id,"level_id": level_id }
 
-    $('#nav-topic').removeClass('hidden')
-    $('#nav-topic').addClass('hidden')
+    if(!$('#nav-topic').hasClass('hidden'))
+      $('#nav-topic').addClass('hidden')
+
     $('#topics').empty();
 
     $.ajax({

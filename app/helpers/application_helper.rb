@@ -5,7 +5,8 @@ module ApplicationHelper
     end
 
     def show_menu?
-        return @show_menu if defined? @show_menu
-        true
+        @show_menu |= false
+        @show_menu
     end
+
 end

@@ -18,9 +18,9 @@ ul data-orbit="data-orbit" data-options="bullets: false; timer: false; slide_num
           li
             = link_to "mail", "mailto:?subject=[TorrePLAY] #{@topic.level.subject.name} - #{@topic.name} - #{v.user.name}&body=#{topic_url(@topic)}", class: 'video-mail-share', target: '_blank'
           li
-            = link_to v.get_upvotes.size.to_s.rjust(3, '0'), upvote_video_path(v), method: :put, class: "video-upvote #{(current_user.voted_up_on? v) ? 'upvoted' : ''}", remote: true, data: { type: :json }
+            = link_to v.get_upvotes.size.to_s.rjust(3, '0'), upvote_video_path(v), method: :put, class: "video-upvote upvote #{(current_user.voted_up_on? v) ? 'upvoted' : ''}", remote: true, data: { type: :json }
           li
-            = link_to v.get_downvotes.size.to_s.rjust(3, '0'), downvote_video_path(v), method: :put, class: "video-downvote #{(current_user.voted_down_on? v) ? 'downvoted' : ''}", remote: true, data: { type: :json }
+            = link_to v.get_downvotes.size.to_s.rjust(3, '0'), downvote_video_path(v), method: :put, class: "video-downvote downvote #{(current_user.voted_down_on? v) ? 'downvoted' : ''}", remote: true, data: { type: :json }
       .video
         - video = VideoInfo.new(v.url)
         = raw video.embed_code(iframe_attributes: { width: 400, height: 250 })

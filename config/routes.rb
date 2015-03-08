@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'rank'    => 'main#rank'
   get  'contato' => 'main#contact'
   post 'contato' => 'main#contact'
-  
+
   put 'videos/:id/upvote' => 'videos#upvote', as: :upvote_video
   put 'videos/:id/downvote' => 'videos#downvote', as: :downvote_video
   put 'questions/:id/upvote' => 'questions#upvote', as: :upvote_question
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :topics, only: :show
   resources :videos, only: [:index, :new, :create]
   resources :questions, only: [:index, :new, :create]
+  resources :resumes
 
   root 'main#index' , id: Course.first.id
 end

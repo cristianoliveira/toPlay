@@ -7,9 +7,9 @@
     dl.tabs.vertical
       dd.active= link_to 'Vídeos', '#topic-videos'
 
-      dd= link_to 'Resumo', '#topic-description' if @topic.has_resumes
+      dd= link_to 'Resumo', '#topic-description'
 
-      dd= link_to 'Exercicios', '#topic-exercises' if @topic.has_exercises
+      dd= link_to 'Exercicios', '#topic-exercises' if @topic.has_exercises?
 
       dd= link_to 'Dúvidas', '#topic-forum'
 
@@ -18,16 +18,16 @@
       #topic-videos.content.active
         = render 'topics/show_videos'
 
-        = render 'topics/show_resumes' if @topic.has_resumes
+        = render 'topics/show_resumes'
 
-        = render 'topics/show_exercises' if @topic.has_exercises
+        = render 'topics/show_exercises' if @topic.has_exercises?
 
       #topic-forum.content
-        = form_for(@question, remote: true) do |f|
+        = form_for(@question, remote: true, data: { type: :html }) do |f|
           = f.hidden_field :user_id, value: current_user.id
           = f.hidden_field :topic_id, value: @topic.id
-          = f.text_area :description, placeholder: "Pergunte uma questão... [máx. 1000 carácteres]"
-          = f.submit "Enviar"
+          = f.text_area :description, placeholder: "Pergunte algo... [máx. 1000 carácteres]"
+          = f.submit "Enviar", class: ['button btn-default-form']
         hr
         .questions
           - @topic.questions.each do |q|
@@ -36,7 +36,7 @@
 
   .extra-sidebar
     h5  id='label-bnt-upload' Novo vídeo para este tópico
-    = link_to image_tag('upload_bt.png'), new_video_path+"?topic=#{@topic.id}", class: [:button, :btn_first], id: 'upload-for-topic'
+    = link_to image_tag('upload_bt.png'), new_video_path+"?topic=#{@topic.id}", class: [:button, 'btn-default-form'], id: 'upload-for-topic'
     ul
       - @topic.videos.each_with_index do |v, i|
         li

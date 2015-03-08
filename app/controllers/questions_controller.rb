@@ -4,7 +4,12 @@ class QuestionsController < InheritedResources::Base
 
   def create
     create! do |format|
-      format.js
+     #format.js { render json: @question }
+      if @question.errors.any?
+        format.html { render json: { "error" => @question.errors.messages } , status: 422 }
+      else
+        format.html { render partial: 'questions/question', locals: { question: @question } }
+      end
     end
   end
 
@@ -42,7 +47,6 @@ class QuestionsController < InheritedResources::Base
 
 
   private
-
     def permitted_params
       params.permit(:question => [:user_id, :topic_id, :description, :parent_id])
     end

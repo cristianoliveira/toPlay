@@ -5,6 +5,14 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def authenticate_for_admin_access!
+      authenticate_user!
+      unless current_user.role?(:administrator)
+          flash[:alert] = 'Não autorizado!'
+          redirect_to root_path
+      end
+  end
+
   def authenticate_active_admin!
     authenticate_user!
     unless current_user.role?(:administrator)
