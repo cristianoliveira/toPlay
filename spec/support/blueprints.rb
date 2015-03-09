@@ -51,3 +51,7 @@ end
 AdminUser.blueprint do
   # Attributes here
 end
+
+UserExerciseAnswer.blueprint do
+  # Attributes here
+end

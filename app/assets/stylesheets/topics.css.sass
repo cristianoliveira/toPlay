@@ -98,7 +98,7 @@ body.topics
       .content-sections
         padding: 0 !important
     #topic-exercises
-      padding: 0.9375rem
+      padding: 0.2rem 0.9375rem
       .get_answer
         background-color: $dark-blue
         color: #FFF
@@ -115,10 +115,10 @@ body.topics
       img
         margin-bottom: 15px
       .exercise-navigation
-        margin: 20px auto
+        margin: 0 auto
         display: block
         height: 40px
-        padding: 10px
+        padding: 0px
         li
           float: left
           margin: 5px
@@ -131,13 +131,14 @@ body.topics
           vertical-align: middle
           border-radius: 50%
           background-color: $background-gray
+          margin-bottom: 5px
         a:active, a.active, a:hover
           background-color: $light-blue
           color: #FFF
       .exercises
         li
           span
-            margin-right: 10px
+            margin: 5px
             display: inline-block
             width: 40px
             height: 40px
@@ -249,3 +250,7 @@ body.topics
 #upload-for-topic
   width: 100%
   margin: 10px 0
+
+.btn-exercise-answer
+  margin-left: -10px
+  margin-top: 10px

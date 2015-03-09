@@ -1,5 +1,6 @@
 // require votable
 // require header_menu
+// require user_exercise_answer     
 //= require ckeditor/ckeditor
 
 $('#new_question').on('ajax:success', function(e, data, status, xhr){

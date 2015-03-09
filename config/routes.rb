@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :videos, only: [:index, :new, :create]
   resources :questions, only: [:index, :new, :create]
   resources :resumes
+  resources :user_exercise_answers
 
   root 'main#index' , id: Course.first.id
 end
