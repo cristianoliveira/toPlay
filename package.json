@@ -1,0 +1,7 @@
+{
+    "scripts": {
+        "postinstall": "./node_modules/bower/bin/bower install",
+        // stripped for snippet...
+    },
+    // stripped for snippet
+}

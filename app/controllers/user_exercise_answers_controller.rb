@@ -15,9 +15,9 @@ class UserExerciseAnswersController < InheritedResources::Base
   private
   def respond(format ,answer)
     if answer.errors.any?
-      format.html { render json: { "error" => answer.errors.messages } , status: 422 }
+      format.json { render json: { "error" => answer.errors.messages } , status: 422 }
     else
-      format.html { render json: { "result" => { "is_correct_answer" => answer.correct? } } }
+      format.json { render json: { "result" => { "is_correct_answer" => answer.correct? } } }
     end
   end
 
