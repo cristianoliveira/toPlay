@@ -1,7 +1,10 @@
 {
-    "scripts": {
-        "postinstall": "./node_modules/bower/bin/bower install",
-        // stripped for snippet...
+    "name": "your app",
+    "version": "x.x.x",
+    "dependencies": {
+        "bower": "*"
     },
-    // stripped for snippet
+    "scripts": {
+        "postinstall": "./node_modules/bower/bin/bower install"
+    }
 }
