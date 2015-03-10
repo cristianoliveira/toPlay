@@ -25,6 +25,8 @@
   ],
   "directory": "app/assets/javascripts/components",
   "dependencies": {
-    "jssor-slider": "*"
+    "sweetalert": "~0.4.2",
+    "ckeditor": "~4.4.7",
+    "bootstrap": "~3.3.2"
   }
 }

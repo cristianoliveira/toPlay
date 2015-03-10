@@ -15,9 +15,7 @@
 //= require bootstrap/dist/js/bootstrap
 //= require foundation
 //= require sweetalert/lib/sweet-alert
-//= require jssor-slider/js/jssor
 //= require_tree
-
 
 
 function uploadAvatar(){
