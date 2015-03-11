@@ -15,7 +15,6 @@
 //= require bootstrap/dist/js/bootstrap
 //= require foundation
 //= require sweetalert/lib/sweet-alert
-//= require ckeditor/ckeditor
 //= require_tree
 
 
