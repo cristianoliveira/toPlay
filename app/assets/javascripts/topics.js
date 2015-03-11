@@ -3,6 +3,10 @@
 // require header_menu
 // require user_exercise_answer
 
+$('.edit_resume_action').hide();
+$('#cke_resume_description').hide();
+$('#display_description').show();
+
 
 $('#new_question').on('ajax:success', function(e, data, status, xhr){
     sweetAlert('Pergunta enviada.');
@@ -22,25 +26,25 @@ openToEdit = function(open)
 {
     if(open)
     {
-        $('.edit_resume_action').removeClass('hidden');
-        $('#cke_resume_description').removeClass('hidden');
-        $('#display_description').addClass('hidden');
+        $('.edit_resume_action').show();
+        $('#cke_resume_description').show();
+        $('#display_description').hide();
 
         CKEDITOR.config.removePlugins= 'toolbar'
         CKEDITOR.replace( 'resume_description');
     }
     else
     {
-        $('.edit_resume_action').addClass('hidden');
-        $('#cke_resume_description').addClass('hidden');
-        $('#display_description').removeClass('hidden');
+        $('.edit_resume_action').hide();
+        $('#cke_resume_description').hide();
+        $('#display_description').show();
     }
 }
 
 $('#edit_resume_pen').on('click', function(event){
     event.preventDefault();
 
-    openToEdit($('.edit_resume_action').hasClass('hidden'));
+    openToEdit(!$('.edit_resume_action').is(":visible"));
 })
 
 $('#resume_form').on('ajax:success', function(e, data, status, xhr){
