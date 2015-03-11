@@ -1,7 +1,8 @@
+//= require ckeditor/ckeditor
 // require votable
 // require header_menu
-// require user_exercise_answer     
-//= require ckeditor/ckeditor
+// require user_exercise_answer
+
 
 $('#new_question').on('ajax:success', function(e, data, status, xhr){
     sweetAlert('Pergunta enviada.');
