@@ -29,7 +29,7 @@
   level2.topics.create({name: "Topico 2"})
   level2.topics.create({name: "Topico 3"})
 
-  admin = AdminUser.new({email:"admin@torreplay.com.br", password: "admin123", password_confirmation: "admin123"})
+  admin = User.new({email:"admin@torreplay.com.br", password: "admin123", password_confirmation: "admin123"})
+  admin.role = :administrator
+  admin.confirmed_at = "2015-01-01"
   admin.save
-
-  
