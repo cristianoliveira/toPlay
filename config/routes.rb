@@ -26,5 +26,7 @@ Rails.application.routes.draw do
   resources :resumes
   resources :user_exercise_answers
 
-  root 'main#index' , id: Course.first.id
+  mount Ckeditor::Engine => '/ckeditor'
+
+  root 'main#index'
 end

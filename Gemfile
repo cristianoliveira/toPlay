@@ -61,6 +61,7 @@ gem 'slim-rails'
 gem 'compass-rails'
 gem 'foundation-rails'
 gem 'video_info'
+gem 'ckeditor'
 
 # backend
 gem 'inherited_resources'
