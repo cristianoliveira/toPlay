@@ -23,7 +23,7 @@
 
       - if @topic.has_exercises?
         #topic-exercises.content
-          = render 'topics/show_exercises' 
+          = render 'topics/show_exercises'
 
       #topic-forum.content
         = form_for(@question, remote: true, data: { type: :html }) do |f|
@@ -39,7 +39,11 @@
 
   .extra-sidebar
     h5  id='label-bnt-upload' Novo vídeo para este tópico
-    = link_to image_tag('upload_bt.png'), new_video_path+"?topic=#{@topic.id}", class: [:button, 'btn-default-form'], id: 'upload-for-topic'
+    = link_to image_tag('upload_bt.png'),
+              '',
+              class: [:button, 'btn-default-form'],
+              id: 'upload-for-topic',
+              data: { reveal_ajax: true, reveal_id: 'modal_video_form' }
     ul
       - @topic.videos.each_with_index do |v, i|
         li
@@ -47,3 +51,5 @@
             - video = VideoInfo.new(v.url)
             = image_tag video.thumbnail_small, class: 'video-thumb'
             = truncate("#{@topic.level.subject.name} - #{@topic.name} - #{v.user.name}", length: 40)
+= link_to :teste,"" , data: { reveal_ajax: true, reveal_id: 'modal_video_form' }
+= render 'modal_video_form'

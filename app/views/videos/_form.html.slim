@@ -1,0 +1,28 @@
+= form_for @video, remote: true, data: { type: :json }, html: { id: 'video-form' } do |f|
+  - unless @topic
+    = label_tag "Curso"
+    = select_tag :course,
+                 options_from_collection_for_select(Course.all, :id, :name),
+                 id: 'course-select',
+                 data:{ url: url_for(controller: 'subjects', format: :json) },
+                 :include_blank => true
+    = label_tag "Diciplina"
+    = select_tag :level,
+                 {},
+                 id: 'level-select',
+                 data: { url: url_for(controller: 'topics', format: :json)}
+    = label_tag "Tópico"
+    = f.select :topic_id, {}, {}, id: 'topic-select'
+  - else
+    = label_tag "Tópico: %s" % @topic.name
+    = f.hidden_field :topic_id
+  = label_tag "Url do video"
+  = f.text_field :url
+  = label_tag "Canal"
+  = f.text_field :channel
+  = label_tag "Título"
+  = f.text_field :title
+  = label_tag "Descrição"
+  = f.text_area :description
+
+  = f.submit 'Salvar', class: 'button btn-default-form'

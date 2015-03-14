@@ -1,7 +1,4 @@
-.modal.fade id="video-form-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-  .modal-dialog
-    .modal-content
-      .modal-header
-        = "Adicione um vídeo"
-        button class="close" data-dismiss="modal" aria-label="Close"
-          span aria-hidden="true"
+#modal_video_form.reveal-modal {data-reveal}
+  - @video = @topic.videos.new
+  = render 'videos/form'
+  <a class="close-reveal-modal">&#215;</a>

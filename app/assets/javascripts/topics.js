@@ -22,8 +22,7 @@ $('#new_question').on('ajax:error', function(e, data, status, xhr){
     });
 });
 
-openToEdit = function(open)
-{
+openToEdit = function(open){
     if(open)
     {
         $('#cke_resume_description').show();

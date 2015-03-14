@@ -1,25 +1,26 @@
 class VideosController < InheritedResources::Base
+  respond_to :html, :json
   before_action :authenticate_user!
-  before_action :load_topics, only: :new
 
   helper FlashAlertHelper
 
   def create
-
-    topic = load_topics.first
-
-    video      = topic.videos.new(video_params)
+    video      = Video.new(video_params)
     video.user = current_user
 
     if video.save
-      redirect_to topic_path(topic)
+      respond_to do |format|
+        format.html { redirect_to topic_path(video.topic_id) }
+        format.json { render json: { result: 'ok', redirect_to: topic_path(video.topic_id) } }
+      end
+
     else
-      error = video.errors.first
-      flash[:message] = error
+      error = video.errors
 
       respond_to do |format|
-        format.html { redirect_to :back }
-        format.json { render json: { error: error } }
+        format.html {  flash[:message] = error
+                       redirect_to :back }
+        format.json { render json:  error.full_messages , status: 422 }
       end
     end
   end
@@ -58,18 +59,6 @@ class VideosController < InheritedResources::Base
 
   private
   def video_params
-    params.require(:video).permit(:url, :title, :channel, :description)
-  end
-
-  def topic_params
-    params.require(:topic)
-  end
-
-  def load_topics
-    if params[:topic]
-      @topics = Topic.where(id: topic_params)
-    else
-      @topics = Topic.all
-    end
+    params.require(:video).permit(:topic_id, :url, :title, :channel, :description)
   end
 end

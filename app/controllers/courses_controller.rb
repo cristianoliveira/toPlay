@@ -1,4 +1,5 @@
 class CoursesController < InheritedResources::Base
+  respond_to :json
   before_action :block_show_menu
   before_action :set_course, only: [:show, :subject_levels]
 
