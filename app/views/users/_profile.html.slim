@@ -1,0 +1,36 @@
+div#content.container-fluid
+  div.profile
+    =form_for @user, url: url_for(controller: :users, action: :update), html: { class: 'form-inline', role: :form } do |f|
+
+      .row
+        .columns.large-6
+          = f.label 'Nome', for: :first_name
+          = f.text_field :first_name
+        .columns.large-6
+          = f.label 'Sobrenome', for: :last_name
+          = f.text_field :last_name
+      .row
+        .columns
+          = f.label 'Email', for: :email
+          = f.email_field :email, placeholder: 'Email'
+      .row
+        .columns
+          = f.label 'Sexo', for: :gender
+          = f.select :email, options_for_select(User::GENDERS, @user.gender)
+      .row
+        .columns
+          = f.label 'Cidade', for: :city
+          = f.text_field :city
+      .row
+        .columns
+          .date-select
+            = f.label 'Aniversário', for: :birthdate
+            = f.date_select :birthdate
+      .row
+        .columns
+          = f.file_field :avatar, class: :hidden
+          = f.hidden_field :avatar_cache
+          = link_to image_tag('upload_conteudo.png') + " Upload Foto", '#', class: [:upload_avatar, :button, :fourth, 'btn-default-form'], onclick: 'uploadAvatar();'
+      .row
+        .column
+          = f.submit :salvar, class: [:button, :submit, 'btn-default-form']

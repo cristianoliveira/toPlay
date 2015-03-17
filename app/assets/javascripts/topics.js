@@ -2,14 +2,11 @@
 // require header_menu
 // require user_exercise_answer
 
-
 $('.edit_resume_action').hide();
 $('#cke_resume_description').hide();
 $('#display_description').show();
 
-
 $('#new_question').on('ajax:success', function(e, data, status, xhr){
-    sweetAlert('Pergunta enviada.');
     $('#question_description').val("");
     $('.questions').append(xhr.responseText);
 });
@@ -29,20 +26,14 @@ openToEdit = function(open){
         $('#btn_send_resume').show();
         $('#display_description').hide();
 
-        //$('.edit_resume_action').css('visibility', 'visible');
-
         CKEDITOR.config.removePlugins= 'toolbar'
         CKEDITOR.replace('resume_description');
-
-
     }
     else
     {
         $('#cke_resume_description').hide();
         $('#display_description').show();
         $('#btn_send_resume').hide();
-
-        //$('.edit_resume_action').css('visibility', 'hide');
     }
 }
 

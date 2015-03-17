@@ -10,7 +10,16 @@ header
     .last
       .login
         - if user_signed_in?
-          = image_tag current_user.avatar.url, class: :avatar
+          li.dropdown
+            a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
+              = image_tag current_user.avatar.url, class: :avatar
+
+            ul.dropdown-menu#header-menu-profile role="menu" aria-labelledby="dropdown-profile"
+              li
+                = link_to 'Perfil', url_for(controller: :users, action: :profile)
+                = link_to 'Uploads', url_for(controller: :users, action: :uploads)
+                = link_to 'Notificações', url_for(controller: :users, action: :notifications)
+
           = link_to 'Admin', admin_root_path if current_user.admin?
           = link_to image_tag('upload_bt.png'), new_video_path, class: [:button, :btn_first], id: :upload
         - else
@@ -21,7 +30,7 @@ header
         - else
           = link_to 'Entrar', new_user_session_path, class: [:button, :second], id: :login, data: { reveal_ajax: true, reveal_id: 'login_box' }
 
--unless controller.controller_name == 'sessions'
+-unless %w( users sessions ).include?(controller.controller_name)
   .row
     nav class="navbar"
       div class="container-fluid"

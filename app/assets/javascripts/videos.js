@@ -29,7 +29,9 @@ $('#level-select').change(function(event){
 });
 
 $('#video-form').on('ajax:success', function(e, data, status, xhr){
-   sweetAlert('Video enviado enviada.');
+   swal({ title: "Video",
+          text: "Enviando...",
+          imageUrl: "/assets/loading.gif" });
    window.location.replace(data.redirect_to);
 });
 

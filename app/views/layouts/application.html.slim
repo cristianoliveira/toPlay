@@ -9,13 +9,13 @@ html
     link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'
     = csrf_meta_tags
   body class=[controller.controller_name, controller.action_name, ('devise_controller' if devise_controller?)]
-    = flash_alert_tag
 
     = render 'layouts/header'
 
     .page-wrap
       = render 'layouts/flash', locals: { flash: flash } unless flash.empty?
       = render 'layouts/devise'
+
       = yield
 
     = render 'layouts/footer'

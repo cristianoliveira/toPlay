@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  get 'users/profile'
+  get 'users/uploads'
+  get 'users/notifications'
+  post 'users/update'
+
   get 'sobre'   => 'main#about'
   get 'courses' => 'courses#show'
   get 'courses/json/' => 'courses#subject_levels'
@@ -29,6 +34,7 @@ Rails.application.routes.draw do
   resources :questions, only: [:index, :new, :create]
   resources :resumes
   resources :user_exercise_answers
+  resources :users
 
   mount Ckeditor::Engine => '/ckeditor'
 

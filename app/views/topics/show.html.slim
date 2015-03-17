@@ -51,5 +51,4 @@
             - video = VideoInfo.new(v.url)
             = image_tag video.thumbnail_small, class: 'video-thumb'
             = truncate("#{@topic.level.subject.name} - #{@topic.name} - #{v.user.name}", length: 40)
-= link_to :teste,"" , data: { reveal_ajax: true, reveal_id: 'modal_video_form' }
 = render 'modal_video_form'

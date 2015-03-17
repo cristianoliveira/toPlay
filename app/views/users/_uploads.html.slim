@@ -1,0 +1,12 @@
+div#content.container-fluid
+   .uploads
+    h4 Videos
+    - for video in current_user.videos
+      .video
+        =link_to url_for(controller: :topics, action: :show, id: video.topic_id)
+          - vid = VideoInfo.new(video.url)
+          = image_tag vid.thumbnail_small, class: 'video-thumb'
+        h5
+          = truncate("#{video.title}", length: 40)
+        div
+          = truncate("#{video.description}", length: 40)

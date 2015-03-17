@@ -1,0 +1,11 @@
+#settings-sidebar
+  #menu.tabs-content.vertical
+    ul
+      li class="#{selected('profile')}"
+        = link_to "Meu Perfil", url_for(controller: :users, action: :profile)
+    ul
+      li class="#{selected('uploads')}"
+        = link_to "Meus Uploads", url_for(controller: :users, action: :uploads)
+    ul
+      li class="#{selected('notifications')}"
+        = link_to "Notificações", url_for(controller: :users, action: :notifications)
