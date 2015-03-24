@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :subjects
   has_many :topics
   has_many :videos
+  has_many :notifications
 
 
   before_create { |user| user.role = 'student' unless user.role }
@@ -67,5 +68,9 @@ class User < ActiveRecord::Base
 
     # returns user
     user
+  end
+
+  def unread_notifications
+    self.notifications.where(read:false)
   end
 end

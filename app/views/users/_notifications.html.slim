@@ -1,2 +1,10 @@
-h1 Users#notifications
-p Find me in app/views/users/notifications.html.slim
+div#content.container-fluid
+  .notifications
+    h4 Notificações
+    - for notification in current_user.notifications.limit(10)
+      .notification class="#{unread(notification.read)}"
+        =link_to url_for(controller: :users, action: :read_notification, id: notification.id )
+          h5
+            = notification.title
+        div
+          = notification.message

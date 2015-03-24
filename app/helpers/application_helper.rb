@@ -5,8 +5,12 @@ module ApplicationHelper
     end
 
     def show_menu?
-        @show_menu |= false
+        @show_menu ||= false
         @show_menu
+    end
+
+    def respond_json(json)
+      render json: { "result" => json } 
     end
 
     def respond_json_error(json_errors)

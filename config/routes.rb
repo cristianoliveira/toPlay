@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'users/profile'
   get 'users/uploads'
   get 'users/notifications'
+  get 'users/read/notification/:id' => 'users#read_notification'
   post 'users/update'
 
   get 'sobre'   => 'main#about'
