@@ -6,29 +6,24 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-  math = Course.create(name: 'Matematica');
-  stat = Course.create(name: 'Estatistica');
+# COURSES
+  connection = ActiveRecord::Base.connection();
+  course = Course.create(name: 'ENEM & Vestibular');
+  subject = course.subjects.create(name: "Física");
+  level = subject.levels.create(name: 'Introdução a Física');
+  level.topic.create(name: 'Grandezas e Medidas');
+  level.topic.create(name: "Cinemática");
+  level.topic.create(name: "As Leis de Newton");
+  level.topic.create(name: "Energia Mecânica");
+  level.topic.create(name: "Impulso e Quantidade de Movimento");
+  level.topic.create(name: "Estática");
+  level.topic.create(name: "Gravitação");
+  level.topic.create(name: "Hidrostática");
+  level.topic.create(name: "Eletrostática");
+  level.topic.create(name: "Eletrodinâmica");
+  level.topic.create(name: "Magnetismo");
 
-  mq = math.subjects.create(name: "Quantica");
-  level1 = mq.levels.create({name: "Level 1"});
-  level1.topics.create({name: "Topico 1"});
-  level1.topics.create({name: "Topico 2"})
-  level1.topics.create({name: "Topico 3"})
-  level2 = mq.levels.create({name: "Level 2"});
-  level2.topics.create({name: "Topico 1"});
-  level2.topics.create({name: "Topico 2"})
-  level2.topics.create({name: "Topico 3"})
-
-  mq = stat.subjects.create(name: "Aplicada");
-  level1 = mq.levels.create({name: "Level 1"});
-  level1.topics.create({name: "Topico 1"});
-  level1.topics.create({name: "Topico 2"})
-  level1.topics.create({name: "Topico 3"})
-  level2 = mq.levels.create({name: "Level 2"});
-  level2.topics.create({name: "Topico 1"});
-  level2.topics.create({name: "Topico 2"})
-  level2.topics.create({name: "Topico 3"})
-
+# ADMIN USER
   admin = User.new({email:"admin@torreplay.com.br", password: "admin123", password_confirmation: "admin123"})
   admin.role = :administrator
   admin.confirmed_at = "2015-01-01"

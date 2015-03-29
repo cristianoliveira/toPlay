@@ -35,8 +35,7 @@ module Merit
       score 50, :on => [
         'user_exercise_answers#create',
         'user_exercise_answers#update'
-      ]
-      do |answer|
+      ] do |answer|
         answer.incorrect!
       end
 
@@ -45,8 +44,7 @@ module Merit
       score 100, :on => [
         'user_exercise_answers#create',
         'user_exercise_answers#update'
-      ]
-      do |answer|
+      ] do |answer|
         answer.correct?
       end
 
