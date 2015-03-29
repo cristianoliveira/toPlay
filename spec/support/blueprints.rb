@@ -56,6 +56,6 @@ UserExerciseAnswer.blueprint do
   # Attributes here
 end
 
-Notifications.blueprint do
-  # Attributes here
-end
+# Notifications.blueprint do
+#   # Attributes here
+# end

@@ -26,7 +26,7 @@ class TopicsController < InheritedResources::Base
   end
 
   def topic_params
-      return params.require(:id) if params[:id]
-      params.require(:level_id)
+    return params.require(:id) if params[:id]
+    params.require(:level_id)
   end
 end

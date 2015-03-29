@@ -1,0 +1,5 @@
+pt-BR:
+  merit:
+    granted_points: "ganhou %{points} pontos"
+    granted_badge: "ganhou %{badge_name} medalha"
+    removed_badge: "perdeu %{badge_name} medalha"

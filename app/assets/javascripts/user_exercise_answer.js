@@ -6,6 +6,8 @@ $('.exercise_answer_form').on('ajax:success', function(e, data, status, xhr){
     else
       swal("Sorry!", "Você errou", "error")
 
+    updateCurrentUserStats();
+
 });
 
 $('.exercise_answer_form').on('ajax:error', function(e, data, status, xhr){

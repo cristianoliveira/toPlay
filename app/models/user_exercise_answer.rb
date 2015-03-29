@@ -6,4 +6,8 @@ class UserExerciseAnswer < ActiveRecord::Base
   def correct?
     self.alternative.correct
   end
+
+  def incorrect!
+    !self.alternative.correct
+  end
 end

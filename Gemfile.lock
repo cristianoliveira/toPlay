@@ -50,6 +50,7 @@ GEM
       activerecord (>= 3.0)
     acts_as_votable (0.10.0)
     addressable (2.3.6)
+    ambry (0.3.1)
     arbre (1.0.1)
       activesupport (>= 3.0.0)
     arel (5.0.1.20140414130214)
@@ -195,6 +196,8 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    merit (2.3.1)
+      ambry (~> 0.3.0)
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_magick (3.8.0)
@@ -430,6 +433,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   machinist
+  merit
   mini_magick
   omniauth
   omniauth-facebook

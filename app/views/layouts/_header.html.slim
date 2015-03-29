@@ -10,6 +10,9 @@ header
     .last
       .login
         - if user_signed_in?
+          li Pontos:
+          li#user-stats data-url="#{url_for(controller: :users, action: :stats, id: current_user.id)}"
+            = link_to current_user.points, url_for(controller: :users, action: :profile), id: "user-points"
           li.dropdown
             a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
               = image_tag current_user.avatar.url, class: :avatar
