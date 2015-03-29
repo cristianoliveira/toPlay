@@ -11,6 +11,7 @@ $white: #FFF
 $flash-error: #3A99C7
 // Sizes
 $row-width: 1200px
+$min-width: 800px
 
 @import compass/reset
 @import compass/css3
@@ -69,6 +70,11 @@ a.fourth
   color: $text-gray
   &:hover
     background: darken($background-gray, 20%)
+
+.main-container
+  padding: 0
+  margin: auto
+  min-width: $row-width
 
 header
   +grid-column(12)

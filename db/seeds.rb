@@ -7,21 +7,33 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # COURSES
-  connection = ActiveRecord::Base.connection();
+  p "Seeding defaults courses..."
   course = Course.create(name: 'ENEM & Vestibular');
+
   subject = course.subjects.create(name: "Física");
-  level = subject.levels.create(name: 'Introdução a Física');
-  level.topic.create(name: 'Grandezas e Medidas');
-  level.topic.create(name: "Cinemática");
-  level.topic.create(name: "As Leis de Newton");
-  level.topic.create(name: "Energia Mecânica");
-  level.topic.create(name: "Impulso e Quantidade de Movimento");
-  level.topic.create(name: "Estática");
-  level.topic.create(name: "Gravitação");
-  level.topic.create(name: "Hidrostática");
-  level.topic.create(name: "Eletrostática");
-  level.topic.create(name: "Eletrodinâmica");
-  level.topic.create(name: "Magnetismo");
+
+  level_position = 0;
+  level = subject.levels.create(name: 'Introdução a Física', position: level_position+=1);
+  topic_position = 0;
+  level.topics.create(name: "Grandezas e medidas", position: topic_position+=1);
+  level.topics.create(name: "Vetores e operações vetoriais", position: topic_position+=1);
+  level.topics.create(name: "Notação científica", position: topic_position+=1);
+
+  level = subject.levels.create(name: "Cinemática", position: level_position += 1);
+  topic_position = 0;
+  level.topics.create(name: "Velocidade instantânea e média", position: topic_position+=1);
+  level.topics.create(name: "Aceleração", position: topic_position+=1);
+  level.topics.create(name: "MRU", position: topic_position+=1);
+  level.topics.create(name: "MRUV", position: topic_position+=1);
+  level.topics.create(name: "Gráficos de MRU e MRUV", position: topic_position+=1);
+  level.topics.create(name: "Queda livre e lançamento vertical", position: topic_position+=1);
+  level.topics.create(name: "Lançamento horizontal e oblíquo", position: topic_position+=1);
+  level.topics.create(name: "MCU", position: topic_position+=1);
+
+  level = subject.levels.create(name: "As Leis de Newton", position: level_position+=1);
+  topic_position = 0;
+  level.topics.create(name: "Força, massa e peso", position: topic_position+=1);
+  level.topics.create(name: "Inércia: 1a lei de Newton", position: topic_position+=1);
 
 # ADMIN USER
   admin = User.new({email:"admin@torreplay.com.br", password: "admin123", password_confirmation: "admin123"})
