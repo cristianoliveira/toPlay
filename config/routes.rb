@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'users/uploads'
   get 'users/notifications'
   get 'users/read/notification/:id' => 'users#read_notification'
+  get 'users/:id/stats' => 'users#stats'
   post 'users/update'
 
   get 'sobre'   => 'main#about'
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
   put 'videos/:id/upvote' => 'videos#upvote', as: :upvote_video
   put 'videos/:id/downvote' => 'videos#downvote', as: :downvote_video
   get 'videos/validate' => 'videos#validate'
+  get 'videos/:id/start_watch' => 'videos#start_watch'
 
   put 'questions/:id/upvote' => 'questions#upvote', as: :upvote_question
   put 'questions/:id/downvote' => 'questions#downvote', as: :downvote_question
@@ -39,5 +41,5 @@ Rails.application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
-  root 'main#index'
+  root 'courses#show'
 end

@@ -9,3 +9,11 @@
     ul
       li class="#{selected('notifications')}"
         = link_to "Notificações", url_for(controller: :users, action: :notifications)
+
+    #points
+      h2 Nível
+      h3
+        = current_user.level.to_s
+      h2 Experiência
+      h3
+       = current_user.points

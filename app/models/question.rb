@@ -7,4 +7,15 @@ class Question < ActiveRecord::Base
   validates_presence_of :description, message: "Pergunta deve ser informada."
 
   acts_as_votable
+
+  def unliked_by(user)
+    vote_down(user)
+    self.user.scores_by_unlike
+  end
+
+  def liked_by(user)
+    vote_up(user)
+    self.user.scores_by_like
+  end
+
 end

@@ -1,3 +1,19 @@
+// $(document).ready(function(){
+//   var iframe = $('.video-iframe');
+//
+//   for(i=0; i < iframe.length; i++)
+//   {
+//     iframe[i].document.addEventListener('click',function(){
+//       alert('click inside iframe');
+//     })
+//   }
+//
+//   iframe.contents().click(function(){
+//     alert('click inside iframe');
+//   });
+// });
+
+
 ajaxRefreshSelect = function(select_to_refresh, url, data){
     $.ajax({
         type: "GET",

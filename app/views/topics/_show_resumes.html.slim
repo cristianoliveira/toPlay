@@ -1,7 +1,6 @@
 #topic-description.content
   dl.tabs{data-tab}
     dd.active = link_to 'Resumo', '#description'
-    dd= link_to 'Dicas', '#hints'
   .tabs-content
     .action_buttons
       = link_to image_tag('edit2.png'), '#', id: :edit_resume_pen, class: :edit_button
@@ -14,5 +13,4 @@
 
       div.description id='display_description' = raw @resume.description
 
-    #hints.content
-      p.description Aqui vão as dicas
+  

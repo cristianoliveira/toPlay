@@ -5,22 +5,25 @@ class VideosController < InheritedResources::Base
   helper FlashAlertHelper
 
   def create
-    video      = Video.new(video_params)
-    video.user = current_user
+    @video      = Video.new(video_params)
+    @video.user = current_user
 
-    if video.save
+    if @video.save
       respond_to do |format|
-        format.html { redirect_to topic_path(video.topic_id) }
-        format.json { render json: { result: 'ok', redirect_to: topic_path(video.topic_id) } }
+        format.html { redirect_to topic_path(@video.topic_id) }
+        format.json {
+          render json: {
+            result: 'ok',
+            redirect_to: topic_path(@video.topic_id)
+          }
+        }
       end
 
     else
-      error = video.errors
-
       respond_to do |format|
-        format.html {  flash[:message] = error.full_messages
+        format.html {  flash[:message] = @video.errors.full_messages
                        redirect_to :back }
-        format.json { render json:  error.full_messages , status: 422 }
+        format.json { render json:  @video.errors.full_messages , status: 422 }
       end
     end
   end
@@ -37,7 +40,11 @@ class VideosController < InheritedResources::Base
 
     respond_to do |format|
       format.html {redirect_to :back }
-      format.json { render json: { count: @video.get_upvotes.size.to_s.rjust(3, '0') } }
+      format.json {
+        render json: {
+          count: @video.get_upvotes.size.to_s.rjust(3, '0')
+        }
+      }
     end
 
   end
@@ -52,13 +59,37 @@ class VideosController < InheritedResources::Base
     end
 
     respond_to do |format|
-      format.html {redirect_to :back }
-      format.json { render json: { count: @video.get_downvotes.size.to_s.rjust(3, '0') } }
+      format.html { redirect_to :back }
+      format.json {
+        render json: {
+          count: @video.get_downvotes.size.to_s.rjust(3, '0')
+        }
+      }
+    end
+  end
+
+  def start_watch
+    video = Video.find(params[:id])
+
+    if current_user.has_already_scored_by?(video.id, 'start_watch')
+      video.invalidate_score!
+      result = { result: true }
+    else
+      result = { result: false }
+    end
+
+    respond_to do |format|
+      format.json { render json: { :result => result } }
     end
   end
 
   private
   def video_params
-    params.require(:video).permit(:topic_id, :url, :title, :channel, :description)
+    params.require(:video).permit(
+    :topic_id,
+    :url,
+    :title,
+    :channel,
+    :description)
   end
 end

@@ -9,6 +9,7 @@ $('#display_description').show();
 $('#new_question').on('ajax:success', function(e, data, status, xhr){
     $('#question_description').val("");
     $('.questions').append(xhr.responseText);
+    updateCurrentUserStats();
 });
 
 $('#new_question').on('ajax:error', function(e, data, status, xhr){

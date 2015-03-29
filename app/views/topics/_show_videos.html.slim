@@ -21,9 +21,9 @@ ul data-orbit="data-orbit" data-options="bullets: false; timer: false; slide_num
             = link_to v.get_upvotes.size.to_s.rjust(3, '0'), upvote_video_path(v), method: :put, class: "video-upvote upvote #{(current_user.voted_up_on? v) ? 'upvoted' : ''}", remote: true, data: { type: :json }
           li
             = link_to v.get_downvotes.size.to_s.rjust(3, '0'), downvote_video_path(v), method: :put, class: "video-downvote downvote #{(current_user.voted_down_on? v) ? 'downvoted' : ''}", remote: true, data: { type: :json }
-      .video
+      .video#video-frame data-url="#{url_for(controller: :videos, action: :start_watch, id: v.id)}"
         - video = VideoInfo.new(v.url)
-        = raw video.embed_code(iframe_attributes: { width: 400, height: 250 })
+        = raw video.embed_code(iframe_attributes: { width: 400, height: 250, class:"video-iframe", id: v.id, 'data-url'=> url_for(controller: :videos, action: :start_watch, id: v.id)})
 
         / = auto_html(@topic.videos.first.url) { youtube(:width => 400, :height => 250, :autoplay => false); vimeo(:width => 400, :height => 250, :autoplay => false) }
       .description

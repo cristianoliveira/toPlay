@@ -8,6 +8,8 @@ $(function(){
           $(this).removeClass('upvoted');
         else
           $(this).addClass('upvoted');
+
+        updateCurrentUserStats();
     }
 
     dowvote = function(e, data, status, xhr) {
@@ -16,6 +18,8 @@ $(function(){
           $(this).removeClass('downvoted');
         else
           $(this).addClass('downvoted');
+
+        updateCurrentUserStats();
     }
 
 

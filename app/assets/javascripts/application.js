@@ -22,3 +22,18 @@
 function uploadAvatar(){
   $('input#user_avatar').trigger('click');
 };
+
+function updateCurrentUserStats(){
+  var url = $('#user-stats').attr('data-url');
+
+  $.ajax({
+    type: "GET",
+    url: url,
+    dataType: "json",
+    success: function(data){
+      $('#user-points').html(data.result.points)
+    }
+  })
+
+
+}
