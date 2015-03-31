@@ -8,6 +8,10 @@ header
         li= link_to 'Rank',    rank_path
         li= link_to 'Contato', contato_path
     .last
+      = form_tag "search", class: "form-group search"
+        = search_field_tag :search,"", class: "form-control", placeholder: "Buscar..."
+      = link_to image_tag("busca_header1.png") , ""
+      = link_to image_tag("face_header1.png") , "https://www.facebook.com/atorrebrasil"
       .login
         - if user_signed_in?
           li Pontos:
