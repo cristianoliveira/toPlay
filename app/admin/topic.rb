@@ -24,6 +24,9 @@ ActiveAdmin.register Topic do
     actions defaults: false do |topic|
       link_to 'Exercícios', admin_topic_exercises_path(topic)
     end
+    actions defaults: false do |topic|
+      link_to 'Questões', admin_topic_questions_path(topic)
+    end
     actions
   end
 

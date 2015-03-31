@@ -1,5 +1,5 @@
 ActiveAdmin.register Level do
-  menu priority: 3
+  menu priority: 2 
   belongs_to :subject
   permit_params :name, :subject_id, :position
 

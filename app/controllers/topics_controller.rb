@@ -13,7 +13,7 @@ class TopicsController < InheritedResources::Base
   private
   def set_up
     @@topic = Topic.find(topic_params)
-  	@question = Question.new
+    @question = Question.new
   end
 
   def set_resume

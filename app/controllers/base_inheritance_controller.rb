@@ -1,5 +1,1 @@
-class BaseInheritedResourcesController < InheritedResources::Base
-
-   include CoursesHelper
-
-end
+VimCrypt~01!ò´$?3Ü†ÙÖ3ä–“Oz¾ö8¬K{ûp€¬ât6íkFÂÍ™º>ÁEçERP€iğfEêyäkV® SGÁ1Ñ°

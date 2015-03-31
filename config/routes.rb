@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'users/profile'
   get 'users/uploads'
   get 'users/notifications'
-  get 'users/read/notification/:id' => 'users#read_notification'
+  get 'users/read/notifi  cation/:id' => 'users#read_notification'
   get 'users/:id/stats' => 'users#stats'
   post 'users/update'
 

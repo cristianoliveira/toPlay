@@ -30,6 +30,13 @@ ActiveAdmin.register Exercise do
     f.actions
   end
 
+  sidebar "Detalhes", only: :show do
+    link_to('Alternativas', admin_exercise_alternatives_path(exercise))
+    attributes_table_for exercise do
+      row  link_to('Alternativas', admin_exercise_alternatives_path(exercise))
+    end
+  end
+
   after_build do |currm|
     currm.user = current_user
   end
