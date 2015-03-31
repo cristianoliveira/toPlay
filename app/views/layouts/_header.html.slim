@@ -24,14 +24,12 @@ header
                 = link_to 'Notificações', url_for(controller: :users, action: :notifications)
 
           = link_to 'Admin', admin_root_path if current_user.admin?
+
+          = link_to 'Sair', destroy_user_session_path, method: :delete, class: [:button, :third], id: :logout
           = link_to image_tag('upload_bt.png'), new_video_path, class: [:button, :btn_first], id: :upload
         - else
-          = link_to image_tag('upload_bt.png'), new_user_session_path, class: [:button, :btn_first], id: :upload, data: { reveal_ajax: true, reveal_id: 'login_box' }
-
-        - if user_signed_in?
-          = link_to 'Sair', destroy_user_session_path, method: :delete, class: [:button, :third], id: :logout
-        - else
           = link_to 'Entrar', new_user_session_path, class: [:button, :second], id: :login, data: { reveal_ajax: true, reveal_id: 'login_box' }
+          = link_to image_tag('upload_bt.png'), new_user_session_path, class: [:button, :btn_first], id: :upload, data: { reveal_ajax: true, reveal_id: 'login_box' }
 
 -unless %w( users sessions ).include?(controller.controller_name)
   .row
