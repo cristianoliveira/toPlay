@@ -1,0 +1,20 @@
+.row
+  .col
+    h2 Resultados
+    p
+      = "Todos os resultados para: #{@query}"
+.row
+  -if @courses
+    h4 Cursos/Topics
+    -for rows in @topics_results
+      -if rows
+        - for r in rows
+          li
+            = link_to r.name, r
+  -if @videos
+    h4 Videos
+    -for video in @videos
+      h5
+        =link_to video.title, video.topic
+      p
+        =video.description

@@ -8,28 +8,28 @@ header
         li= link_to 'Rank',    rank_path
         li= link_to 'Contato', contato_path
     .last
-      = form_tag "search", class: "form-group search"
-        = search_field_tag :search,"", class: "form-control", placeholder: "Buscar..."
+      = form_tag url_for('/search'), method: "GET", class: "form-group search"
+        = search_field_tag :q,"", class: "form-control", placeholder: "Buscar..."
       = link_to image_tag("busca_header1.png") , ""
       = link_to image_tag("face_header1.png") , "https://www.facebook.com/atorrebrasil"
       .login
         - if user_signed_in?
-          li Pontos:
-          li#user-stats data-url="#{url_for(controller: :users, action: :stats, id: current_user.id)}"
-            = link_to current_user.points, url_for(controller: :users, action: :profile), id: "user-points"
           li.dropdown
             a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
               = image_tag current_user.avatar.url, class: :avatar
 
             ul.dropdown-menu#header-menu-profile role="menu" aria-labelledby="dropdown-profile"
+              li Pontos:
+              li#user-stats data-url="#{url_for(controller: :users, action: :stats, id: current_user.id)}"
+                = link_to current_user.points, url_for(controller: :users, action: :profile), id: "user-points"
               li
                 = link_to 'Perfil', url_for(controller: :users, action: :profile)
                 = link_to 'Uploads', url_for(controller: :users, action: :uploads)
                 = link_to 'Notificações', url_for(controller: :users, action: :notifications)
+                = link_to 'Sair', destroy_user_session_path, method: :delete, id: :logout
 
           = link_to 'Admin', admin_root_path if current_user.admin?
 
-          = link_to 'Sair', destroy_user_session_path, method: :delete, class: [:button, :third], id: :logout
           = link_to image_tag('upload_bt.png'), new_video_path, class: [:button, :btn_first], id: :upload
         - else
           = link_to 'Entrar', new_user_session_path, class: [:button, :second], id: :login, data: { reveal_ajax: true, reveal_id: 'login_box' }

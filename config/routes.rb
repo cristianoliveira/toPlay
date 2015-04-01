@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'search' => 'search#index'
+
   get 'users/profile'
   get 'users/uploads'
   get 'users/notifications'
