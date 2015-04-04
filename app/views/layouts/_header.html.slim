@@ -10,13 +10,14 @@ header
     .last
       = form_tag url_for('/search'), method: "GET", class: "form-group search"
         = search_field_tag :q,"", class: "form-control", placeholder: "Buscar..."
-      = link_to image_tag("busca_header1.png") , ""
+        = button_tag id: "search-button"
+          = link_to image_tag("busca_header1.png")
       = link_to image_tag("face_header1.png") , "https://www.facebook.com/atorrebrasil"
       .login
         - if user_signed_in?
           li.dropdown
             a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
-              = image_tag current_user.avatar.url, class: :avatar
+              = image_tag current_user.avatar.url, class: :avatar, id: "user-avatar"
 
             ul.dropdown-menu#header-menu-profile role="menu" aria-labelledby="dropdown-profile"
               li Pontos:
@@ -30,7 +31,7 @@ header
 
           = link_to 'Admin', admin_root_path if current_user.admin?
 
-          = link_to image_tag('upload_bt.png'), new_video_path, class: [:button, :btn_first], id: :upload
+          = link_to image_tag('upload_bt.png'), '', class: [:button, :btn_first], id: :upload, data: { reveal_ajax: true, reveal_id: 'modal_video_form' }
         - else
           = link_to 'Entrar', new_user_session_path, class: [:button, :second], id: :login, data: { reveal_ajax: true, reveal_id: 'login_box' }
           = link_to image_tag('upload_bt.png'), new_user_session_path, class: [:button, :btn_first], id: :upload, data: { reveal_ajax: true, reveal_id: 'login_box' }

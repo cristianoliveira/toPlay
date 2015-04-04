@@ -1,4 +1,4 @@
 #modal_video_form.reveal-modal {data-reveal}
-  - @video = @topic.videos.new
-  = render 'videos/form'
-  <a class="close-reveal-modal">&#215;</a>
+  - if video
+    = render 'videos/form', :video => video
+    <a class="close-reveal-modal">&#215;</a>
