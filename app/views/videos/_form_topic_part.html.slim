@@ -1,0 +1,13 @@
+= label_tag "Curso"
+= select_tag :course,
+             options_from_collection_for_select(Course.all, :id, :name),
+             id: 'course-select',
+             data:{ url: url_for(controller: 'subjects', format: :json) },
+             :include_blank => true
+= label_tag "Diciplina"
+= select_tag :level,
+             {},
+             id: 'level-select',
+             data: { url: url_for(controller: 'topics', format: :json)}
+= label_tag "Tópico"
+= form.select :topic_id, {}, {}, id: 'topic-select'
