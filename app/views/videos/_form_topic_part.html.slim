@@ -10,4 +10,4 @@
              id: 'level-select',
              data: { url: url_for(controller: 'topics', format: :json)}
 = label_tag "Tópico"
-= form.select :topic_id, {}, {}, id: 'topic-select'
+= form.select :topic_id, topic, {}, id: 'topic-select'

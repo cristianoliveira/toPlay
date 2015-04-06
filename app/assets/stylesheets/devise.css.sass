@@ -1,0 +1,63 @@
+.devise_view, .devise_controller
+  +grid-column(12)
+  text-align: center
+  .social_login
+    +grid-column(6)
+    margin-bottom: 1em
+    padding: 0
+    &.facebook_login
+      padding-right: .3em
+    &.google_login
+      padding-left: .3em
+  .logo
+    margin: 1em 0 2em 0
+  .devise-title
+    margin-bottom: 1.5em
+    h3
+      color: $dark-blue
+      font-size: 1.1em
+      line-height: .8em
+      font-weight: 500
+      margin-bottom: 0
+    h5
+      color: $text-gray
+      font-weight: 300
+      font-size: 1em
+  form
+    input, select
+      margin: 0
+      font-family: inherit
+      font-weight: 400
+    input[type="text"], input[type="email"], input[type="password"], input[type="date"], select
+      background: $background-gray
+    .submit
+      width: 100%
+      margin-top: 1em
+    #user_avatar
+      position: absolute
+      top: -1000px
+    a.upload_avatar
+      margin-top: 1em
+      width: 100%
+      img
+        height: 32px
+
+  .links
+    text-align: left
+    padding: 1em 0
+    font-size: .9em
+    line-height: 1.5em
+  .main-links
+    line-height: 1.5em
+    span
+      margin-right: .5em
+
+.devise_controller .page-wrap
+  +grid-column(4, $center: true)
+  background-color: white
+
+#user_email
+  float: right
+
+#user_password
+  float: right

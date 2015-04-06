@@ -1,3 +1,6 @@
+#courses-menu
+  float: left
+  
 form#select_course
   select
     +grid-column(6)
@@ -7,7 +10,7 @@ form#select_course
   dd > a
     color: $text-gray
     &:hover
-      color: $light-blue
+      color: $dark-gray
 #subjects
   +grid-column(3)
   background: transparent
@@ -35,13 +38,20 @@ form#select_course
   padding: .5em !important
   max-width: 100% !important
   width: 100% !important
+  .tabs.vertical dd
+    float: left
   dd
     +grid-column(6)
     padding: 0 !important
+    float: left !important
+    margin: 1% !important
+    width: 48% !important
   dd > a
     padding: 1em
     background: white
     border: solid 1px $active-tab
+    &:hover 
+      background: $white
   dd.active > a
     color: $light-blue
 

@@ -1,7 +1,9 @@
 module VideosHelper
   def modal_video_form
-    @video ||= Video.new
-    "#{render 'topics/modal_video_form', :video => @video}".html_safe
+    if user_signed_in?
+      @video ||= Video.new
+      "#{render 'topics/modal_video_form', :video => @video}".html_safe
+    end
   end
 
   def render_topic_part(form, topic)

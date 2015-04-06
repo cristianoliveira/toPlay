@@ -16,4 +16,8 @@ class Topic < ActiveRecord::Base
       self.exercises.size > 0
   end
 
+  def course
+    self.level.subject.course
+  end
+
 end

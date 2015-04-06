@@ -1,5 +1,6 @@
 // Colors
 $background-gray: #F5F5F5
+$dark-gray: #777
 $footer-gray: #E6E6E6
 $text-gray: #999999
 $dark-blue: #499BD0
@@ -21,13 +22,15 @@ $min-width: 800px
 @import topics
 @import questions
 @import users
-
+@import devise
 
 // General layout
 body
   background: $background-gray
   color: $text-gray
   font-family: 'Open Sans', sans-serif !important
+  padding: 0 !important
+
 *, *:before, *:after
   +box-sizing(border-box)
 
@@ -37,6 +40,9 @@ a, p, h3
 
 a:hover
   color: $light-blue
+  text-decoration: none
+
+a:hover, a:focus 
   text-decoration: none
 
 a.close-reveal-modal
@@ -151,52 +157,7 @@ footer
 .page-wrap
   +grid-column(12)
   min-height: 10em
-  padding: 2em 0
-
-.devise_view, .devise_controller
-  +grid-column(12)
-  text-align: center
-  .social_login
-    +grid-column(6)
-    margin-bottom: 1em
-    padding: 0
-    &.facebook_login
-      padding-right: .3em
-    &.google_login
-      padding-left: .3em
-  .logo
-    margin: 1em 0 2em 0
-  .devise-title
-    margin-bottom: 1.5em
-    h3
-      color: $dark-blue
-      font-size: 1.1em
-      line-height: .8em
-      font-weight: 500
-      margin-bottom: 0
-    h5
-      color: $text-gray
-      font-weight: 300
-      font-size: 1em
-  form
-    input, select
-      margin: 0
-      font-family: inherit
-      font-weight: 400
-    input[type="text"], input[type="email"], input[type="password"], input[type="date"], select
-      background: $background-gray
-    .submit
-      width: 100%
-      margin-top: 1em
-    #user_avatar
-      position: absolute
-      top: -1000px
-    a.upload_avatar
-      margin-top: 1em
-      width: 100%
-      img
-        height: 32px
-
+  padding-top: 10px 
   .links
     text-align: left
     padding: 1em 0

@@ -4,7 +4,7 @@
     dl#subjects.tabs.vertical{data-tab}
       - @course.subjects.each_with_index do |subject, i|
         dd class="#{first_active(i)}"
-          = link_to subject.name, "#subject_#{subject.id}"
+          = link_to subject.name, "#subject_#{subject.id}", class: 'enter-to-click'
 
     #subjects-content.tabs-content.vertical
       - @course.subjects.each_with_index do |subject, i|
@@ -14,7 +14,7 @@
           dl#levels.tabs.vertical{data-tab}
             - subject.levels.each_with_index do |level, ii|
               dd class="#{first_active(ii)}"
-                = link_to "#level_#{level.id}"
+                = link_to "#level_#{level.id}", class: 'enter-to-click'
                   span ="#{ii+1}. "
                   = level.name
 

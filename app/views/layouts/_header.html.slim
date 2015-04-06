@@ -17,7 +17,7 @@ header
         - if user_signed_in?
           li.dropdown
             a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
-              = image_tag current_user.avatar.url, class: :avatar, id: "user-avatar"
+              = image_tag current_user.avatar.url, class: [:avatar,'enter-to-click'], id: "user-avatar"
 
             ul.dropdown-menu#header-menu-profile role="menu" aria-labelledby="dropdown-profile"
               li Pontos:
@@ -37,14 +37,14 @@ header
           = link_to image_tag('upload_bt.png'), new_user_session_path, class: [:button, :btn_first], id: :upload, data: { reveal_ajax: true, reveal_id: 'login_box' }
 
 -unless %w( users sessions ).include?(controller.controller_name)
-  .row
+  #courses-menu
     nav class="navbar"
       div class="container-fluid"
         div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
           ul class="nav navbar-nav"
             li.dropdown.header-dropdown
-              a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
-                = "Matérias"
+              a href="#" class="dropdown-toggle enter-to-click" data-toggle="dropdown" role="button" aria-expanded="false"
+                = current_course.name
                 = image_tag "seta_down1.png", class: "seta-down"
 
               ul.dropdown-menu id="courses" role="menu" aria-labelledby="dropdownMenu1"
@@ -52,4 +52,4 @@ header
                   li role="presentation"
                     = link_to course.name, url_for(controller: :courses, action: :show, course_id: course.id)
 
-  = render 'layouts/header_menu' if show_menu?
+    

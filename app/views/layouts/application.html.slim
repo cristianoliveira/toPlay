@@ -9,18 +9,18 @@ html
     link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'
     = csrf_meta_tags
   body class=[controller.controller_name, controller.action_name, ('devise_controller' if devise_controller?)]
-    .main-container
-      = render 'layouts/header'
+    = render 'layouts/header'
 
-      .page-wrap
-        = render 'layouts/flash', locals: { flash: flash } unless flash.empty?
-        = render 'layouts/devise'
+    .page-wrap
+      = render 'layouts/header_menu' if show_menu?
+      = render 'layouts/flash', locals: { flash: flash } unless flash.empty?
+      = render 'layouts/devise'
 
-        = yield
+      = yield
 
-      = render 'layouts/footer'
-      = modal_video_form
-      = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = render 'layouts/footer'
+    = modal_video_form
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
 
     / javascript:
     /   //<![CDATA[
