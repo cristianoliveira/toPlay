@@ -6,6 +6,13 @@ class TopicsController < InheritedResources::Base
   before_action :set_up
   before_action :set_menu
 
+  def level_topics
+    @topics = Topic.where(level_id: params[:level_id])
+    respond_to do |format|
+      format.json { render json: @topics }
+    end
+  end
+
   private
   def set_up
     topic = Topic.find(topic_params)

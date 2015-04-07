@@ -20,6 +20,7 @@ ajaxRefreshSelect = function(select_to_refresh, url, data){
         url: url,
         data: data,
         success: function(result){
+          $(select_to_refresh).empty();
           $(select_to_refresh).append('<option value="0"></option>')
           for(i = 0; i < result.length; i++)
           {
@@ -34,7 +35,14 @@ $('#course-select').change(function(event){
   var id = $(this).val();
   var url = $(this).attr('data-url');
 
-  ajaxRefreshSelect("#level-select", url, { 'course_id': id });
+  ajaxRefreshSelect("#subject-select", url, { 'course_id': id });
+});
+
+$('#subject-select').change(function(event){
+  var id = $(this).val();
+  var url = $(this).attr('data-url');
+
+  ajaxRefreshSelect("#level-select", url, { 'subject_id': id });
 });
 
 $('#level-select').change(function(event){
@@ -57,7 +65,8 @@ $('#video-form').on('ajax:error', function(e, data, status, xhr){
 
   for(i=0; i < list_errors.length; i++)
   {
-      formatted_error += '<li>' + list_errors[i] + '</li>'
+      var message = list_errors[i].split(':')[1]
+      formatted_error += '<li>' + message + '</li>'
   }
 
   swal({ html: true,

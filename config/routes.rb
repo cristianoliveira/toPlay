@@ -28,7 +28,10 @@ Rails.application.routes.draw do
 
   get 'topics/show'
   get 'topics' => 'topics#index'
+  get 'topics/level' => 'topics#level_topics'
+
   get 'subjects' => 'subjects#index'
+  get 'subject/levels' => 'subjects#levels'
 
   ActiveAdmin.routes(self)
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }

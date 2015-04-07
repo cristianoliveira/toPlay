@@ -4,8 +4,9 @@ class Video < ActiveRecord::Base
 
   acts_as_votable
 
-  validates :url, presence: true
-  validates :title, presence: true
+  validates :url, presence: { message: ":Informe a URL do vídeo."}
+  validates :title, presence: { message: ":Informe o Título" }
+  validates :topic_id, presence: { message: ":Informe o Tópico para o vídeo."}
 
   @@valid_score = true
 
