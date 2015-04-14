@@ -10,6 +10,10 @@ ul data-orbit="data-orbit" data-options="bullets: false; timer: false; slide_num
 
         ul
           li
+            = link_to '', v, class: "edit-button", data: { reveal_ajax: true, reveal_id: 'modal_video_form' }
+          li
+            = link_to '', v, method: :delete, data: { confirm: 'Confirma deleção deste vídeo?' }, class: "delete-button"
+          li
             = link_to "facebook", "https://www.facebook.com/sharer/sharer.php?u=#{topic_url(@topic)}", class: 'video-facebook-share', target: '_blank'
           li
             = link_to "twitter", "https://twitter.com/home?status=[TorrePLAY] #{@topic.level.subject.name} - #{@topic.name} - #{v.user.name} #{topic_url(@topic)}", class: 'video-twitter-share', target: '_blank'
@@ -18,9 +22,21 @@ ul data-orbit="data-orbit" data-options="bullets: false; timer: false; slide_num
           li
             = link_to "mail", "mailto:?subject=[TorrePLAY] #{@topic.level.subject.name} - #{@topic.name} - #{v.user.name}&body=#{topic_url(@topic)}", class: 'video-mail-share', target: '_blank'
           li
-            = link_to v.get_upvotes.size.to_s.rjust(3, '0'), upvote_video_path(v), method: :put, class: "video-upvote upvote #{(current_user.voted_up_on? v) ? 'upvoted' : ''}", remote: true, data: { type: :json }
+            = link_to '', upvote_video_path(v),
+                          method: :put,
+                          class: "video-upvote upvote #{class_upvoted(v)}",
+                          remote: true,
+                          data: { type: :json, result: "#video-result" }
+          li#video-result
+            = v.get_vote_score.to_s.rjust(3, '0')
+
           li
-            = link_to v.get_downvotes.size.to_s.rjust(3, '0'), downvote_video_path(v), method: :put, class: "video-downvote downvote #{(current_user.voted_down_on? v) ? 'downvoted' : ''}", remote: true, data: { type: :json }
+            = link_to '',
+                      downvote_video_path(v),
+                      method: :put,
+                      class: "video-downvote downvote #{class_downvoted(v)}",
+                      remote: true,
+                      data: { type: :json , result: "#video-result" }
       .video#video-frame data-url="#{url_for(controller: :videos, action: :start_watch, id: v.id)}"
         - video = VideoInfo.new(v.url)
         = raw video.embed_code(iframe_attributes: { width: 400, height: 250, class:"video-iframe", id: v.id, 'data-url'=> url_for(controller: :videos, action: :start_watch, id: v.id)})

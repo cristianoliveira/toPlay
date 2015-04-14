@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   put 'videos/:id/downvote' => 'videos#downvote', as: :downvote_video
   get 'videos/validate' => 'videos#validate'
   get 'videos/:id/start_watch' => 'videos#start_watch'
+  delete 'videos/delete' => 'video#delete'
 
   put 'questions/:id/upvote' => 'questions#upvote', as: :upvote_question
   put 'questions/:id/downvote' => 'questions#downvote', as: :downvote_question
@@ -38,7 +39,7 @@ Rails.application.routes.draw do
 
   resources :courses, only: :show
   resources :topics, only: :show
-  resources :videos, only: [:index, :new, :create]
+  resources :videos
   resources :questions, only: [:index, :new, :create]
   resources :resumes
   resources :user_exercise_answers

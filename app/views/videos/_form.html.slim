@@ -1,25 +1,26 @@
 = form_for video, remote: true, data: { type: :json }, html: { id: 'video-form' } do |f|
+  = f.hidden_field :id, value: video.id if video.id
   .row#course-selects
     = select_tag :course,
-                 options_from_collection_for_select(Course.all, :id, :name),
+                 options_from_collection_for_select(Course.all, :id, :name, :selected => video.topic.level.subject.course.id),
                  { prompt: 'Curso' ,
                    id: 'course-select',
                    class: :uppercase,
                    data:{ url: url_for(controller: 'subjects', format: :json) } }
     = select_tag :subject,
-                 options_from_collection_for_select(Subject.all, :id, :name),
+                 options_from_collection_for_select(Subject.all, :id, :name, :selected => video.topic.level.subject.id),
                { prompt: 'Disciplina' ,
                  id: 'subject-select',
                  class: :uppercase,
                  data: { url: url_for(controller: 'subjects', action: :levels, format: :json)}}
     = select_tag :level,
-                 options_from_collection_for_select(Level.all, :id, :name),
+                 options_from_collection_for_select(Level.all, :id, :name, :selected => video.topic.level.id),
                { prompt: 'Conteúdo' ,
                  id: 'level-select',
                  class: :uppercase,
                  data: { url: url_for(controller: 'topics', action: :level_topics,format: :json)}}
     = f.select :topic_id,
-               {},
+               options_from_collection_for_select(Topic.all, :id, :name, :selected => video.topic_id) ,
                {:include_blank => "Tópico"}, id: 'topic-select', class: :uppercase
   .row
     .col

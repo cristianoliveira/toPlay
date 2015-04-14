@@ -2,7 +2,46 @@ class VideosController < InheritedResources::Base
   respond_to :html, :json
   before_action :authenticate_user!
 
-  helper FlashAlertHelper
+  def show
+    @video = Video.find_by_id(params[:id])
+    render layout: false
+  end
+
+  def update
+    @video = Video.find_by_id(params[:id])
+    respond_to do |format|
+      if @video.update(video_params)
+        respond_to do |format|
+          format.html { redirect_to topic_path(@video.topic_id) }
+          format.json {
+            render json: {
+              result: 'ok'
+            }
+          }
+        end
+      else
+        respond_to do |format|
+          format.html {  flash[:message] = @video.errors.full_messages
+                         redirect_to :back }
+          format.json { render json:  @video.errors.full_messages , status: 422 }
+        end
+      end
+    end
+  end
+
+  def destroy
+    @video = Video.find_by_id(params[:id])
+
+    if  @video
+      unless @video.delete
+        flash[:message] = @video.errors.full_messages
+      end
+    else
+      flash[:message] = 'Video não foi encontrado'
+    end
+
+    redirect_to :back
+  end
 
   def create
     @video      = Video.new(video_params)
@@ -31,18 +70,13 @@ class VideosController < InheritedResources::Base
   def upvote
     @video = Video.find(params[:id])
 
-    if current_user.voted_up_on? @video
-      @video.unliked_by current_user
-    else
-      @video.liked_by current_user
-    end
-
+    @video.liked_by current_user
 
     respond_to do |format|
       format.html {redirect_to :back }
       format.json {
         render json: {
-          count: @video.get_upvotes.size.to_s.rjust(3, '0')
+          count: @video.get_vote_score.to_s.rjust(3, '0')
         }
       }
     end
@@ -52,17 +86,13 @@ class VideosController < InheritedResources::Base
   def downvote
     @video = Video.find(params[:id])
 
-    if current_user.voted_down_on? @video
-      @video.undisliked_by current_user
-    else
-      @video.disliked_by current_user
-    end
+    @video.disliked_by current_user
 
     respond_to do |format|
       format.html { redirect_to :back }
       format.json {
         render json: {
-          count: @video.get_downvotes.size.to_s.rjust(3, '0')
+          count: @video.get_vote_score.to_s.rjust(3, '0')
         }
       }
     end
@@ -85,7 +115,7 @@ class VideosController < InheritedResources::Base
 
   private
   def video_params
-    params.require(:video).permit(
+    params.require(:video).permit(:id,
     :topic_id,
     :url,
     :title,

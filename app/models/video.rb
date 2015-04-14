@@ -11,23 +11,39 @@ class Video < ActiveRecord::Base
   @@valid_score = true
 
   def liked_by(user)
-    vote_up(user)
-    self.user.scores_by_like
+    unvote_down user if user.voted_down_on? self
+
+    unless user.voted_up_on? self
+      vote_up(user)
+      self.user.scores_by_like
+    else
+      unvote_up(user)
+      self.user.scores_by_unlike
+    end
   end
 
   def unliked_by(user)
-    vote_down(user)
-    self.user.scores_by_unlike
+    raise "Not allowed unlike."
   end
 
   def disliked_by(user)
-    unvote_up(user)
-    self.user.scores_by_unlike
+    unvote_up user if user.voted_up_on? self
+
+    unless user.voted_down_on? self
+      vote_down(user)
+      self.user.scores_by_unlike
+    else
+      unvote_down(user)
+      self.user.scores_by_like
+    end
   end
 
   def undisliked_by(user)
-    unvote_down(user)
-    self.user.scores_by_unlike
+    raise "Not allowed undislike."
+  end
+
+  def get_vote_score
+    get_dislikes.size + get_likes.size
   end
 
   def invalidate_score!

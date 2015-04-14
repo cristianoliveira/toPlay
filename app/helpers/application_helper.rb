@@ -10,7 +10,7 @@ module ApplicationHelper
     end
 
     def respond_json(json)
-      render json: { "result" => json } 
+      render json: { "result" => json }
     end
 
     def respond_json_error(json_errors)
@@ -18,4 +18,11 @@ module ApplicationHelper
       render json: { "error" => json_errors.messages } , status: 422 if json_errors.instance_of? ActiveModel::Errors
     end
 
+    def class_upvoted(object_vatable)
+      return 'upvoted' if current_user.voted_up_on? object_vatable
+    end
+    
+    def class_downvoted(object_vatable)
+      return 'downvoted' if current_user.voted_down_on? object_vatable
+    end
 end

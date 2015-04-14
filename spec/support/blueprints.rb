@@ -59,3 +59,7 @@ end
 # Notifications.blueprint do
 #   # Attributes here
 # end
+
+VotableBase.blueprint do
+  # Attributes here
+end
