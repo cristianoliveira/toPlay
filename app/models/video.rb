@@ -2,12 +2,16 @@ class Video < ActiveRecord::Base
   belongs_to :topic
   belongs_to :user
 
+  delegate :level, :to => :topic, :allow_nil => true
+  delegate :subject, :to => :level, :allow_nil => true
+  delegate :course, :to => :subject, :allow_nil => true
+
   acts_as_votable
 
   validates :url, presence: { message: ":Informe a URL do vídeo."}
   validates :title, presence: { message: ":Informe o Título" }
   validates :topic_id, presence: { message: ":Informe o Tópico para o vídeo."}
-
+  
   @@valid_score = true
 
   def liked_by(user)
