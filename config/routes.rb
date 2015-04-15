@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get 'courses' => 'courses#show'
   get 'courses/json/' => 'courses#subject_levels'
   get 'courses/:course_id/subjects/:subject_id/:level_id' => 'courses#subject_levels'
+  get 'courses/subject/:id/levels' => 'courses#levels'
+  get 'courses/level/:id/topics' => 'courses#topics'
   get 'rank'    => 'main#rank'
   get  'contato' => 'main#contact'
   post 'contato' => 'main#contact'

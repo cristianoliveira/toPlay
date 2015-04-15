@@ -1,0 +1,33 @@
+li.dropdown
+  a#course-dropdown href="#" class="dropdown-toggle enter-to-click" data-toggle="dropdown" role="button" aria-expanded="false"
+    = "Disciplinas"
+    = image_tag "seta_down1.png", class: "seta-down"
+
+  ul.dropdown-menu.menu-item data-update="#levels-menu" role="menu" aria-labelledby="dropdown-subjects"
+    - for subject in current_course.subjects
+      li role="presentation"
+        = link_to subject.name,
+          "#",
+          class:"dropdown-menu-item",
+          id:"#{subject.id}",
+          data: { url: url_for(controller: 'courses',
+                               action:'levels',
+                               id: subject.id), update: "#levels-menu" }
+
+li#levels-menu.dropdown.hidden
+  a#level-dropdown href="#" class="dropdown-toggle enter-to-click" data-toggle="dropdown" role="button" aria-expanded="false"
+    = "Conteúdo"
+    = image_tag "seta_down1.png", class: "seta-down"
+
+  ul.dropdown-menu.menu-item role="menu" data-update="#topics-menu" aria-labelledby="dropdown-levels"
+    li role="presentation"
+      = link_to "", "", class:"dropdown-menu-item", id:""
+
+li#topics-menu.dropdown.hidden
+  a href="#" class="dropdown-toggle enter-to-click" data-toggle="dropdown" role="button" aria-expanded="false"
+    = "Topicos"
+    = image_tag "seta_down1.png", class: "seta-down"
+
+  ul.dropdown-menu.menu-item id="topics-dropdown-menu" role="menu" aria-labelledby="dropdown-levels"
+    li role="presentation"
+      = link_to "", "", class:"dropdown-menu-item"

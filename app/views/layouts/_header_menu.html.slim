@@ -3,33 +3,7 @@ nav class="navbar navbar-default"
     div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
       ul class="nav navbar-nav"
 
-        li.dropdown
-          a#course-dropdown href="#" class="dropdown-toggle enter-to-click" data-toggle="dropdown" role="button" aria-expanded="false"
-            = "Disciplinas"
-            = image_tag "seta_down1.png", class: "seta-down"
-
-          ul.dropdown-menu id="subjects" role="menu" aria-labelledby="dropdown-subjects"
-            - for subject in current_course.subjects
-              li role="presentation"
-                = link_to subject.name, "#subject_#{subject.id}", class:"dropdown-menu-item subject-menu-item", id:"#{subject.id}"
-
-        li.dropdown.hidden id="nav-level"
-          a#level-dropdown href="#" class="dropdown-toggle enter-to-click" data-toggle="dropdown" role="button" aria-expanded="false"
-            = "Conteúdo"
-            = image_tag "seta_down1.png", class: "seta-down"
-
-          ul.dropdown-menu id="levels-dropdown-menu" role="menu" aria-labelledby="dropdown-levels"
-            li role="presentation"
-              = link_to "", "", class:"dropdown-menu-item levels-menu-item", id:""
-
-        li.dropdown.hidden id="nav-topic"
-          a href="#" class="dropdown-toggle enter-to-click" data-toggle="dropdown" role="button" aria-expanded="false"
-            = "Topicos"
-            = image_tag "seta_down1.png", class: "seta-down"
-
-          ul.dropdown-menu id="topics-dropdown-menu" role="menu" aria-labelledby="dropdown-levels"
-            li role="presentation"
-              = link_to "", "", class:"dropdown-menu-item topic-menu-item"
+        = render 'layouts/course_menu'
 
 input.hidden id="course_url" value=url_for(controller: 'courses', action:'subject_levels')
 input.hidden id="topics_url" value=url_for(controller: 'topics', action:'show', id: "par")

@@ -18,13 +18,22 @@
 //= require ckeditor/init
 //= require_tree
 
+$('.small-menu').hide()
+$('.menu-courses').hide()
+
 $(window).on("scroll",function(){
   if ($(document).scrollTop() > 200)
   {
+    $('.links').hide()
+    $('.small-menu').show()
+    $('.menu-courses').show()
     $('header').addClass('header-small')
   }
   else
   {
+    $('.links').show()
+    $('.small-menu').hide()
+    $('.menu-courses').hide()
     $('header').removeClass('header-small')
   }
 })

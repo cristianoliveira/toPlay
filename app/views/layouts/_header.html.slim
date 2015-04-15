@@ -8,13 +8,16 @@ header
         li= link_to 'Rank',    rank_path
         li= link_to 'Contato', contato_path
 
-      li.dropdown
+      li.small-menu.dropdown
         .links-menu.glyphicon.glyphicon-menu-hamburger.dropdown-toggle class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
-        ul.dropdown-menu role="menu" aria-labelledby="dropdown-profile"
+        ul.links-menu-items.dropdown-menu role="menu" aria-labelledby="dropdown-profile"
           li= link_to 'Sobre',   sobre_path
           li= link_to 'Cursos',  'courses'
           li= link_to 'Rank',    rank_path
           li= link_to 'Contato', contato_path
+
+      .menu-courses
+        = render 'layouts/course_menu'
 
     .last
       = form_tag url_for('/search'), method: "GET", class: "form-group search"

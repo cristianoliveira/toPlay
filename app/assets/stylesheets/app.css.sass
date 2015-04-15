@@ -85,12 +85,12 @@ a.fourth
 header
   +grid-column(12)
   background: white
-  padding: .5em
+  padding: 0.5em
   position: fixed
-  z-index: 1
+  z-index: 9999
+  height: 60px
   .first
-    padding-left: 0 !important
-    +grid-column(6)
+    +grid-column(7)
   .last
     text-align: right
   .logo, .login, ul, li
@@ -105,6 +105,8 @@ header
     min-height: 3.6em
   .login a
     margin-left: 1em
+  .login ul
+    margin-top: 25px
   #upload
     padding: 0 3em
   .avatar
@@ -129,6 +131,8 @@ header
   float: right
 #user_password
   float: right
+#user-points
+  padding: 0
 
 footer
   +grid-column(12)
@@ -200,7 +204,7 @@ footer
     margin: 0 20px
 
 .seta-down
-  margin: 0 20px
+  margin: 0 0px
 
 .dropdown-menu
   li
@@ -219,11 +223,28 @@ footer
   color: $dark-blue
 
 // General classes
+.header-small
+  height: 55px
+
 .links-menu
-  border: solid 1px
+  border: solid 1px $background-gray
   padding: 5px
+  font-size: 1.7em
+
 .links-menu:hover
   background-color: $background-gray
+
+.links-menu-items li a
+  padding: 0.5rem 0rem
+
+.menu-courses
+  display: inline
+
+.menu-courses li
+  padding: 0
+
+.menu-courses ul
+  background-color: $white
 
 .action_buttons
   margin: 10px
