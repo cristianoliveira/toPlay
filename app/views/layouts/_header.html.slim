@@ -7,6 +7,15 @@ header
         li= link_to 'Cursos',  'courses'
         li= link_to 'Rank',    rank_path
         li= link_to 'Contato', contato_path
+
+      li.dropdown
+        .links-menu.glyphicon.glyphicon-menu-hamburger.dropdown-toggle class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
+        ul.dropdown-menu role="menu" aria-labelledby="dropdown-profile"
+          li= link_to 'Sobre',   sobre_path
+          li= link_to 'Cursos',  'courses'
+          li= link_to 'Rank',    rank_path
+          li= link_to 'Contato', contato_path
+
     .last
       = form_tag url_for('/search'), method: "GET", class: "form-group search"
         = search_field_tag :q,"", class: "form-control", placeholder: "Buscar..."
@@ -27,9 +36,8 @@ header
                 = link_to 'Perfil', url_for(controller: :users, action: :profile)
                 = link_to 'Uploads', url_for(controller: :users, action: :uploads)
                 = link_to 'Notificações', url_for(controller: :users, action: :notifications)
+                = link_to 'Admin', admin_root_path if current_user.admin?
                 = link_to 'Sair', destroy_user_session_path, method: :delete, id: :logout
-
-          = link_to 'Admin', admin_root_path if current_user.admin?
 
           = link_to image_tag('upload_bt.png'), '', class: [:button, :btn_first], id: :upload, data: { reveal_ajax: true, reveal_id: 'modal_video_form' }
         - else
@@ -37,7 +45,7 @@ header
           = link_to image_tag('upload_bt.png'), new_user_session_path, class: [:button, :btn_first], id: :upload, data: { reveal_ajax: true, reveal_id: 'login_box' }
 
 -unless %w( users sessions ).include?(controller.controller_name)
-  #courses-menu
+  .row#courses-menu
     nav class="navbar"
       div class="container-fluid"
         div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
@@ -51,5 +59,3 @@ header
                 - Course.all.each_with_index do |course, i|
                   li role="presentation"
                     = link_to course.name, url_for(controller: :courses, action: :show, course_id: course.id)
-
-    

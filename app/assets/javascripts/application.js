@@ -18,6 +18,16 @@
 //= require ckeditor/init
 //= require_tree
 
+$(window).on("scroll",function(){
+  if ($(document).scrollTop() > 200)
+  {
+    $('header').addClass('header-small')
+  }
+  else
+  {
+    $('header').removeClass('header-small')
+  }
+})
 
 function uploadAvatar(){
   $('input#user_avatar').trigger('click');
