@@ -3,7 +3,7 @@ class ReputationChangeObserver
   def update(changed_data)
     description = changed_data[:description]
 
-    p "#{changed_data.to_json}"
+    p "@@@@@@@@@ #{changed_data.to_json}"
 
     # If user is your meritable model, you can query for it doing:
     user = User.where(sash_id: changed_data[:sash_id]).first

@@ -90,8 +90,13 @@ header
   z-index: 9999
   height: 60px
   .first
-    +grid-column(7)
+    display: inline
+    padding-left: 0
+  .middle
+    display: inline
   .last
+    float: right
+    display: inline
     text-align: right
   .logo, .login, ul, li
     display: inline
@@ -111,21 +116,47 @@ header
     padding: 0 3em
   .avatar
     +border-radius(100%)
-    margin-right: .5em
     height: 40px
+    margin-right: .5em
     width: 40px
   .search
     display: inline
     input
       display: inline
-      width: 180px
       height: 30px
+      width: 180px
     #search-button
       background-color: $white
+      display: inline
+      height: 40px
       padding: 0
       width: 40px
-      height: 40px
+
+.sub-header
+  .course-dropdown
+    +grid-column(8)
+    float: left
+  .user-topic-points
+    float: right
+    padding-right: 0
+    li
+      color: $light-blue
       display: inline
+      font-size: xx-large
+      padding: 10px
+      width: 150px
+
+      .pontos
+        display: inline
+        width: 45%
+
+      h5
+        color: $text-gray
+        padding: 10px
+        font-weight: 100
+        display: inline
+        width: 45%
+
 
 #user_email
   float: right

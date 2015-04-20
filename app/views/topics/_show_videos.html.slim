@@ -16,7 +16,7 @@ ul data-orbit="data-orbit" data-options="bullets: false; timer: false; slide_num
           li
             = link_to "facebook", "https://www.facebook.com/sharer/sharer.php?u=#{topic_url(@topic)}", class: 'video-facebook-share', target: '_blank'
           li
-            = link_to "twitter", "https://twitter.com/home?status=[TorrePLAY] #{@topic.level.subject.name} - #{@topic.name} - #{v.user.name} #{topic_url(@topic)}", class: 'video-twitter-share', target: '_blank'
+            = link_to "twitter", "https://twitter.com/home?status=[TorrePLAY] #{@topic.try(:level).try(:subject).try(:name)} - #{@topic.try(:name)} - #{v.user.try(:name)} #{topic_url(@topic)}", class: 'video-twitter-share', target: '_blank'
           li
             = link_to "gplus", "https://plus.google.com/share?url=#{topic_url(@topic)}", class: 'video-gplus-share', target: '_blank'
           li

@@ -16,8 +16,9 @@ header
           li= link_to 'Rank',    rank_path
           li= link_to 'Contato', contato_path
 
+    .middle
       .menu-courses
-        = render 'layouts/course_menu'
+        = render 'layouts/course_menu' if user_signed_in?
 
     .last
       = form_tag url_for('/search'), method: "GET", class: "form-group search"
@@ -44,8 +45,8 @@ header
 
           = link_to image_tag('upload_bt.png'), '', class: [:button, :btn_first], id: :upload, data: { reveal_ajax: true, reveal_id: 'modal_video_form' }
         - else
-          = link_to 'Entrar', new_user_session_path, class: [:button, :second], id: :login, data: { reveal_ajax: true, reveal_id: 'login_box' }
-          = link_to image_tag('upload_bt.png'), new_user_session_path, class: [:button, :btn_first], id: :upload, data: { reveal_ajax: true, reveal_id: 'login_box' }
+          = link_new_session 'Entrar', {class: [:button, :second], id: :login}
+          / = link_to image_tag('upload_bt.png'), new_user_session_path, class: [:button, :btn_first], id: :upload, data: { reveal_ajax: true, reveal_id: 'login_box' }
 
 -unless %w( users sessions ).include?(controller.controller_name)
   .row#courses-menu

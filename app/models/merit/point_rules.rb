@@ -26,17 +26,18 @@ module Merit
       #
       # score -10, :on => 'comments#destroy'
 
-      # score 5, :on => ['videos#upvote','questions#upvote']
-      # This rule is in user model
+      score 5, :on => ['videos#upvote','questions#upvote'], to: :user do | video, current_user |
+        current_user.voted_up_on? video
+      end
 
-      # score -5, :on => ['videos#downvote', 'questions#downvote']
-      # This rule is in user model
+      score -5, :on => ['videos#downvote', 'questions#downvote'], to: :user do | video, current_user |
+        current_user.voted_down_on? video
+      end
 
       score 50, :on => [
-        'user_exercise_answers#create',
-        'user_exercise_answers#update'
-      ] do |user_exercise_answer|
-        user_exercise_answer.incorrect!
+        'user_exercise_answers#create', 'user_exercise_answers#update'
+        ] do | answer |
+        answer.incorrect!
       end
 
       score 50, :on => 'question#create'
@@ -44,8 +45,8 @@ module Merit
       score 100, :on => [
         'user_exercise_answers#create',
         'user_exercise_answers#update'
-      ] do |user_exercise_answer|
-        user_exercise_answer.correct?
+      ] do | answer |
+        answer.correct?
       end
 
       score 250, :on => ['resumes#create', 'resumes#update']
@@ -55,8 +56,6 @@ module Merit
       end
 
       score 500, :on => 'videos#create'
-
-
 
     end
   end

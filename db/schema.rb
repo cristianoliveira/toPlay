@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150325001058) do
+ActiveRecord::Schema.define(version: 20150416231027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,18 @@ ActiveRecord::Schema.define(version: 20150325001058) do
 
   add_index "exercises", ["topic_id"], name: "index_exercises_on_topic_id", using: :btree
   add_index "exercises", ["user_id"], name: "index_exercises_on_user_id", using: :btree
+
+  create_table "game_action_points", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "topic_id"
+    t.string   "action"
+    t.string   "target_name"
+    t.integer  "target_id"
+    t.integer  "points",      default: 0
+    t.text     "add_info"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"

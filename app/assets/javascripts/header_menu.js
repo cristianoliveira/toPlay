@@ -20,18 +20,18 @@ $(document).on("click", '.menu-item li>a', function(){
         type: "GET",
         url: url,
         success: function(result){
-            var rows = result.result;
-            $.each(rows, function(id, data)
-            {
-                $(update).removeClass('hidden')
-                menu.append('<li role="presentation">'
-                             +'<a class="dropdown-menu-item'
-                                   +' href="'+data.url+'"'
-                                   +' id="'+data.value.id+'"'
-                                   +' data-url="'+data.url+'">'+
-                                   data.value.name+
-                               '</a></li>')
-            });
+          var rows = result.result;
+          $.each(rows, function(id, data)
+          {
+              $(update).removeClass('hidden')
+              menu.append('<li role="presentation">'
+                           +'<a class="dropdown-menu-item'
+                                 +' href="'+data.url+'"'
+                                 +' id="'+data.value.id+'"'
+                                 +' data-url="'+data.url+'">'+
+                                 data.value.name+
+                             '</a></li>')
+          });
         }
     });
   }

@@ -39,12 +39,23 @@ class UsersController < ApplicationController
 
   def stats
     user = User.find(params[:id])
-    render json: { :result => { :points => user.points, :level => user.level } }
+    render json: {
+             :result => {
+                :total_points => user.points,
+                :topic_points => user.points_for_topic_id(params[:topic_id]),
+                :level => user.level
+             }
+           }
   end
 
   private
   def permitted_params
-    params.require(:user).permit(:first_name, :last_name, :gender, :city, :birthdate, :avatar )
+    params.require(:user).permit(:first_name,
+    :last_name, 
+    :gender,
+    :city,
+    :birthdate,
+    :avatar )
   end
 
   def render_default

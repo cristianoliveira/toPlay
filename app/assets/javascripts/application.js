@@ -44,13 +44,16 @@ function uploadAvatar(){
 
 function updateCurrentUserStats(){
   var url = $('#user-stats').attr('data-url');
-
+  var topic_id = $('#topic_id').val();
   $.ajax({
     type: "GET",
     url: url,
+    data: { "topic_id": topic_id },
     dataType: "json",
     success: function(data){
-      $('#user-points').html(data.result.points)
+      user_stats = data.result
+      $('#user-points').html(user_stats.total_points)
+      $('#user-topic-points').html(user_stats.topic_points)
     }
   })
 

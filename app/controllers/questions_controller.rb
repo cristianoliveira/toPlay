@@ -14,6 +14,7 @@ class QuestionsController < InheritedResources::Base
   end
 
   def upvote
+    @current_user = current_user
     @question = Question.find(params[:id])
 
     if current_user.voted_up_on? @question
@@ -31,6 +32,7 @@ class QuestionsController < InheritedResources::Base
   end
 
   def downvote
+    @current_user = current_user
     @question = Question.find(params[:id])
 
     if current_user.voted_down_on? @question

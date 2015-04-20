@@ -11,7 +11,7 @@ class Video < ActiveRecord::Base
   validates :url, presence: { message: ":Informe a URL do vídeo."}
   validates :title, presence: { message: ":Informe o Título" }
   validates :topic_id, presence: { message: ":Informe o Tópico para o vídeo."}
-  
+
   @@valid_score = true
 
   def liked_by(user)
@@ -19,10 +19,8 @@ class Video < ActiveRecord::Base
 
     unless user.voted_up_on? self
       vote_up(user)
-      self.user.scores_by_like
     else
       unvote_up(user)
-      self.user.scores_by_unlike
     end
   end
 
@@ -35,10 +33,8 @@ class Video < ActiveRecord::Base
 
     unless user.voted_down_on? self
       vote_down(user)
-      self.user.scores_by_unlike
     else
       unvote_down(user)
-      self.user.scores_by_like
     end
   end
 

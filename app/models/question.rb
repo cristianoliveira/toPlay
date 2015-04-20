@@ -10,12 +10,10 @@ class Question < ActiveRecord::Base
 
   def unliked_by(user)
     vote_down(user)
-    self.user.scores_by_unlike
   end
 
   def liked_by(user)
     vote_up(user)
-    self.user.scores_by_like
   end
 
 end

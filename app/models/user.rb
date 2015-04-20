@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :topics
   has_many :videos
   has_many :notifications
+  has_many :game_action_points
 
   before_create { |user| user.role = 'student' unless user.role }
 
@@ -83,14 +84,32 @@ class User < ActiveRecord::Base
     Merit::Action.where(filter).first
   end
 
-  def scores_by_like
-    self.add_points(5, category: 'un/like')
-    self.notifications.create(title:'Reputação', message: 'Ganhou 5 pontos (like)')
-  end
+  def points_for_topic_id(topic_id)
+    query = String.new
 
-  def scores_by_unlike
-    self.subtract_points(5, category: 'un/like')
-    self.notifications.create(title:'Reputação', message: 'Perdeu 5 pontos (deslike)')
+    [ 'videos',
+      'questions',
+      'resumes',
+      'exercises'].map{ |target|
+      query += " UNION " unless query.empty?
+      query += " SELECT target.user_id, target.topic_id , point.num_points
+      FROM merit_activity_logs log
+      JOIN merit_actions action ON (log.action_id = action.id)
+      JOIN merit_score_points point ON (log.related_change_id = point.id)
+      JOIN #{target} target ON (action.target_id = target.id)
+      WHERE action.target_model = '#{target}' "
+    }
+
+    p " QUERY SELECT SUM(point.num_points)
+                             FROM (#{query})
+                            WHERE topic_id = #{topic_id}"
+
+    result = User.connection.query("
+              SELECT SUM(points.num_points)
+              FROM (#{query}) points
+              WHERE points.topic_id = #{topic_id} AND user_id = #{self.id}").first
+    return 0 unless result.first
+    result.first
   end
 
 end

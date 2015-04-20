@@ -1,11 +1,19 @@
-nav class="navbar navbar-default"
-  div class="container-fluid"
-    div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
-      ul class="nav navbar-nav"
+.sub-header.nav.navbar.navbar-default
+  .course-dropdown.container-fluid
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        = render 'layouts/course_menu' if user_signed_in?
 
-        = render 'layouts/course_menu'
-
+  .user-topic-points.container-fluid
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li
+          #user-topic-points.pontos
+            = current_user.points_for_topic_id(@topic.id)  if @topic
+          h5
+            = "pontos"
 input.hidden id="course_url" value=url_for(controller: 'courses', action:'subject_levels')
 input.hidden id="topics_url" value=url_for(controller: 'topics', action:'show', id: "par")
 input.hidden id="course_id" value=current_course.id
 input.hidden id="subject_id" value=""
+input.hidden id="topic_id" value="#{@topic.try(:id)}"

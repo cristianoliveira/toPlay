@@ -26,4 +26,7 @@
                   - for topic in level.topics
                     .topic-wrap
                       dd
-                        = link_to topic.name, topic
+                        - if user_signed_in?
+                          = link_to topic.name, topic
+                        - else
+                          = link_new_session topic.name 
