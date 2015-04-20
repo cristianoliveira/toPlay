@@ -21,8 +21,10 @@ class VideosController < InheritedResources::Base
         end
       else
         respond_to do |format|
-          format.html {  flash[:message] = @video.errors.full_messages
-                         redirect_to :back }
+          format.html {
+            flash[:message] = @video.errors.full_messages
+            redirect_to :back
+          }
           format.json { render json:  @video.errors.full_messages , status: 422 }
         end
       end

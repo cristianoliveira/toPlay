@@ -1,9 +1,10 @@
 #topic-description.content
   dl.tabs{data-tab}
     dd.active = link_to 'Resumo', '#description'
-  .tabs-content
     .action_buttons
       = link_to image_tag('edit2.png'), '#', id: :edit_resume_pen, class: :edit_button
+
+  .tabs-content
     #description.content.active
       = form_for(@resume, remote: true, data: { type: :json }, html:{ id: :resume_form } ) do |f|
         = f.hidden_field :user_id, value: current_user.id
@@ -12,5 +13,3 @@
         = f.submit "Enviar", class: ['button btn-default-form', :edit_resume_action], id: :btn_send_resume
 
       div.description id='display_description' = raw @resume.description
-
-  
