@@ -38,8 +38,14 @@ $(window).on("scroll",function(){
   }
 })
 
+function clickOn(id)
+{
+  $(id).trigger('click');
+}
+
 function uploadAvatar(){
-  $('input#user_avatar').trigger('click');
+  clickOn('input#user_avatar');
+  // $('input#user_avatar').trigger('click');
 };
 
 function updateCurrentUserStats(){

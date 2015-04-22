@@ -1,0 +1,6 @@
+-for i in (0..4)
+  .alternative
+    = text_field_tag "alternatives[#{i}]", ""
+
+    .correct-alternative class="#{correct exercise, i}"
+      = radio_button_tag "correct_alternative", i, html: { class: :hidden }

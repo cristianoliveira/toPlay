@@ -8,6 +8,13 @@
     - abecedarium = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     - @topic.exercises.each do |e|
       li data-orbit-slide="exercise-slide-#{e.id}"
+        .exercises-actions
+          .edit
+            = link_to '', url_for(:controller => :exercises, :action => :show, :id => e.id), class: "edit-button", data: { reveal_ajax: true, reveal_id: 'modal-exercise-form' }
+          .delete
+            = link_to '', e, method: :delete, data: { confirm: 'Confirma deleção deste exercício?' }, class: "delete-button"
+
+
         = image_tag e.cover.url(:thumb)
         p
           = e.description

@@ -1,11 +1,11 @@
-= form_for video, remote: true, data: { type: :json }, html: { id: 'video-form' } do |f|
-  = f.hidden_field :id, value: video.id if video.id
+= form_for exercise, remote: true, data: { type: :json } do |f|
+  = f.hidden_field :id, value: exercise.id if exercise.id
   .row.course-selects
     = select_tag :course,
                  options_from_collection_for_select(Course.all,
                  :id,
                  :name,
-                 :selected => video.course.try(:id)),
+                 :selected => exercise.course.try(:id)),
                  { prompt: 'Curso' ,
                    id: 'course-select',
                    class: :uppercase,
@@ -14,7 +14,7 @@
                  options_from_collection_for_select(Subject.all,
                  :id,
                  :name,
-                 :selected => video.subject.try(:id)),
+                 :selected => exercise.subject.try(:id)),
                { prompt: 'Disciplina' ,
                  id: 'subject-select',
                  class: :uppercase,
@@ -23,21 +23,22 @@
                  options_from_collection_for_select(Level.all,
                  :id,
                  :name,
-                 :selected => video.level.try(:id)),
+                 :selected => exercise.level.try(:id)),
                { prompt: 'Conteúdo' ,
                  id: 'level-select',
                  class: :uppercase,
                  data: { url: url_for(controller: 'topics', action: :level_topics,format: :json)}}
     = f.select :topic_id,
-               options_from_collection_for_select(Topic.all, :id, :name, :selected => video.topic_id) ,
+               options_from_collection_for_select(Topic.all, :id, :name, :selected => @exercise.topic_id) ,
                {:include_blank => "Tópico"}, id: 'topic-select', class: :uppercase
   .row
-    .col
-      = f.text_field :url, placeholder: "URL [http://]"
-      = f.text_field :channel, placeholder: "Canal"
-      = f.text_field :title, placeholder: "Título [max. 120 carácteres]"
-    .col
+    .left-part
       = f.text_area :description, id: :descricao, placeholder: "Descrição"
+      = f.file_field :cover, class: :hidden, id: "exercise-cover"
+      = link_to image_tag('upload_conteudo.png') + " Upload Foto", '#', class: [:button], onclick: 'clickOn("#exercise-cover");'
+
+    .right-part
+      = render 'exercises/alternatives', exercise: exercise
 
   = f.submit 'Salvar', id: "button-save",class: 'button btn-default-form'
   = link_to 'Cancelar', '#', id: "button-cancel", class: "button btn-default-form close-reveal-modal"

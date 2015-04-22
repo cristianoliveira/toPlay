@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   resources :resumes
   resources :user_exercise_answers
   resources :users
+  resources :exercises
 
   mount Ckeditor::Engine => '/ckeditor'
 

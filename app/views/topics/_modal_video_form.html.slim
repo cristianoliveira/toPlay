@@ -1,4 +1,8 @@
-#modal_video_form.reveal-modal {data-reveal}
+#modal-video-form.modal-form.reveal-modal {data-reveal}
   - if video
     = render 'videos/form', :video => video
     <a class="close-reveal-modal">&#215;</a>
+
+#modal-exercise-form.modal-form.reveal-modal {data-reveal}
+  = render 'exercises/form', :exercise => exercise
+  <a class="close-reveal-modal">&#215;</a>
