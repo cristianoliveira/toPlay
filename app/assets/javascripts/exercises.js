@@ -10,7 +10,7 @@ $('.modal-form').on("click", 'a.correct-alternative', function(event){
 
 });
 
-$('#exercise-form').on('ajax:success', function(e, data, status, xhr){
+$('.modal-form').on('ajax:success', '#edit-exercises form', function(e, data, status, xhr){
   swal({title: "Exercise",
         text: "Salvando...",
         imageUrl: "/assets/loading.gif" });

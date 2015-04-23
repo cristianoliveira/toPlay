@@ -17,10 +17,11 @@ class ExercisesController < InheritedResources::Base
     end
 
     respond_to do |format|
-      format.html { redirect_to :back }
+      format.html { redirect_to topic_path(@exercise.topic_id) }
       format.json {
         render json: {
-          result: 'ok'
+          result: 'ok',
+          redirect_to: topic_path(@exercise.topic_id)
         }
       }
     end
