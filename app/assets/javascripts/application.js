@@ -41,6 +41,7 @@ $(window).on("scroll",function(){
 function clickOn(id)
 {
   $(id).trigger('click');
+  return false; // avoid refresh
 }
 
 function uploadAvatar(){

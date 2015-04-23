@@ -1,4 +1,4 @@
-= form_for exercise, remote: true, html: { id: "exercise-form" }, data: { type: :json } do |f|
+= form_for exercise, multipart: true, remote: true, authenticity_token: true, html: { id: "exercise-form" }, data: { type: :json } do |f|
   = f.hidden_field :id, value: exercise.id if exercise.id
   .row.course-selects
     = select_tag :course,
@@ -35,7 +35,7 @@
     .left-part
       = f.text_area :description, id: :descricao, placeholder: "Descrição"
       = f.file_field :cover, class: :hidden, id: "exercise-cover"
-      = link_to image_tag('upload_conteudo.png') + " Upload Foto", '#', class: [:button], onclick: 'clickOn("#exercise-cover");'
+      = link_to image_tag('upload_conteudo.png') + " Upload Foto", '#', class: [:button, "full-space"], onclick: 'clickOn("#exercise-cover"); return false;'
 
     .right-part
       = render 'exercises/alternatives', exercise: exercise

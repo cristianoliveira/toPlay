@@ -7,7 +7,6 @@ class ExercisesController < InheritedResources::Base
   end
 
   def update
-    p "UPDATING"
     if @exercise.update(exercise_permited_params)
       @exercise.alternatives.each_with_index do |a,i|
         a.description = params["alternatives"]["#{i}"]
@@ -17,7 +16,10 @@ class ExercisesController < InheritedResources::Base
     end
 
     respond_to do |format|
-      format.html { redirect_to topic_path(@exercise.topic_id) }
+      format.html {
+        flash[:message] = "Exercício atualizado com sucesso."
+        redirect_to topic_path(@exercise.topic_id)
+      }
       format.json {
         render json: {
           result: 'ok',
@@ -42,6 +44,6 @@ class ExercisesController < InheritedResources::Base
   end
 
   def exercise_permited_params
-    params.require(:exercise).permit(:id, :topic_id, :description)
+    params.require(:exercise).permit(:id, :topic_id, :description, :cover)
   end
 end
