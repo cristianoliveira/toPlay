@@ -12,4 +12,15 @@ class Exercise < ActiveRecord::Base
     return self.description.truncate(100)
   end
 
+  def alternative(index)
+    a = self.alternatives[index]
+    a ||= self.alternatives.new
+  rescue
+    self.alternatives.new
+  end
+
+  def correct_alternative?(index)
+    alternative(index).correct
+  end
+
 end

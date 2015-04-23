@@ -1,6 +1,6 @@
 -for i in (0..4)
   .alternative
-    = text_field_tag "alternatives[#{i}]", ""
+    = text_field_tag "alternatives[#{i}]", exercise.alternative(i).description
 
-    .correct-alternative class="#{correct exercise, i}"
-      = radio_button_tag "correct_alternative", i, html: { class: :hidden }
+    a.correct-alternative class="#{correct exercise, i}" href="#"
+      = radio_button_tag "alternatives[correct]", i, exercise.correct_alternative?(i), html: { class: :hidden }

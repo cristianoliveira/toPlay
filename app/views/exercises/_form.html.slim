@@ -1,4 +1,4 @@
-= form_for exercise, remote: true, data: { type: :json } do |f|
+= form_for exercise, remote: true, html: { id: "exercise-form" }, data: { type: :json } do |f|
   = f.hidden_field :id, value: exercise.id if exercise.id
   .row.course-selects
     = select_tag :course,
