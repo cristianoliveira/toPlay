@@ -8,11 +8,21 @@ class ExercisesController < InheritedResources::Base
 
   def update
     if @exercise.update(exercise_permited_params)
-      @exercise.alternatives.each_with_index do |a,i|
-        a.description = params["alternatives"]["#{i}"]
-        a.correct = params[:alternatives][:correct] == i.to_s
+      @exercise.alternatives.map{|a|
+        a.delete
         a.save
+      }
+
+      params["alternatives"].each_with_index do |value,i|
+        p "@@@@ #{value}"
+        unless value[1].empty?
+          alternative = @exercise.alternatives.new
+          alternative.description = value[1]
+          alternative.correct = params["alternatives-correct"] == value[0]
+          alternative.save
+        end
       end
+
     end
 
     respond_to do |format|

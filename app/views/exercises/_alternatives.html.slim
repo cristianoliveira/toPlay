@@ -3,4 +3,4 @@
     = text_field_tag "alternatives[#{i}]", exercise.alternative(i).description
 
     a.correct-alternative class="#{correct exercise, i}" href="#"
-      = radio_button_tag "alternatives[correct]", i, exercise.correct_alternative?(i), html: { class: :hidden }
+      = radio_button_tag "alternatives-correct", i, exercise.correct_alternative?(i), html: { class: :hidden }
