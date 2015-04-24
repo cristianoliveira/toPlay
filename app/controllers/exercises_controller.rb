@@ -14,7 +14,6 @@ class ExercisesController < InheritedResources::Base
       }
 
       params["alternatives"].each_with_index do |value,i|
-        p "@@@@ #{value}"
         unless value[1].empty?
           alternative = @exercise.alternatives.new
           alternative.description = value[1]

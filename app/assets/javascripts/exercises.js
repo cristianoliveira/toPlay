@@ -37,10 +37,14 @@ $('.exercise-answer-form').on('ajax:error', function(e, data, status, xhr){
 $('.exercise-answer-form').on('click','a.answer-alternatives', function(event){
   event.preventDefault();
 
+  form = $(this).parent().parent();
+
   $('.answer-alternatives').find('span').removeClass('selected-answer');
 
   $(this).find('span').addClass('selected-answer');
-  $(this).find('input').prop('checked', true)
+  $(this).find('input').prop('checked', true);
+
+  form.find('.btn-exercise-answer').removeAttr( "disabled" );
 })
 
 $('.exercises').on('after-slide-change.fndtn.orbit', function(event, orbit){
