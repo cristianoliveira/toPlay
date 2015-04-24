@@ -31,12 +31,12 @@ $('.exercises .alternative')
   $('.get_answer').attr 'data-answer', ->
     answer
 
-$('.exercises')
-.on 'after-slide-change.fndtn.orbit', (event, orbit) ->
-  exercise = orbit.slide_number + 1
-
-  $(".exercise-navigation li:nth-child(-n + #{exercise}) a").addClass 'active'
-  $(".exercise-navigation li:nth-child(n + #{(exercise + 1)}) a").removeClass 'active'
+# $('.exercises')
+# .on 'after-slide-change.fndtn.orbit', (event, orbit) ->
+#   exercise = orbit.slide_number + 1
+#
+#   $(".exercise-navigation a").removeClass 'active'
+#   $(".exercise-navigation li:nth-child(-n + #{exercise} a").addClass 'active'
 
 
 $('.get_answer')

@@ -1,8 +1,12 @@
 #topic-exercises.content
   ul.exercise-navigation
+    li.navigator.left
+      = link_to "<", "#", onclick: "javascript: $('.orbit-prev').click(); return false;" , class: "prev"
     - @topic.exercises.each_with_index do |e, i|
       li
         = link_to i + 1, "#", data: {"orbit-link" => "exercise-slide-#{e.id}"}, class: "#{ i == 0 ? 'active' : '' }", id: "exercise-slide-#{e.id}"
+    li.navigator.right
+      = link_to ">", "#", onclick: "javascript: $('.orbit-next').click(); return false;", class: "next"
 
   ul.exercises data-orbit="data-orbit" data-options="bullets: false; timer: false; slide_number: false; animation_speed: 300; next_on_click: false;"
     - abecedarium = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -22,6 +26,7 @@
           = form_for get_answer(current_user.id, e.id), remote: true, data: { type: :json }, html:{ class: "exercise-answer-form"} do |f|
             = f.hidden_field :user_id, value: @answer.user_id
             = f.hidden_field :exercise_id, value: @answer.exercise_id
+
             - e.alternatives.each_with_index do |a, i|
               li
                 a.answer-alternatives href="#"

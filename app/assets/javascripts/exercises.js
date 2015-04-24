@@ -42,3 +42,10 @@ $('.exercise-answer-form').on('click','a.answer-alternatives', function(event){
   $(this).find('span').addClass('selected-answer');
   $(this).find('input').prop('checked', true)
 })
+
+$('.exercises').on('after-slide-change.fndtn.orbit', function(event, orbit){
+  exercise = orbit.slide_number + 2
+
+  $(".exercise-navigation a").removeClass('active')
+  $(".exercise-navigation li:nth-child("+ exercise +") a").addClass('active')
+});
