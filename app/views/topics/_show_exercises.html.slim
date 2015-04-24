@@ -19,14 +19,15 @@
         p
           = e.description
         ul class="alternatives-for-#{e.id}"
-          = form_for get_answer(current_user.id, e.id), remote: true, data: { type: :json }, html:{ class: :exercise_answer_form} do |f|
+          = form_for get_answer(current_user.id, e.id), remote: true, data: { type: :json }, html:{ class: "exercise-answer-form"} do |f|
             = f.hidden_field :user_id, value: @answer.user_id
             = f.hidden_field :exercise_id, value: @answer.exercise_id
             - e.alternatives.each_with_index do |a, i|
-              li.answer_alternatives
-                = f.radio_button :alternative_id, a.id
-                span
-                  = abecedarium[i]
-                = a.description
+              li
+                a.answer-alternatives href="#"
+                  = f.radio_button :alternative_id, a.id, class: :hidden
+                  span
+                    = abecedarium[i]
+                  = a.description
 
             = f.submit 'Responder', class: "button btn-default-form btn-exercise-answer"
