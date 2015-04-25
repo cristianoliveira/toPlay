@@ -12,7 +12,8 @@ li.dropdown
           id:"#{subject.id}",
           data: { url: url_for(controller: 'courses',
                                action:'levels',
-                               id: subject.id), update: "#levels-menu" }
+                               id: subject.id), update: "#levels-menu" },
+          onclick: "return false;"
 
 li.levels-menu.dropdown.hidden
   a#level-dropdown href="#" class="dropdown-toggle enter-to-click" data-toggle="dropdown" role="button" aria-expanded="false"
