@@ -391,3 +391,36 @@ footer
 // General classes to add properties
 .full-space
   width: 100%
+
+.small-menu
+  display: inline
+
+@media screen and (max-width: 768px)
+  .tabs dd > a, .tabs .tab-title > a
+    font-size: 12px
+  .logo
+    a
+      img
+        width: 100px
+  .small-menu
+    display: inline
+    visibility: visible
+  #levels span
+    font-size: 14px
+
+  .topics .wraper
+    width: 100%
+
+  .topic-sidebar, .extra-sidebar
+    display: none
+
+  .open > .dropdown-menu
+    left: -110%
+
+  .user-topic-points
+    float: none
+  .pontos
+    font-size: 16px
+
+  footer .group.last
+    width: 80%
