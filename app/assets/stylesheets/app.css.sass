@@ -133,6 +133,40 @@ header
       padding: 0
       width: 40px
 
+  .small-menu
+    display: none
+
+.header-small
+  height: 55px
+  .default-menu
+    display: none
+  .small-menu
+    display: inline
+
+@media screen and (max-width: 768px)
+  header
+    .small-menu
+      display: inline
+    .default-menu
+      display: none
+    .menu-courses
+      display: none
+
+    .header-small
+      height: 55px
+      .default-menu
+        display: none
+      .small-menu
+        display: inline
+
+.links-menu
+  border: solid 1px $background-gray
+  padding: 5px
+  font-size: 1.7em
+
+.links-menu:hover
+  background-color: $background-gray
+
 .sub-header
   .course-dropdown
     +grid-column(8)
@@ -255,40 +289,7 @@ footer
   color: $dark-blue
 
 // General classes
-header
-  .small-menu
-    display: none
 
-.header-small
-  height: 55px
-  .default-menu
-    display: none
-  .small-menu
-    display: inline
-
-@media screen and (max-width: 768px)
-  header
-    .small-menu
-      display: inline
-    .default-menu
-      display: none
-    .menu-courses
-      display: none
-
-    .header-small
-      height: 55px
-      .default-menu
-        display: none
-      .small-menu
-        display: inline
-
-.links-menu
-  border: solid 1px $background-gray
-  padding: 5px
-  font-size: 1.7em
-
-.links-menu:hover
-  background-color: $background-gray
 
 .links-menu-items li a
   padding: 0.5rem 0rem

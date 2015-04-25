@@ -16,4 +16,8 @@ class Question < ActiveRecord::Base
     vote_up(user)
   end
 
+  def has_answer?
+    self.answers.size > 0
+  end
+
 end

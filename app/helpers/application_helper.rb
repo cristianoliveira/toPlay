@@ -29,8 +29,11 @@ module ApplicationHelper
   def class_upvoted(object_vatable)
     return 'upvoted' if current_user.voted_up_on? object_vatable
   end
+  alias :user_upvoted? :class_upvoted
 
   def class_downvoted(object_vatable)
     return 'downvoted' if current_user.voted_down_on? object_vatable
   end
+  alias :user_downvoted? :class_downvoted
+
 end

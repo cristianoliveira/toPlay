@@ -34,9 +34,13 @@
           = f.submit "Enviar", class: ['button btn-default-form']
         hr
         .questions
-          - @topic.questions.each do |q|
-            - if q.parent_id.blank?
-              = render partial: 'questions/question', locals: { question: q }
+          - @topic.questions.each do |question|
+              = render partial: 'questions/question', locals: { question: question }
+
+              - if question.has_answer?
+                - for answer in question.answers
+                  .question-answer
+                    = render partial: 'questions/question', locals: { question: answer }
 
   .extra-sidebar
     ul

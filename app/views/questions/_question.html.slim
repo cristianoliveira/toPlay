@@ -10,15 +10,25 @@
           li.created-at
             = "#{time_ago_in_words(question.created_at)} atrás"
           li
-            = link_to question.get_downvotes.size.to_s.rjust(3, '0'), downvote_question_path(question), method: :put, class: "question-downvote #{(current_user.voted_down_on? question) ? 'downvoted' : ''}", remote: true, data: { type: :json }
+            = link_to show_downvotes(question),
+                      downvote_question_path(question),
+                      method: :put,
+                      class: "question-downvote #{user_downvoted? question}",
+                      remote: true,
+                      data: { type: :json }
           li
-            = link_to question.get_upvotes.size.to_s.rjust(3, '0'), upvote_question_path(question), method: :put, class: "question-upvote #{(current_user.voted_up_on? question) ? 'upvoted' : ''}", remote: true, data: { type: :json }
+            = link_to show_upvotes(question),
+                      upvote_question_path(question),
+                      method: :put,
+                      class: "question-upvote #{user_upvoted? question}",
+                      remote: true, data: { type: :json }
           - if question.parent_id.blank?
             li.answers-to-this
-              = link_to image_tag('comments1.png'), "#"
+              = link_to image_tag('comments1.png'),
+                        "#",
+                        id: "answer-question",
+                        remote: true,
+                        data: { id: question.id }
       .question-content
         p
           = question.description
-    .question-answers
-      - question.answers.each do |a|
-        = render partial: 'questions/question', locals: { question: a }

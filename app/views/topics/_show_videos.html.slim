@@ -24,11 +24,11 @@ ul data-orbit="data-orbit" data-options="bullets: false; timer: false; slide_num
           li
             = link_to '', upvote_video_path(v),
                           method: :put,
-                          class: "video-upvote upvote #{class_upvoted(v)}",
+                          class: "video-upvote upvote #{user_upvoted?(v)}",
                           remote: true,
                           data: { type: :json, result: "#video-result" }
           li#video-result
-            = v.get_vote_score.to_s.rjust(3, '0')
+            = show_total_votes(v)
 
           li
             = link_to '',

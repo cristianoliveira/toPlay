@@ -35,6 +35,8 @@ $(document).on("click", '.menu-item li>a', function(){
         }
     });
   }
+
+  return false;
 });
 
 $(".enter-to-click").mouseenter(function(event){
