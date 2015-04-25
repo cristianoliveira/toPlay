@@ -3,4 +3,5 @@
 /log/
 /ignore/
 /public/uploads/
+/public/assets/
 .DS_Store

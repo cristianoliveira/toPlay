@@ -2,13 +2,14 @@ header
   .row
     .first
       .logo= link_to image_tag('logo.png'), root_path
-      ul.collapse
+      ul.default-menu
         li= link_to 'Sobre',   sobre_path
         li= link_to 'Cursos',  'courses'
         li= link_to 'Rank',    rank_path
         li= link_to 'Contato', contato_path
 
-      li.small-menu.dropdown class="visible-xs-*"
+    .small-menu
+      li.dropdown
         .links-menu.glyphicon.glyphicon-menu-hamburger.dropdown-toggle class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
         ul.links-menu-items.dropdown-menu role="menu" aria-labelledby="dropdown-profile"
           li= link_to 'Sobre',   sobre_path
@@ -16,9 +17,9 @@ header
           li= link_to 'Rank',    rank_path
           li= link_to 'Contato', contato_path
 
-    .middle
-      .menu-courses
-        = render 'layouts/course_menu' if user_signed_in?
+      .middle
+        .menu-courses
+          = render 'layouts/course_menu' if user_signed_in?
 
     .last
       = form_tag url_for('/search'), method: "GET", class: "form-group search hidden-sm hidden-xs"

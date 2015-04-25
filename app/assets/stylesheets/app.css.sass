@@ -255,8 +255,32 @@ footer
   color: $dark-blue
 
 // General classes
+header
+  .small-menu
+    display: none
+
 .header-small
   height: 55px
+  .default-menu
+    display: none
+  .small-menu
+    display: inline
+
+@media screen and (max-width: 768px)
+  header
+    .small-menu
+      display: inline
+    .default-menu
+      display: none
+    .menu-courses
+      display: none
+
+    .header-small
+      height: 55px
+      .default-menu
+        display: none
+      .small-menu
+        display: inline
 
 .links-menu
   border: solid 1px $background-gray
@@ -396,6 +420,12 @@ footer
   display: inline
 
 @media screen and (max-width: 768px)
+  .default-menu
+    display: none
+
+  .small-menu
+    display: inline
+
   .tabs dd > a, .tabs .tab-title > a
     font-size: 12px
   .logo

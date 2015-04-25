@@ -1,11 +1,11 @@
 .sub-header.nav.navbar.navbar-default
   .course-dropdown.container-fluid
-    .collapse.navbar-collapse
+    .navbar-collapse
       ul.nav.navbar-nav
         = render 'layouts/course_menu' if user_signed_in?
 
   .user-topic-points.container-fluid
-    .collapse.navbar-collapse
+    .navbar-collapse
       ul.nav.navbar-nav
         li
           #user-topic-points.pontos
