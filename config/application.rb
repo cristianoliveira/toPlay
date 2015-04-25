@@ -25,7 +25,7 @@ module Torreplay
     config.i18n.default_locale = :'pt-BR'
 
     config.assets.paths << Rails.root.join('vendor','assets', 'components')
-
+    
     config.generators do |g|
       g.fixture_replacement :machinist
     end
