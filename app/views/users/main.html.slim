@@ -1,3 +1,6 @@
-.row
-  = render 'sidebar'
-  = render controller.action_name
+.row.profile-dasboard
+  .profile-sidebar
+    = render 'sidebar'
+
+  .profile-content
+    = render controller.action_name
