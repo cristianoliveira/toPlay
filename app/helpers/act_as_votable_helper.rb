@@ -9,7 +9,7 @@ module ActAsVotableHelper
   end
 
   def show_total_votes(vatable_object)
-    total = vatable_object.get_upvotes.size - vatable_object.get_downvotes
+    total = (vatable_object.get_upvotes.size - vatable_object.get_downvotes.size)
     total.to_s.rjust(3, '0')
   end
 

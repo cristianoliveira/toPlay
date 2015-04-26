@@ -32,3 +32,19 @@
       .question-content
         p
           = question.description
+  .question-answer-form
+    .close
+      = link_to "", "", class: "close-answer-form delete-button"
+    = form_for(Question.new,
+              remote: true,
+              html:{ id: "answer-to-#{question.id}", class: "answer-form" },
+              data: { type: :html }) do |f|
+     = f.hidden_field :user_id, value: current_user.id
+     = f.hidden_field :topic_id, value: question.try(:topic).try(:id)
+     = f.hidden_field :parent_id, value: question.id
+     = f.text_area :description
+     = f.submit "Enviar", class: ['button btn-default-form']
+     = f.submit "Cancel", class: ['button btn-default-form btn-cancel-form']
+
+
+  hr

@@ -34,7 +34,7 @@
           = f.submit "Enviar", class: ['button btn-default-form']
         hr
         .questions
-          - @topic.questions.each do |question|
+          - @topic.questions.where(parent_id: nil).each do |question|
               = render partial: 'questions/question', locals: { question: question }
 
               - if question.has_answer?

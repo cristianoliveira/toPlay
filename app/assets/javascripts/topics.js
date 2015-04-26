@@ -6,20 +6,6 @@ $('.edit_resume_action').hide();
 $('#cke_resume_description').hide();
 $('#display_description').show();
 
-$('#new_question').on('ajax:success', function(e, data, status, xhr){
-    $('#question_description').val("");
-    $('.questions').append(xhr.responseText);
-    updateCurrentUserStats();
-});
-
-$('#new_question').on('ajax:error', function(e, data, status, xhr){
-    var errors = $.parseJSON(data.responseText).error
-    $.each(errors, function(key, val){
-        sweetAlert(val[0]);
-        return false;
-    });
-});
-
 openToEdit = function(open){
     if(open)
     {
