@@ -1,0 +1,4 @@
+= form_for(question, remote: true, html: {  class: "edit-question-form" } ) do |f|
+  = f.text_area :description
+  = f.submit "Enviar", class: ['button btn-default-form']
+  = f.submit "Cancel", class: ['button btn-default-form btn-cancel-form']

@@ -76,6 +76,10 @@ class User < ActiveRecord::Base
     self.notifications.where(read:false)
   end
 
+  def owner?(object)
+    self.id == object.user_id
+  end
+
   # Merit Integration
   def has_already_scored_by?(target_id, action_method, target_model=nil)
     filter = { :target_id => target_id, :action_method => action_method }

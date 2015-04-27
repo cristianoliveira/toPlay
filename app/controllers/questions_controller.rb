@@ -1,6 +1,12 @@
 class QuestionsController < InheritedResources::Base
 
-  respond_to :json, :only => :create
+  before_action :find_question, only: [:show, :edit, :destroy]
+
+  respond_to :json, :only => [ :create, :edit ]
+
+  def show
+    render layout: false
+  end
 
   def create
     create! do |format|
@@ -11,6 +17,19 @@ class QuestionsController < InheritedResources::Base
         format.html { render partial: 'questions/question', locals: { question: @question } }
       end
     end
+  end
+
+  def destroy
+
+    if @question
+      unless @question.delete
+        flash[:message] = @question.errors.full_messages
+      end
+    else
+      flash[:message] = 'Conteúdo não foi encontrado'
+    end
+
+    redirect_to :back
   end
 
   def upvote
@@ -51,5 +70,9 @@ class QuestionsController < InheritedResources::Base
   private
     def permitted_params
       params.permit(:question => [:user_id, :topic_id, :description, :parent_id])
+    end
+
+    def find_question
+      @question = Question.find(params[:id])
     end
 end

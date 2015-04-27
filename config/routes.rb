@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   resources :courses, only: :show
   resources :topics, only: :show
   resources :videos
-  resources :questions, only: [:index, :new, :create]
+  resources :questions
   resources :resumes
   resources :user_exercise_answers
   resources :users

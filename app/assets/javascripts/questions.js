@@ -1,4 +1,3 @@
-
 $('.question-upvote').on('ajax:success', function(e, data, status, xhr) {
   $(this).html(data.count);
   if($(this).hasClass('upvoted')){
@@ -38,6 +37,10 @@ $('#answer-question').on("click", function(evt){
   var id = $(this).attr("data-id");
 
   $('#answer-to-'+id).show();
+});
+
+$(document).on('ajax:success','.edit-question-form', function(e, data, status, xhr){
+  location.reload();
 });
 
 $('.answer-form').on('ajax:success', function(e, data, status, xhr){

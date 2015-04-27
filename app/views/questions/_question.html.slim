@@ -9,29 +9,42 @@
             = question.user.name
           li.created-at
             = "#{time_ago_in_words(question.created_at)} atrás"
-          li
-            = link_to show_downvotes(question),
-                      downvote_question_path(question),
-                      method: :put,
-                      class: "question-downvote #{user_downvoted? question}",
-                      remote: true,
-                      data: { type: :json }
-          li
-            = link_to show_upvotes(question),
-                      upvote_question_path(question),
-                      method: :put,
-                      class: "question-upvote #{user_upvoted? question}",
-                      remote: true, data: { type: :json }
-          - if question.parent_id.blank?
-            li.answers-to-this
-              = link_to image_tag('comments1.png'),
-                        "#",
-                        id: "answer-question",
+
+          #question-actions
+            li
+              = link_to show_downvotes(question),
+                        downvote_question_path(question),
+                        method: :put,
+                        class: "question-downvote #{user_downvoted? question}",
                         remote: true,
-                        data: { id: question.id }
+                        data: { type: :json }
+            li
+              = link_to show_upvotes(question),
+                        upvote_question_path(question),
+                        method: :put,
+                        class: "question-upvote #{user_upvoted? question}",
+                        remote: true, data: { type: :json }
+
+            - if current_user.owner? question
+              li
+                = link_to '', question, class: "edit-button", data: { reveal_ajax: true, reveal_id: 'modal-exercise-form' }
+              li
+                = link_to '', question, method: :delete, data: { confirm: 'Confirma deleção deste conteúdo?' }, class: "delete-button"
+
+            - if question.main?
+              li.answers-to-this
+                = link_to image_tag('comments1.png'),
+                          "#",
+                          id: "answer-question",
+                          remote: true,
+                          data: { id: question.id }
       .question-content
         p
           = question.description
+
+  #modal-question-form.modal-form.reveal-modal {data-reveal}
+    = render 'questions/modal_form', :question => question
+
   .question-answer-form
     .close
       = link_to "", "", class: "close-answer-form delete-button"
@@ -47,4 +60,4 @@
      = f.submit "Cancel", class: ['button btn-default-form btn-cancel-form']
 
 
-  hr
+hr

@@ -1,1 +1,0 @@
-$("#new_post").prepend "<%= escape_javascript(render partial: 'question', locals: { question: resource } ) %>"

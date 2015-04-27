@@ -20,4 +20,8 @@ class Question < ActiveRecord::Base
     self.answers.size > 0
   end
 
+  def main?
+    self.parent_id.blank?
+  end
+
 end
