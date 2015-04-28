@@ -1,19 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe MainController, :type => :controller do
+describe MainController do
 
-  describe "GET about" do
-    it "returns http success" do
+  describe "GET #about" do
+    before :each do
       get :about
-      expect(response).to be_success
     end
-  end
 
-  describe "GET courses" do
-    it "returns http success" do
-      get :courses
-      expect(response).to be_success
-    end
+    it { expect(response).to be_success }
+
   end
 
   describe "GET rank" do

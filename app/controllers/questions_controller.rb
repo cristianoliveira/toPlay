@@ -1,5 +1,5 @@
 class QuestionsController < InheritedResources::Base
-
+  before_action :authenticate_user!
   before_action :find_question, only: [:show, :edit, :destroy]
 
   respond_to :json, :only => [ :create, :edit ]
@@ -10,10 +10,14 @@ class QuestionsController < InheritedResources::Base
 
   def create
     create! do |format|
-     #format.js { render json: @question }
       if @question.errors.any?
-        format.html { render json: { "error" => @question.errors.messages } , status: 422 }
+        format.json { render json: { "error" => @question.errors.messages } , status: 422 }
+        format.html {
+          flash[:message] = @question.errors.full_messages
+          render partial: 'questions/question', locals: { question: @question }
+        }
       else
+        format.json { render json: { :result => @question } }
         format.html { render partial: 'questions/question', locals: { question: @question } }
       end
     end

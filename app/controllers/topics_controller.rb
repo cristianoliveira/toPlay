@@ -3,7 +3,7 @@ class TopicsController < InheritedResources::Base
   respond_to :html, :json
 
   before_action :authenticate_user!
-  before_action :set_up
+  before_action :set_up, only: [:show, :delete, :edit]
   before_action :set_menu
 
   def level_topics
@@ -27,8 +27,7 @@ class TopicsController < InheritedResources::Base
   end
 
   def topic_params
-    return params.require(:id) if params[:id]
-    params.require(:level_id)
+    params.require(:id)
   end
 
 end
