@@ -1,5 +1,6 @@
 class CoursesController < InheritedResources::Base
   respond_to :json
+
   before_action :block_show_menu
   before_action :set_course, only: [:show, :subject_levels]
 
@@ -11,22 +12,6 @@ class CoursesController < InheritedResources::Base
     rescue
       respond({ "error" => "No data found" })
     end
-  end
-
-  def levels
-    @subject = Subject.find_by_id(params[:id])
-    respond(@subject.levels.map{|obj| { "value" => obj,
-                                        "url" => url_for(controller: "courses",
-                                                         action: "topics",
-                                                         id: obj.id) }})
-  end
-
-  def topics
-    @level = Level.find_by_id(params[:id])
-    respond(@level.topics.map{|obj| { "value" => obj,
-                                        "url" => url_for(controller: "topics",
-                                                         action: "show",
-                                                         id: obj.id) }})
   end
 
   private
@@ -45,10 +30,16 @@ class CoursesController < InheritedResources::Base
   end
 
   def set_course
-    @course = params[:course_id].present? ? Course.find(params[:course_id]) : Course.first
+    @course = Course.find(params[:id]) if params[:id].present?
+    @course = Course.find(params[:course_id]) if params[:course_id].present?
+    @course = Course.first if @course.nil?
   end
 
   def block_show_menu
     @show_menu = false
+  end
+
+  def authenticate_user! #avoid redirect
+    return true
   end
 end

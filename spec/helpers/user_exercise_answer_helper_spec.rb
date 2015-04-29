@@ -1,15 +1,12 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the UserExerciseAnswerHelper. For example:
-#
-# describe UserExerciseAnswerHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
-RSpec.describe UserExerciseAnswerHelper, :type => :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe UserExerciseAnswersHelper, :type => :helper do
+
+  let(:exercise) { FactoryGirl.create :exercise }
+  let(:user) { FactoryGirl.create :user }
+
+  describe "#get_answer" do
+    it{ expect(get_answer(user, exercise)).to be_instance_of UserExerciseAnswer }
+  end
+
 end

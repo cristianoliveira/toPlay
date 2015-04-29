@@ -1,9 +1,8 @@
 class AnswerController < ApplicationController
   def get_answer
-    @correct_answer = Alternative.where(correct: true).first
-
+    @answer = Alternative.find(params[:answer_id])
     respond_to do |format|
-      format.json { render json: { is_correct: @correct_answer.id == params[:answer_id] } }
+      format.json { render json: { is_correct: @answer.correct } }
     end
   end
 end

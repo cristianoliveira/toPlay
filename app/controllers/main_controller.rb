@@ -18,4 +18,7 @@ class MainController < ApplicationController
   def set_show_menu
      @show_menu = false
   end
+  def authenticate_user! #avoid redirect
+    return true
+  end
 end

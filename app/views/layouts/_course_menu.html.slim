@@ -10,9 +10,9 @@ li.dropdown
           "#",
           class:"dropdown-menu-item",
           id:"#{subject.id}",
-          data: { url: url_for(controller: 'courses',
-                               action:'levels',
-                               id: subject.id), update: "#levels-menu" },
+          data: { url: url_for(controller: 'levels',
+                               action:'get_for_menu',
+                               subject_id: subject.id), update: "#levels-menu" },
           onclick: "return false;"
 
 li.levels-menu.dropdown.hidden

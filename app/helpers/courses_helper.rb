@@ -14,5 +14,5 @@ module CoursesHelper
     @course ||= Course.first
     @course
   end
-
+  
 end

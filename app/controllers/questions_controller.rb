@@ -1,5 +1,5 @@
 class QuestionsController < InheritedResources::Base
-  before_action :authenticate_user!
+  
   before_action :find_question, only: [:show, :edit, :destroy]
 
   respond_to :json, :only => [ :create, :edit ]

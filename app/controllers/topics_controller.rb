@@ -13,6 +13,19 @@ class TopicsController < InheritedResources::Base
     end
   end
 
+  def get_for_menu
+    @topics = Topic.where(level_id: params[:level_id])
+    result = @topics.map{|topic| { "value" => topic,
+                                   "url" => url_for(controller: "topics",
+                                                    action: "show",
+                                                    id: topic.id)
+                               }
+                         }
+    respond_to do |format|
+      format.json { render json: { :result => result } }
+    end
+  end
+
   private
   def set_up
     topic = Topic.find(topic_params)

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'courses' => 'courses#show'
   get 'courses/json/' => 'courses#subject_levels'
   get 'courses/:course_id/subjects/:subject_id/:level_id' => 'courses#subject_levels'
-  get 'courses/subject/:id/levels' => 'courses#levels'
+  get 'courses/subject/:id/levels' => 'courses#levels_for_menu'
   get 'courses/level/:id/topics' => 'courses#topics'
   get 'rank' => 'main#rank'
   get  'contato' => 'main#contact'
@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   put 'questions/:id/upvote' => 'questions#upvote', as: :upvote_question
   put 'questions/:id/downvote' => 'questions#downvote', as: :downvote_question
   get 'exercise/:exercise_id/get_answer/:answer_id' => 'answer#get_answer', as: :get_answer
+  get 'exercise/get_answer/:answer_id' => 'answer#get_answer'
 
   get 'topics/show'
   get 'topics' => 'topics#index'
@@ -35,6 +36,9 @@ Rails.application.routes.draw do
 
   get 'subjects' => 'subjects#index'
   get 'subject/levels' => 'subjects#levels'
+
+  get 'levels/get_for_menu/:subject_id' => 'levels#get_for_menu'
+  get 'topics/get_for_menu/:level_id' => 'topics#get_for_menu'
 
   ActiveAdmin.routes(self)
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }

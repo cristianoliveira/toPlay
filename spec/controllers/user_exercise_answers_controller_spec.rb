@@ -1,12 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe SearchController, :type => :controller do
+RSpec.describe UserExerciseAnswersController, :type => :controller do
 
-  describe "GET index" do
-
+  describe "GET #create" do
     context 'user not logged' do
       it 'should redirect to sign_in' do
-        get :index
+        get :create
 
         expect(response).to be_redirect
       end
@@ -14,8 +13,8 @@ RSpec.describe SearchController, :type => :controller do
 
     context 'user logged' do
       it "returns http success" do
-        sign_in
-        get :index
+        sign_id
+        get :create
         expect(response).to be_success
       end
     end
