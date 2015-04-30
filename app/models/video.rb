@@ -43,7 +43,7 @@ class Video < ActiveRecord::Base
   end
 
   def get_vote_score
-    get_dislikes.size + get_likes.size
+    get_likes.size - get_dislikes.size
   end
 
   def invalidate_score!
