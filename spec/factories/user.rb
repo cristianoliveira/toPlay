@@ -14,7 +14,6 @@ FactoryGirl.define do
     password    "123123"
     confirmed_at Date.today #confirmed
     role :administrator
-
   end
 
 end

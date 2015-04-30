@@ -1,25 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe SubjectsController, :type => :controller do
+  render_views
 
   let(:subject){ FactoryGirl.create(:subject) }
 
   describe 'GET #level'do
     context 'user not logged' do
-      it{
-        sign_out
-        get :levels, {subject_id: subject.id}
-        expect(response).to be_redirect '/users/sign_in'
-      }
-    end
-
-    context 'user not logged' do
       before :each do
-        sign_in
-        get :levels, {subject_id: subject.id}
+        get :levels, {subject_id: subject.id, format: :json }
       end
 
-      it{ expect(response).not_to be_redirect '/users/sign_in' }
+      it{ expect(response.status).to eq 401 }
+      it{ expect(response.content_type).to be_include 'application/json' }
+      it{ expect(response.body).to be_include 'error' }
+
     end
 
     context 'request json' do
@@ -28,8 +23,7 @@ RSpec.describe SubjectsController, :type => :controller do
         get :levels, {subject_id: subject.id, format: :json }
       end
 
-      it{ expect(response.content_type).to be_eql? 'application/json' }
-      it{ expect(response.body).to be_include '"subject_id":'+subject.id }
+      it{ expect(response.content_type).to be_include 'application/json' }
 
     end
 

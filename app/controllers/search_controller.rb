@@ -3,7 +3,7 @@ class SearchController < ApplicationController
   LIKE_CONDITION = "upper(%s) LIKE ?"
 
   def index
-    @query = params[:q].upcase!
+    @query = params[:q].upcase! if params[:q]
 
     @topics_results = []
     @topics_results << @courses = Course.where(LIKE_CONDITION % :name, "%#{@query}%")

@@ -10,7 +10,7 @@ RSpec.describe UsersController, :type => :controller do
       end
 
       it "returns http success" do
-        get :profile_user
+        get :profile
         expect(response).to be_success
       end
     end
