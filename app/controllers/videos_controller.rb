@@ -70,8 +70,8 @@ class VideosController < InheritedResources::Base
 
   def upvote
     @current_user = current_user
-    @video = Video.find(params[:id])
 
+    @video = Video.find(params[:id])
     @video.liked_by current_user
 
     respond_to do |format|

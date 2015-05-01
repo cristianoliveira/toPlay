@@ -17,8 +17,14 @@ describe VideosController do
   describe 'GET #show' do
     context 'user not logged' do
       it 'should be redirected' do
+        # given
         sign_out
-        get :show, { :id => video.id }
+        video_params = { :id => video.id }
+
+        # when
+        get :show, video_params
+
+        # then
         expect(response).to be_redirect
       end
     end
@@ -122,11 +128,18 @@ describe VideosController do
       end
     end
 
-    context 'when user votes' do
+    context 'when user upvote' do
       it 'should score +1' do
-        expected_score = video.get_vote_score + 1
-        get :upvote, id: video.id
-        expect(video.get_vote_score).to be expected_score
+        # given
+        video = FactoryGirl.create(:video)
+        video_params = { id: video.id }
+        expected = video.get_likes.size + 1
+
+        # when
+        get :upvote, video_params
+
+        # then
+        expect(video.get_likes.size).to be expected
       end
     end
 
@@ -159,9 +172,23 @@ describe VideosController do
 
         expect(video.get_dislikes.size).to be expected_score
       end
+
+      it 'should score 0 points for owner' do
+        #given
+        owner = FactoryGirl.create(:user)
+        video = FactoryGirl.create(:video, user: owner)
+        video_params = { id: video.id }
+        expected = owner.points
+
+        # when
+        get :downvote, video_params
+        get :upvote, video_params
+
+        # then
+        expect(owner.points).to be_eql expected
+      end
     end
   end
-
 
   describe 'GET #downvote' do
     context 'when user not logged' do
@@ -182,21 +209,58 @@ describe VideosController do
       end
     end
 
-    context 'when user votes' do
+    context 'when user downvote' do
       it 'should score +1' do
-        expected_score = video.get_vote_score + 1
+        # given
+        expected_score = video.get_dislikes.size + 1
+
+        # when
         get :downvote, id: video.id
-        expect(video.get_vote_score).to be expected_score
+
+        # then
+        expect(video.get_dislikes.size).to be expected_score
       end
+
+      it 'should score -5 points for owner' do
+        #given
+        owner = FactoryGirl.create(:user)
+        video = FactoryGirl.create(:video, user: owner)
+        video_params = { id: video.id }
+        expected = owner.points - 5
+
+        # when
+        get :downvote, video_params
+
+        # then
+        expect(owner.points).to be expected
+      end
+
     end
 
-    context 'when user upvote twice' do
+    context 'when user downvote twice' do
+
       it 'should scores +1 and after remove the upvote' do
         expected_score = video.get_vote_score
         get :downvote, id: video.id
         get :downvote, id: video.id
         expect(video.get_vote_score).to be expected_score
       end
+
+      it 'should score -5 points for owner' do
+        #given
+        owner = FactoryGirl.create(:user)
+        video = FactoryGirl.create(:video, user: owner)
+        video_params = { id: video.id }
+        expected = owner.points - 5
+
+        # when
+        get :downvote, video_params
+        get :downvote, video_params
+
+        # then
+        expect(owner.points).to be_eql expected
+      end
+
     end
 
     context 'when user upvote after downvote' do
@@ -209,13 +273,32 @@ describe VideosController do
         expect(video.get_dislikes.size).to be expected_score
       end
 
-      it 'should remove downvote' do
+      it 'should count only upvote' do
+        # given
         expected_score = video.get_likes.size
+        video_param = {id: video.id}
 
-        get :upvote, id: video.id
-        get :downvote, id: video.id
+        # when
+        get :upvote, video_param
+        get :downvote, video_param
 
+        # then
         expect(video.get_likes.size).to be expected_score
+      end
+
+      it 'should score 0 points for owner' do
+        #given
+        owner = FactoryGirl.create(:user)
+        video = FactoryGirl.create(:video, user: owner)
+        video_params = { id: video.id }
+        expected = owner.points
+
+        # when
+        get :upvote, video_params
+        get :downvote, video_params
+
+        # then
+        expect(owner.points).to be_eql expected
       end
     end
   end

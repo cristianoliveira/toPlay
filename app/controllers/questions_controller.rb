@@ -1,6 +1,6 @@
 class QuestionsController < InheritedResources::Base
-  
-  before_action :find_question, only: [:show, :edit, :destroy]
+
+  before_action :find_question, only: [:show, :edit, :destroy, :upvote, :downvote]
 
   respond_to :json, :only => [ :create, :edit ]
 
@@ -38,17 +38,10 @@ class QuestionsController < InheritedResources::Base
 
   def upvote
     @current_user = current_user
-    @question = Question.find(params[:id])
-
-    if current_user.voted_up_on? @question
-      @question.unliked_by current_user
-    else
-      @question.liked_by current_user
-    end
-
+    @question.liked_by current_user
 
     respond_to do |format|
-      format.html {redirect_to :back }
+      format.html { redirect_to :back }
       format.json { render json: { count: @question.get_upvotes.size.to_s.rjust(3, '0') } }
     end
 
@@ -56,13 +49,7 @@ class QuestionsController < InheritedResources::Base
 
   def downvote
     @current_user = current_user
-    @question = Question.find(params[:id])
-
-    if current_user.voted_down_on? @question
-      @question.undisliked_by current_user
-    else
-      @question.disliked_by current_user
-    end
+    @question.disliked_by current_user
 
     respond_to do |format|
       format.html {redirect_to :back }

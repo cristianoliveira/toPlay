@@ -18,13 +18,13 @@ RSpec.describe Question, :type => :model do
   describe '#liked_by' do
     let(:question){ FactoryGirl.create(:question) }
 
-    context 'when user likes the video' do
+    context 'when user likes' do
       it 'should score +1' do
         expected = question.get_likes.size + 1
 
         question.liked_by user
 
-        expect(question.get_likes.size).to be_eql expected
+        expect(question.get_likes.size).to be expected
       end
     end
 
@@ -35,7 +35,7 @@ RSpec.describe Question, :type => :model do
         question.liked_by user
         question.liked_by user
 
-        expect(question.get_likes.size).to be_eql expected
+        expect(question.get_likes.size).to be expected
       end
     end
 
@@ -46,7 +46,7 @@ RSpec.describe Question, :type => :model do
         question.liked_by user
         question.disliked_by user
 
-        expect(question.get_likes.size).to be_eql expected
+        expect(question.get_likes.size).to be expected
       end
     end
 
@@ -61,7 +61,7 @@ RSpec.describe Question, :type => :model do
 
         question.disliked_by user
 
-        expect(question.get_dislikes.size).to be_eql expected
+        expect(question.get_dislikes.size).to be expected
       end
     end
 
@@ -72,7 +72,7 @@ RSpec.describe Question, :type => :model do
         question.disliked_by user
         question.disliked_by user
 
-        expect(question.get_dislikes.size).to be_eql expected
+        expect(question.get_dislikes.size).to be expected
       end
     end
 
@@ -83,7 +83,7 @@ RSpec.describe Question, :type => :model do
         question.disliked_by user
         question.liked_by user
 
-        expect(question.get_dislikes.size).to be_eql expected
+        expect(question.get_dislikes.size).to be expected
       end
     end
   end

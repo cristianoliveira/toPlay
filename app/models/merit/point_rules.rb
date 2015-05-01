@@ -26,12 +26,12 @@ module Merit
       #
       # score -10, :on => 'comments#destroy'
 
-      score 5, :on => ['videos#upvote','questions#upvote'], to: :user do | video, current_user |
-        current_user.voted_up_on? video
+      score 5, :on => ['videos#upvote','questions#upvote'], to: :user do | votable |
+        votable.valid_score?
       end
 
-      score -5, :on => ['videos#downvote', 'questions#downvote'], to: :user do | video, current_user |
-        current_user.voted_down_on? video
+      score -5, :on => ['videos#downvote', 'questions#downvote'], to: :user do | votable |
+        votable.valid_score?
       end
 
       score 50, :on => [

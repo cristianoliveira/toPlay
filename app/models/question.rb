@@ -6,36 +6,16 @@ class Question < ActiveRecord::Base
 
   validates_presence_of :description, message: "Pergunta deve ser informada."
 
+  # Votable
   acts_as_votable
+  include VotableOnce
 
-  def liked_by(user)
-    unvote_down user if user.voted_down_on? self
+  # delegate :liked_by, :to => :once_liked_by
+  def liked_by(user); once_liked_by user end
+  # delegate :disliked_by, :to => :once_disliked_by
+  def disliked_by(user); once_disliked_by user end
 
-    unless user.voted_up_on? self
-      vote_up(user)
-    else
-      unvote_up(user)
-    end
-  end
-
-  def unliked_by(user)
-    raise "Not allowed unlike."
-  end
-
-  def disliked_by(user)
-    unvote_up user if user.voted_up_on? self
-
-    unless user.voted_down_on? self
-      vote_down(user)
-    else
-      unvote_down(user)
-    end
-  end
-
-  def undisliked_by(user)
-    raise "Not allowed undislike."
-  end
-
+  # General Methods
   def has_answer?
     self.answers.size > 0
   end

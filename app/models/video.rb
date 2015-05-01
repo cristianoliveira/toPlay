@@ -1,4 +1,7 @@
 class Video < ActiveRecord::Base
+  acts_as_votable
+  include VotableOnce
+
   belongs_to :topic
   belongs_to :user
 
@@ -6,52 +9,14 @@ class Video < ActiveRecord::Base
   delegate :subject, :to => :level, :allow_nil => true
   delegate :course, :to => :subject, :allow_nil => true
 
-  acts_as_votable
 
   validates :url, presence: { message: ":Informe a URL do vídeo."}
   validates :title, presence: { message: ":Informe o Título" }
   validates :topic_id, presence: { message: ":Informe o Tópico para o vídeo."}
 
-  @@valid_score = true
-
-  def liked_by(user)
-    unvote_down user if user.voted_down_on? self
-
-    unless user.voted_up_on? self
-      vote_up(user)
-    else
-      unvote_up(user)
-    end
-  end
-
-  def unliked_by(user)
-    raise "Not allowed unlike."
-  end
-
-  def disliked_by(user)
-    unvote_up user if user.voted_up_on? self
-
-    unless user.voted_down_on? self
-      vote_down(user)
-    else
-      unvote_down(user)
-    end
-  end
-
-  def undisliked_by(user)
-    raise "Not allowed undislike."
-  end
-
-  def get_vote_score
-    get_likes.size - get_dislikes.size
-  end
-
-  def invalidate_score!
-    @@valid_score = false
-  end
-
-  def is_valid_score?
-    @@valid_score
-  end
+  # delegate :liked_by, :to => :once_liked_by
+  def liked_by(user); once_liked_by user end
+  # delegate :disliked_by, :to => :once_disliked_by
+  def disliked_by(user); once_disliked_by user end
 
 end
