@@ -48,7 +48,7 @@ RSpec.describe QuestionsController, :type => :controller do
       before :each do
         sign_in
         request.headers["accept"] = 'application/json'
-        post :create, { :question => { :description => "some", :topic_id => topic.id } }
+        post :create, { :question => FactoryGirl.build(:question).attributes }
       end
 
       it{ expect(response).to be_success }
@@ -59,7 +59,7 @@ RSpec.describe QuestionsController, :type => :controller do
     context 'when request invalid' do
       before :each do
         sign_in
-        post :create, { :question => { :description => nil, :topic_id => topic.id } }
+        post :create, { :question => FactoryGirl.build(:question, description: nil).attributes }
       end
 
       it{ expect(response).to be_success }
@@ -82,7 +82,7 @@ RSpec.describe QuestionsController, :type => :controller do
     context 'when user not logged' do
       before :each do
         sign_out
-        post :create, { :question => { :description => "some", :topic_id => topic.id } }
+        post :create, { :question => FactoryGirl.build(:question).attributes }
       end
 
       it { expect(response).to be_redirect }

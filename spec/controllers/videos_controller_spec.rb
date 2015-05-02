@@ -7,10 +7,10 @@ describe VideosController do
 
   let(:video) { FactoryGirl.create(:video) }
   let(:topic) { FactoryGirl.create(:topic) }
-  let(:user) { FactoryGirl.create(:user) }
+  let(:current_user) { FactoryGirl.create(:user) }
 
   before :each do
-    sign_in user
+    sign_in current_user
     request.env["HTTP_REFERER"] = courses_path
   end
 
@@ -54,10 +54,7 @@ describe VideosController do
     context 'when user not logged' do
       it 'should redirect' do
         sign_out
-        params = { :video => { title: 'some',
-                          description: 'desc',
-                          url: 'http://youtube.com',
-                          topic_id: topic.id }}
+        params = { :video => FactoryGirl.build(:video).attributes }
         post :create, params
         expect(response).to be_redirect
       end
@@ -65,13 +62,7 @@ describe VideosController do
 
     context 'when request html and not send required title' do
       before(:each) do
-        post :create, { :video => {
-                        # title: 'some',
-                        description: 'desc',
-                        url: 'http://youtube.com',
-                        topic_id: topic.id
-                        }
-                      }
+        post :create, { :video => FactoryGirl.build(:video, title: nil).attributes }
       end
 
       it 'should return flash error' do
@@ -88,12 +79,10 @@ describe VideosController do
 
     context 'when request json and not send url' do
       before :each do
-        post :create, { :video => {
-                        title: 'some',
-                        description: 'desc',
-                        # url: 'http://youtube.com',
-                        topic_id: topic.id
-                      }, format: :json }
+        post :create, {
+          :video => FactoryGirl.build(:video, url: nil).attributes,
+          format: :json
+        }
       end
 
       it{ expect(response.status).to be 422 }
@@ -105,6 +94,21 @@ describe VideosController do
         expect(response.body).to eq expected.errors.full_messages.to_json
       end
 
+    end
+
+    context 'when success' do
+      it 'should score +500 points to user' do
+        # given
+        user = current_user
+        params = { :video => FactoryGirl.build(:video).attributes }
+        expected = user.points + 500
+
+        # when
+        get :create, params
+
+        # then
+        expect(user.points).to be expected
+      end
     end
 
   end
@@ -264,7 +268,7 @@ describe VideosController do
     end
 
     context 'when user upvote after downvote' do
-      it 'should scores +1' do
+      it 'should scores +1 for downvote' do
         expected_score = video.get_dislikes.size + 1
 
         get :upvote, id: video.id
@@ -273,7 +277,7 @@ describe VideosController do
         expect(video.get_dislikes.size).to be expected_score
       end
 
-      it 'should count only upvote' do
+      it 'should remove upvote' do
         # given
         expected_score = video.get_likes.size
         video_param = {id: video.id}
