@@ -80,12 +80,29 @@ RSpec.describe QuestionsController, :type => :controller do
     end
 
     context 'when user not logged' do
+      #given
       before :each do
         sign_out
         post :create, { :question => FactoryGirl.build(:question).attributes }
       end
 
+      # then
       it { expect(response).to be_redirect }
+    end
+
+    context 'when user create question' do
+      it 'should score +50 for owner' do
+        # given
+        question = FactoryGirl.create(:question, user: current_user)
+        params = question.attributes
+        expected = current_user.points + 50
+
+        # when
+        post :create, { :question => params }
+
+        # then
+        expect(current_user.points).to be_eql expected
+      end
     end
   end
 

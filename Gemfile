@@ -20,7 +20,7 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'pry-rails'
 gem 'awesome_print'
-gem 'bower'
+gem 'bower', require: false
 
 
 group :development do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416231027) do
+ActiveRecord::Schema.define(version: 20150502161242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -176,6 +176,17 @@ ActiveRecord::Schema.define(version: 20150416231027) do
   end
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
+
+  create_table "point_origins", force: true do |t|
+    t.integer  "merit_action_id"
+    t.integer  "topic_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "point_origins", ["topic_id"], name: "index_point_origins_on_topic_id", using: :btree
+  add_index "point_origins", ["user_id"], name: "index_point_origins_on_user_id", using: :btree
 
   create_table "questions", force: true do |t|
     t.integer  "topic_id"

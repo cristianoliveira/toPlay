@@ -46,7 +46,8 @@ class VideosController < InheritedResources::Base
   end
 
   def create
-    @video = current_user.videos.new(video_params)
+    @current_user = current_user
+    @video = @current_user.videos.new(video_params)
 
     if @video.save
       respond_to do |format|

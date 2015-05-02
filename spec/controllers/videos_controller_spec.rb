@@ -7,7 +7,7 @@ describe VideosController do
 
   let(:video) { FactoryGirl.create(:video) }
   let(:topic) { FactoryGirl.create(:topic) }
-  let(:current_user) { FactoryGirl.create(:user) }
+    let(:current_user) { FactoryGirl.create(:user) }
 
   before :each do
     sign_in current_user
@@ -109,6 +109,19 @@ describe VideosController do
         # then
         expect(user.points).to be expected
       end
+
+      it 'should score +500 points in video topic' do
+        # given
+        video = FactoryGirl.build(:video, user: current_user)
+        params = { :video => video.attributes }
+        expected = current_user.points_for_topic_id(video.topic_id) + 500
+
+        # when
+        get :create, params
+
+        # then
+        expect(current_user.points_for_topic_id(video.topic_id)).to be expected
+      end
     end
 
   end
@@ -144,6 +157,35 @@ describe VideosController do
 
         # then
         expect(video.get_likes.size).to be expected
+      end
+
+      it 'should score +5 points to owner' do
+        # given
+        user = FactoryGirl.create(:user)
+        video = FactoryGirl.create(:video, user: user)
+        video_params = { id: video.id }
+        expected = user.points + 5
+
+        # when
+        get :upvote, video_params
+
+        # then
+        expect(user.points).to be expected
+      end
+
+      it 'should score +5 points for user in video topic' do
+        # given
+        user = FactoryGirl.create(:user)
+        sign_in user
+        video = FactoryGirl.create(:video, user: user)
+        video_params = { id: video.id }
+        expected = user.points_for_topic_id(video.topic_id) + 5
+
+        # when
+        get :upvote, video_params
+
+        # then
+        expect(user.points_for_topic_id(video.topic_id)).to be expected
       end
     end
 
@@ -191,6 +233,7 @@ describe VideosController do
         # then
         expect(owner.points).to be_eql expected
       end
+
     end
   end
 
@@ -237,6 +280,19 @@ describe VideosController do
 
         # then
         expect(owner.points).to be expected
+      end
+
+      it 'should score -5 point to user on topic' do
+        # given
+        video = FactoryGirl.create(:video, user: current_user)
+        params = { id: video.id }
+        expected = current_user.points_for_topic_id(video.topic_id) - 5
+
+        # when
+        get :downvote, params
+
+        # then
+        expect(current_user.points_for_topic_id(video.topic_id)).to be_eql expected
       end
 
     end

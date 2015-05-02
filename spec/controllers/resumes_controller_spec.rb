@@ -13,7 +13,6 @@ RSpec.describe ResumesController, :type => :controller do
     context 'when doesn`t required params' do
       before :each do
         # given
-        user = current_user
         params = { resume: nil , format: :json }
 
         # when
@@ -45,21 +44,21 @@ RSpec.describe ResumesController, :type => :controller do
     context 'when missing description' do
       it 'should return json with errors' do
         # given
-        stub_resume = FactoryGirl.build(:resume, description: nil)
-        stub_resume.valid?
-        params = stub_resume.attributes
+        resume = FactoryGirl.build(:resume, description: nil)
+        resume.valid?
+        params = resume.attributes
 
         # when
         post :create, { resume: params, format: :json }
 
         # then
-        expect(response.body).to include stub_resume.errors.to_json
+        expect(response.body).to include resume.errors.to_json
       end
 
       it 'should not score owner points' do
         # given
         resume = FactoryGirl.build(:resume, user: current_user, description: nil)
-        params = stub_resume.attributes
+        params = resume.attributes
         expected = current_user.points
 
         # when
@@ -83,6 +82,71 @@ RSpec.describe ResumesController, :type => :controller do
         # then
         expect(current_user.points).to be_eql expected
       end
+
+      it 'should score +250 point for current user in topic video' do
+        # given
+        resume = FactoryGirl.build(:resume, user: current_user)
+        params = resume.attributes
+        expected = current_user.points_for_topic_id(resume.topic_id) + 250
+
+        # when
+        post :create, { resume: params, format: :json }
+
+        # then
+        expect(current_user.points_for_topic_id(resume.topic_id)).to be_eql expected
+      end
     end
+  end
+
+  describe 'POST #update' do
+    before do
+      sign_in current_user
+    end
+
+    context 'when user not logged' do
+      it 'should redirect' do
+        # given
+        sign_out
+        resume = FactoryGirl.create(:resume)
+        params = { id: resume.id,  resume: resume.attributes }
+
+        # when
+        put :update, params
+
+        # then
+        expect(response).to be_redirect
+      end
+    end
+
+    context 'when update success' do
+      it 'should point +250 user' do
+        # given
+        resume = FactoryGirl.create(:resume, user: current_user)
+        resume.description  = 'new'
+        params = { id: resume.id, resume: resume.attributes }
+        expected = current_user.points + 250
+
+        # when
+        put :update, params
+
+        # then
+        expect(current_user.points).to be_eql expected
+      end
+
+      it 'should point +250 for user in topic' do
+        # given
+        resume = FactoryGirl.create(:resume, user: current_user)
+        resume.description  = 'new'
+        params = { id: resume.id, resume: resume.attributes }
+        expected = current_user.points_for_topic_id(resume.topic_id) + 250
+
+        # when
+        put :update, params
+
+        # then
+        expect(current_user.points_for_topic_id(resume.topic_id)).to be_eql expected
+      end
+    end
+
   end
 end

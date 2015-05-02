@@ -35,12 +35,12 @@ module Merit
       end
 
       score 50, :on => [
-        'user_exercise_answers#create', 'user_exercise_answers#update'
-        ] do | answer |
-        answer.incorrect!
+        'user_exercise_answers#create',
+        'user_exercise_answers#update' ] do | answer |
+        answer.correct? == false
       end
 
-      score 50, :on => 'question#create'
+      score 50, :on => 'questions#create'
 
       score 100, :on => [
         'user_exercise_answers#create',
@@ -49,13 +49,13 @@ module Merit
         answer.correct?
       end
 
-      score 250, :on => ['resumes#create', 'resumes#update']
+      score 250, :on => ['resumes#create', 'resumes#update'], to: :user
 
       score 250, :on => 'video#start_watch' do |video|
         video.is_valid_score?
       end
 
-      score 500, :on => 'videos#create'
+      score 500, :on => 'videos#create', to: :user
 
     end
   end
