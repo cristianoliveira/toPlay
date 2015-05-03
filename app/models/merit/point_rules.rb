@@ -30,8 +30,16 @@ module Merit
         votable.valid_score?
       end
 
+      score -5, :on => ['videos#upvote','questions#upvote'], to: :user do | votable |
+        !votable.valid_score?
+      end
+
       score -5, :on => ['videos#downvote', 'questions#downvote'], to: :user do | votable |
         votable.valid_score?
+      end
+
+      score 5, :on => ['videos#downvote', 'questions#downvote'], to: :user do | votable |
+        !votable.valid_score?
       end
 
       score 50, :on => [
@@ -50,12 +58,14 @@ module Merit
       end
 
       score 250, :on => ['resumes#create', 'resumes#update'], to: :user
+      score -250, :on => ['resumes#delete'], to: :user
 
       score 250, :on => 'video#start_watch' do |video|
         video.is_valid_score?
       end
 
       score 500, :on => 'videos#create', to: :user
+      score -500, :on => 'videos#destroy', to: :user
 
     end
   end

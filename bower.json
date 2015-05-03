@@ -1,4 +1,4 @@
-{
+  {
   "name": "TorrePlay",
   "version": "0.0.01",
   "homepage": "https://github.com/CristianOliveiraDaRosa/TorrePlay",
@@ -27,6 +27,7 @@
   "dependencies": {
     "sweetalert": "~0.4.2",
     "ckeditor": "~4.4.7",
-    "bootstrap": "~3.3.2"
+    "bootstrap": "~3.3.2",
+    "notifyjs": "~0.3.2"
   }
 }

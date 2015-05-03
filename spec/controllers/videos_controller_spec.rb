@@ -62,18 +62,21 @@ describe VideosController do
 
     context 'when request html and not send required title' do
       before(:each) do
-        post :create, { :video => FactoryGirl.build(:video, title: nil).attributes }
+        # given
+        params = FactoryGirl.build(:video, title: nil).attributes
+        # when
+        post :create, { :video => params }
       end
 
-      it 'should return flash error' do
-        expect(flash[:message]).not_to be_nil
-      end
-
+      # then
+      it { expect(flash[:error]).to be_present }
       it 'should return message with error' do
+        # given
         expected = FactoryGirl.build(:video, title: nil)
         expected.valid?
 
-        expect(flash[:message]).to eq expected.errors.full_messages
+        # then
+        expect(flash[:error]).to eq expected.errors.full_messages
       end
     end
 
@@ -97,6 +100,18 @@ describe VideosController do
     end
 
     context 'when success' do
+
+      it 'should return success message' do
+        # given
+        params = { :video => FactoryGirl.build(:video).attributes }
+
+        # when
+        get :create, params
+
+        # then
+        expect(flash[:success]).to be_eql I18n.t('success.messages.content_send')
+      end
+
       it 'should score +500 points to user' do
         # given
         user = current_user
@@ -198,6 +213,22 @@ describe VideosController do
 
         expect(video.get_vote_score).to be expected_score
       end
+
+      it 'should score 0 points to owner' do
+        # given
+        user = FactoryGirl.create(:user)
+        video = FactoryGirl.create(:video, user: user)
+        video_params = { id: video.id }
+        expected = user.points + 0
+
+        # when
+        get :upvote, video_params
+        get :upvote, video_params
+
+        # then
+        expect(user.points).to be expected
+      end
+
     end
 
     context 'when user downvote after upvote' do
@@ -306,12 +337,12 @@ describe VideosController do
         expect(video.get_vote_score).to be expected_score
       end
 
-      it 'should score -5 points for owner' do
+      it 'should score 0 points for owner' do
         #given
         owner = FactoryGirl.create(:user)
         video = FactoryGirl.create(:video, user: owner)
         video_params = { id: video.id }
-        expected = owner.points - 5
+        expected = owner.points - 0
 
         # when
         get :downvote, video_params
@@ -359,6 +390,24 @@ describe VideosController do
 
         # then
         expect(owner.points).to be_eql expected
+      end
+    end
+  end
+
+  describe 'GET #delete' do
+    context 'when success' do
+      it 'should remove -500 points for owner' do
+        # given
+        user = FactoryGirl.create(:user)
+        video = FactoryGirl.create(:video, user: user)
+        params = { id: video.id }
+        expected = user.points - 500
+
+        # when
+        delete :destroy, params
+
+        #then
+        expect(user.points).to be_eql expected
       end
     end
   end

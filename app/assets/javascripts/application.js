@@ -12,12 +12,31 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap/dist/js/bootstrap
 //= require foundation
 //= require sweetalert/lib/sweet-alert
 //= require ckeditor/init
+//= require notifyjs/dist/notify
+//= require bootstrap/dist/js/bootstrap
 //= require_tree
 
+// Notification js
+$(window).on("load", function(){
+  flash_message = $('.flash .notice:first').text();
+  flash_success = $('.flash .success:first').text();
+  flash_error = $('.flash .error:first').text();
+
+  $('.flash').hide();
+
+  if(flash_message){
+    $('.last').notify(flash_message, 'info');
+  } else if(flash_success){
+    $('.last').notify(flash_success, 'success');
+  } else if(flash_error){
+    $('.last').notify(flash_error, 'error');
+  }
+})
+
+// Scrolldown Header
 $(window).on("scroll",function(){
   if ($(document).scrollTop() > 200)
   {

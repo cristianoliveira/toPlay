@@ -165,12 +165,12 @@ RSpec.describe QuestionsController, :type => :controller do
         expect(question.get_vote_score).to be expected_score
       end
 
-      it 'should score only +5 for owner' do
+      it 'should score only 0 for owner' do
         # given
         owner = FactoryGirl.create(:user)
         question = FactoryGirl.create(:question, user: owner)
         question_params = { id: question.id }
-        expected = owner.points + 5
+        expected = owner.points
 
         # when
         get :upvote, question_params
@@ -275,12 +275,12 @@ RSpec.describe QuestionsController, :type => :controller do
         expect(question.get_vote_score).to be expected_score
       end
 
-      it 'should score only -5 for owner' do
+      it 'should score only 0 for owner' do
         # given
         owner = FactoryGirl.create(:user)
         question = FactoryGirl.create(:question, user: owner)
         question_params = { id: question.id }
-        expected = owner.points - 5
+        expected = owner.points
 
         # when
         get :downvote, question_params

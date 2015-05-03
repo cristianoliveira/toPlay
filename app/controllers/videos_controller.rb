@@ -12,7 +12,10 @@ class VideosController < InheritedResources::Base
     respond_to do |format|
       if @video.update(video_params)
         respond_to do |format|
-          format.html { redirect_to topic_path(@video.topic_id) }
+          format.html {
+            flash[:success] = I18n.t('success.messages.content_send')
+            redirect_to topic_path(@video.topic_id)
+          }
           format.json {
             render json: {
               result: 'ok'
@@ -36,10 +39,10 @@ class VideosController < InheritedResources::Base
 
     if  @video
       unless @video.delete
-        flash[:message] = @video.errors.full_messages
+        flash[:error] = @video.errors.full_messages
       end
     else
-      flash[:message] = 'Video não foi encontrado'
+      flash[:error] = I18n.t("errors.messages.content_not_found")
     end
 
     redirect_to :back
@@ -51,10 +54,15 @@ class VideosController < InheritedResources::Base
 
     if @video.save
       respond_to do |format|
-        format.html { redirect_to topic_path(@video.topic_id) }
+        format.html {
+          flash[:success] = I18n.t('success.messages.content_send')
+          redirect_to topic_path(@video.topic_id)
+        }
+
         format.json {
           render json: {
             result: 'ok',
+            message: I18n.t('success.messages.content_send'),
             redirect_to: topic_path(@video.topic_id)
           }
         }
@@ -62,7 +70,7 @@ class VideosController < InheritedResources::Base
 
     else
       respond_to do |format|
-        format.html {  flash[:message] = @video.errors.full_messages
+        format.html {  flash[:error] = @video.errors.full_messages
                        redirect_to :back }
         format.json { render json:  @video.errors.full_messages , status: 422 }
       end

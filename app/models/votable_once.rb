@@ -1,9 +1,8 @@
 module VotableOnce
-  
+
   @@valid_score = false
 
   def once_liked_by(user)
-    p "SELF INSIDE VOTABLE #{self}"
     unvote_down user if user.voted_down_on? self
 
     user_have_upvoted = user.voted_up_on? self
